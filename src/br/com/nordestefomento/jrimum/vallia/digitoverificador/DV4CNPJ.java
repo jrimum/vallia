@@ -41,7 +41,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 import br.com.nordestefomento.jrimum.utilix.Filler;
-import br.com.nordestefomento.jrimum.utilix.Operator4String;
+import br.com.nordestefomento.jrimum.utilix.Util4String;
 
 
 /**
@@ -107,7 +107,7 @@ public class DV4CNPJ extends ADigitoVerificador {
 	@Override
 	public int calcular(long numero) {
 
-		return calcular(Operator4String.complete_x(numero, Filler.LONG_ZERO_LEFT, 12));
+		return calcular(Util4String.complete_x(numero, Filler.LONG_ZERO_LEFT, 12));
 	}
 
 	/**
