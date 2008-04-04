@@ -35,7 +35,6 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 import br.com.nordestefomento.jrimum.utilix.Filler;
-import br.com.nordestefomento.jrimum.utilix.Util4String;
 
 
 /**
@@ -101,7 +100,7 @@ public class DV4CNPJ extends ADigitoVerificador {
 	@Override
 	public int calcular(long numero) {
 
-		return calcular(Util4String.complete_x(numero, Filler.LONG_ZERO_LEFT, 12));
+		return calcular(Filler.LONG_ZERO_LEFT.fill(String.valueOf(numero), 12));
 	}
 
 	/**
@@ -144,14 +143,20 @@ public class DV4CNPJ extends ADigitoVerificador {
 	}
 
 	/**
-	 * Método auxiliar para o cálculo do dígito verificador. <br />
-	 * Calcula os dígitos separadamente.
+	 * <p>
+	 * Método auxiliar para o cálculo do dígito verificador.
+	 * </p>
 	 * 
-	 * @param numero -
-	 *            número a partir do qual será extraído o dígito verificador.
-	 * @return um número que faz parte de um dígito verificador.
+	 * <p>
+	 * Calcula os dígitos separadamente.
+	 * </p>
+	 * 
+	 * @param numero - número a partir do qual será extraído o dígito verificador.
+	 * @return Um número que faz parte de um dígito verificador.
 	 * @throws IllegalArgumentException
 	 *             caso o número não esteja no formatador desejável.
+	 * 
+	 * @since Vallia 1.0
 	 */
 	private int calcularDigito(String numero) throws IllegalArgumentException {
 
