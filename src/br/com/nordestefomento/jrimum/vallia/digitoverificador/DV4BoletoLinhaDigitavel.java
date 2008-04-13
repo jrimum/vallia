@@ -97,7 +97,7 @@ public class DV4BoletoLinhaDigitavel extends ADigitoVerificador {
 	@Override
 	public int calcular(long numero) {
 		
-		return calcular(Filler.LONG_ZERO_LEFT.fill(String.valueOf(numero), 10));
+		return calcular(Filler.ZERO_LEFT.fill(String.valueOf(numero), 10));
 	}
 
 	/**
