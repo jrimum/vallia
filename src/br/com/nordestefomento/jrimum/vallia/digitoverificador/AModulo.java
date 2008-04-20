@@ -30,6 +30,8 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
+import org.apache.commons.lang.StringUtils;
+
 import br.com.nordestefomento.jrimum.ACurbitaObject;
 
 /**
@@ -52,6 +54,28 @@ import br.com.nordestefomento.jrimum.ACurbitaObject;
  * 
  * @version 1.0
  */
+
+/**
+ * 
+ * <p>
+ * DEFINIÇÃO DA CLASSE
+ * </p>
+ * 
+ * <p>
+ * OBJETIVO/PROPÓSITO
+ * </p>
+ * 
+ * <p>
+ * EXEMPLO: 
+ * </p>
+ * 
+ * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
+ * 
+ * @since 
+ * 
+ * @version 
+ */
+	
 public abstract class AModulo extends ACurbitaObject{
 	
 	/**
@@ -85,6 +109,69 @@ public abstract class AModulo extends ACurbitaObject{
 	 * @return módulo do número.
 	 */
 	public abstract int calcular(long numero);
+	
+	
+
+	
+	/**
+	 * 
+	 * <p>
+	 * Efetua somente o cálculo do produto e a soma dos produtos, não realiza a
+	 * operação módulo.
+	 * </p>
+	 * <p>
+	 * Exemplo para o número 654321: <br />
+	 * <pre>
+	 * +---+---+---+---+---+---+
+	 * | 6 | 5 | 4 | 3 | 2 | 1 |
+	 * +---+---+---+---+---+---+
+	 *   |   |   |   |   |   |
+	 *  x7  x6  x5  x4  x3  x2
+	 *   |   |   |   |   |   |
+	 *  =42 =30 =20 =12 =6  =2
+	 *   +---+---+---+---+---+- == retorne a soma (42 + 30 + 20 + 12 + 6 + 2) = 112
+	 * </pre>
+	 * </p> 
+	 * 
+	 * @param modulo
+	 * @param numero
+	 * @param limiteMin
+	 * @param limiteMax
+	 * 
+	 * @return soma
+	 * 
+	 * @since 0.2 
+	 */
+		
+	public static int calculeSomaSequencial(EnumModulo modulo, String numero, int limiteMin, int limiteMax) {
+
+		int resto = 0;
+		int peso = 0;
+		int soma = 0;
+		
+		if(StringUtils.isNotBlank(numero) && StringUtils.isNumeric(numero)){
+			
+			StringBuilder sb = new StringBuilder(numero);
+			sb.reverse();
+		
+			peso = limiteMin;
+			
+			for(char c : sb.toString().toCharArray())
+			{
+				soma += peso * Character.getNumericValue(c);
+				peso++;
+				
+				if(peso > limiteMax)
+					peso = limiteMin;
+			}
+			
+			resto = soma % modulo.getValor();
+			
+		}else
+			throw new IllegalArgumentException(O_ARGUMENTO_DEVE_CONTER_APENAS_NUMEROS);
+		
+		return resto;
+	}
 
 	/**
 	 * <p>
