@@ -48,7 +48,7 @@ import java.io.Serializable;
  */
 public enum EnumModulo implements Serializable {
 
-	MODULO_10, MODULO_11;
+	MODULO_10, MODULO_11, MODULO10, MODULO11;
 
 	public AModulo getModulo() {
 		

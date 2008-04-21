@@ -49,8 +49,8 @@ import org.apache.commons.lang.StringUtils;
  *   |   |   |   |   |   |
  *  x1  x2  x1  x2  x1  x2
  *   |   |   |   |   |   |
- *  =1  =4  =3  =8  =5  =12
- *   +---+---+---+---+---+-> = (33 / 10) = 3, resto 3; Então o módulo é igual a 3.
+ *  =1  =4  =3  =8  =5  =[ 3 <= ( 1 + 2 <==12 ) ] = 24
+ *   +---+---+---+---+---+-> = (24 / 10) = 3, resto 3; Então o módulo é igual a 3.
  * </code>
  * </p>
  * 
