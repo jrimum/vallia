@@ -70,7 +70,11 @@ public class Modulo extends ACurbitaObject {
 	 * Mensagem da exceção lançada no método calcular.
 	 */
 	private static final String O_ARGUMENTO_DEVE_CONTER_APENAS_NUMEROS = "O argumento deve conter apenas números !";
-
+	
+	public static final int MOD10 = EnumModulo.MODULO10.valor();
+	
+	public static final int MOD11 = EnumModulo.MODULO11.valor();
+	
 	private EnumModulo mod;
 
 	private int limiteMaximo;
