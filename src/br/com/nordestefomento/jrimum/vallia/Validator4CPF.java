@@ -52,7 +52,7 @@ package br.com.nordestefomento.jrimum.vallia;
  * 
  * @version 1.0
  */
-class Validator4CPF extends AValidator4CadastroDePessoa {
+class Validator4CPF extends AValidator4ACpfCnpj {
 
 	/**
 	 * 
@@ -60,7 +60,7 @@ class Validator4CPF extends AValidator4CadastroDePessoa {
 	private static final long serialVersionUID = 7284156043760247784L;
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4CadastroDePessoa#isValido()
+	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj#isValido()
 	 */
 	@Override
 	public boolean isValido() {
@@ -79,7 +79,7 @@ class Validator4CPF extends AValidator4CadastroDePessoa {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4CadastroDePessoa#removeFormatacao()
+	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj#removeFormatacao()
 	 */
 	@Override
 	protected void removeFormatacao() {

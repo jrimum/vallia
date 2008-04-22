@@ -30,7 +30,7 @@
 
 package br.com.nordestefomento.jrimum.vallia;
 
-import br.com.nordestefomento.jrimum.vallia.AValidator4CadastroDePessoa;
+import br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj;
 
 import junit.framework.TestCase;
 
@@ -50,11 +50,11 @@ import junit.framework.TestCase;
  */
 public class TestValidator4CPF extends TestCase {
 
-	private AValidator4CadastroDePessoa validadorCPF;
+	private AValidator4ACpfCnpj validadorCPF;
 	
 	public void testIsValido() {
 		
-		validadorCPF = AValidator4CadastroDePessoa.getInstance("22233366638");
+		validadorCPF = AValidator4ACpfCnpj.getInstance("22233366638");
 		
 		assertTrue(validadorCPF.isValido());
 		

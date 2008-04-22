@@ -30,16 +30,16 @@
 
 package br.com.nordestefomento.jrimum.vallia;
 
-import br.com.nordestefomento.jrimum.vallia.AValidator4CadastroDePessoa;
+import br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj;
 import br.com.nordestefomento.jrimum.vallia.Validator4CNPJ;
 import br.com.nordestefomento.jrimum.vallia.Validator4CPF;
-import br.com.nordestefomento.jrimum.vallia.AValidator4CadastroDePessoa.EnumCadastroDePessoa;
+import br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj.EnumCadastroDePessoa;
 
 import junit.framework.TestCase;
 
 /**
  * 
- * Teste da classe <code>AValidator4CadastroDePessoa</code>.
+ * Teste da classe <code>AValidator4ACpfCnpj</code>.
  * 
  * 
  * @author Gabriel Guimarães
@@ -53,7 +53,7 @@ import junit.framework.TestCase;
  */
 public class TestAValidator4CadastroDePessoa extends TestCase {
 
-	private AValidator4CadastroDePessoa validator;
+	private AValidator4ACpfCnpj validator;
 
 	public void testGetInstance() {
 
@@ -61,7 +61,7 @@ public class TestAValidator4CadastroDePessoa extends TestCase {
 			
 			EnumCadastroDePessoa nulo = null;
 
-			AValidator4CadastroDePessoa.getInstance(nulo);
+			AValidator4ACpfCnpj.getInstance(nulo);
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -74,7 +74,7 @@ public class TestAValidator4CadastroDePessoa extends TestCase {
 
 		try {
 
-			AValidator4CadastroDePessoa.getInstance("abc123");
+			AValidator4ACpfCnpj.getInstance("abc123");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -87,7 +87,7 @@ public class TestAValidator4CadastroDePessoa extends TestCase {
 
 		try {
 
-			AValidator4CadastroDePessoa.getInstance("222333666");
+			AValidator4ACpfCnpj.getInstance("222333666");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -100,7 +100,7 @@ public class TestAValidator4CadastroDePessoa extends TestCase {
 
 		try {
 
-			AValidator4CadastroDePessoa.getInstance("112223330001");
+			AValidator4ACpfCnpj.getInstance("112223330001");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -111,11 +111,11 @@ public class TestAValidator4CadastroDePessoa extends TestCase {
 			System.out.println(iaex.getMessage());
 		}
 		
-		assertNotNull(AValidator4CadastroDePessoa.getInstance("22233366638"));
-		assertNotNull(AValidator4CadastroDePessoa.getInstance("222.333.666-38"));
+		assertNotNull(AValidator4ACpfCnpj.getInstance("22233366638"));
+		assertNotNull(AValidator4ACpfCnpj.getInstance("222.333.666-38"));
 
-		assertNotNull(AValidator4CadastroDePessoa.getInstance("11222333000181"));
-		assertNotNull(AValidator4CadastroDePessoa.getInstance("11.222.333/0001-81"));
+		assertNotNull(AValidator4ACpfCnpj.getInstance("11222333000181"));
+		assertNotNull(AValidator4ACpfCnpj.getInstance("11.222.333/0001-81"));
 
 	}
 
@@ -123,7 +123,7 @@ public class TestAValidator4CadastroDePessoa extends TestCase {
 
 		// Um validador de cpf não pode aceitar um cnpj
 
-		validator = AValidator4CadastroDePessoa.getInstance("222.333.666-38");
+		validator = AValidator4ACpfCnpj.getInstance("222.333.666-38");
 
 		try {
 
@@ -141,14 +141,14 @@ public class TestAValidator4CadastroDePessoa extends TestCase {
 
 	public void testIsFisica() {
 
-		validator = AValidator4CadastroDePessoa.getInstance("22233366638");
+		validator = AValidator4ACpfCnpj.getInstance("22233366638");
 
 		assertTrue(validator instanceof Validator4CPF);
 	}
 
 	public void testIsJuridica() {
 
-		validator = AValidator4CadastroDePessoa.getInstance("11222333000181");
+		validator = AValidator4ACpfCnpj.getInstance("11222333000181");
 
 		assertTrue(validator instanceof Validator4CNPJ);
 

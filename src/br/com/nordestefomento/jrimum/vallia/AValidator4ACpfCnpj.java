@@ -55,7 +55,7 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CPF;
  * 
  * @version 1.0
  */
-public abstract class AValidator4CadastroDePessoa extends ACurbitaObject {
+public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 	
 	/**
 	 * Cadastro de pessoa para validação.
@@ -105,9 +105,9 @@ public abstract class AValidator4CadastroDePessoa extends ACurbitaObject {
 
 		CPF, CNPJ;
 
-		public AValidator4CadastroDePessoa getAutenticador() {
+		public AValidator4ACpfCnpj getAutenticador() {
 
-			AValidator4CadastroDePessoa validador = null;
+			AValidator4ACpfCnpj validador = null;
 
 			switch (this) {
 			
@@ -131,7 +131,7 @@ public abstract class AValidator4CadastroDePessoa extends ACurbitaObject {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4CadastroDePessoa.EnumCadastroDePessoa
+	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj.EnumCadastroDePessoa
 	 */
 	private EnumCadastroDePessoa tipoDeCadastro;
 
@@ -141,7 +141,7 @@ public abstract class AValidator4CadastroDePessoa extends ACurbitaObject {
 	 * 
 	 * @return verdadeiro se o dígito verificador for válido.
 	 * 
-	 * @see AValidator4CadastroDePessoa.getInstance(java.lang.String)
+	 * @see AValidator4ACpfCnpj.getInstance(java.lang.String)
 	 */
 	public abstract boolean isValido();
 	
@@ -169,15 +169,15 @@ public abstract class AValidator4CadastroDePessoa extends ACurbitaObject {
 	 * 
 	 * @param codigoDoCadastro -
 	 *            identificador do cadastro de pessoa.
-	 * @return uma instância de <code>AValidator4CadastroDePessoa</code>.
+	 * @return uma instância de <code>AValidator4ACpfCnpj</code>.
 	 * @exception IllegalArgumentException -
 	 *                caso o parâmetro não esteja em um formatador válido de
 	 *                cadastro de pessoa.
 	 */
-	public static AValidator4CadastroDePessoa getInstance(
+	public static AValidator4ACpfCnpj getInstance(
 			String codigoDoCadastro) throws IllegalArgumentException {
 
-		AValidator4CadastroDePessoa validator_A_CP = null;
+		AValidator4ACpfCnpj validator_A_CP = null;
 
 		validator_A_CP = getInstance(selectTipoDeCadastro(codigoDoCadastro));	
 		
@@ -187,9 +187,9 @@ public abstract class AValidator4CadastroDePessoa extends ACurbitaObject {
 		return validator_A_CP;
 	}
 
-	public static AValidator4CadastroDePessoa getInstance(EnumCadastroDePessoa tipoDeCadastro){
+	public static AValidator4ACpfCnpj getInstance(EnumCadastroDePessoa tipoDeCadastro){
 		
-		AValidator4CadastroDePessoa validator_A_CP = null;
+		AValidator4ACpfCnpj validator_A_CP = null;
 
 		if(tipoDeCadastro != null){
 			
