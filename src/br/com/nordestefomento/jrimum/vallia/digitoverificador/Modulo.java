@@ -30,6 +30,9 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
+import static br.com.nordestefomento.jrimum.vallia.digitoverificador.EnumModulo.MODULO10;
+import static br.com.nordestefomento.jrimum.vallia.digitoverificador.EnumModulo.MODULO11;
+
 import org.apache.commons.lang.StringUtils;
 
 import br.com.nordestefomento.jrimum.ACurbitaObject;
@@ -37,11 +40,12 @@ import br.com.nordestefomento.jrimum.ACurbitaObject;
 /**
  * 
  * <p>
- * DEFINIÇÃO DA CLASSE
+ * Representa o módulo no contexto de autenticação, ou seja, uma rotina que
+ * auxilia no cálculo do dígito verificador.
  * </p>
  * 
  * <p>
- * OBJETIVO/PROPÓSITO
+ * As rotinas tradicionais são Módulo 10 e Módulo 11.
  * </p>
  * 
  * <p>
@@ -55,7 +59,7 @@ import br.com.nordestefomento.jrimum.ACurbitaObject;
  * @version
  */
 
-public class Modulo extends ACurbitaObject{
+public class Modulo extends ACurbitaObject {
 
 	/**
 	 * 
@@ -66,11 +70,11 @@ public class Modulo extends ACurbitaObject{
 	 * Mensagem da exceção lançada no método calcular.
 	 */
 	private static final String O_ARGUMENTO_DEVE_CONTER_APENAS_NUMEROS = "O argumento deve conter apenas números !";
-	
+
 	private EnumModulo mod;
-	
+
 	private int limiteMaximo;
-	
+
 	private int limiteMinimo;
 
 	/**
@@ -86,9 +90,9 @@ public class Modulo extends ACurbitaObject{
 	 */
 	public Modulo(EnumModulo mod) {
 		super();
-		
-		if(isNotNull(mod,"modulo")){
-			
+
+		if (isNotNull(mod, "modulo")) {
+
 			this.mod = mod;
 			initDefault();
 		}
@@ -101,29 +105,97 @@ public class Modulo extends ACurbitaObject{
 	 */
 	public Modulo(EnumModulo mod, int limiteMaximo, int limiteMinimo) {
 		super();
-		
-		if(isNotNull(mod,"modulo")){
-			
+
+		if (isNotNull(mod, "modulo")) {
+
 			this.limiteMaximo = limiteMaximo;
 			this.limiteMinimo = limiteMinimo;
 			this.mod = mod;
-			initDefault();
-		}	
+		}
 	}
 
-	public static int calcularMod11(long numero, int limiteMin, int limiteMax) {
+	/**
+	 * <p>
+	 * Retorna o valor da instância do módulo de acordo com a <code>enum</code>
+	 * da instância.
+	 * </p>
+	 * 
+	 * <p>
+	 * Se por um acaso a instância <code>enum</code> for nula uma
+	 * <code>NullPointerException</code> será lançada. Caso a
+	 * <code>enum</code> contenha um módulo não implementado por essa classe o
+	 * retorno será <tt>-1</tt>
+	 * </p>
+	 * 
+	 * @return valor da instância do módulo.
+	 * 
+	 * @since 0.2
+	 */
 
-		return calcularMod11(String.valueOf(numero), limiteMin, limiteMax);
+	public int valor() {
+
+		switch (mod) {
+
+		case MODULO10:
+
+			return MODULO10.valor();
+
+		case MODULO11:
+
+			return MODULO11.valor();
+
+		default:
+			return -1;
+		}
+
+	}
+	
+	public static int calculeMod11(long numero, int limiteMin, int limiteMax) {
+
+		return calculeMod11(String.valueOf(numero), limiteMin, limiteMax);
 	}
 
-	public static int calcularMod11(String numero, int limiteMin, int limiteMax)
+	/**
+	 * *
+	 * <p>
+	 * Rotina do módulo 11.<br />
+	 * O módulo 11 funciona da seguinte maneira:
+	 * </p>
+	 * <p>
+	 * Cada dígito do número, começando da direita para a esquerda (menos
+	 * significativo para o mais significativo), é multiplicado pelo números 2,
+	 * 3, 4 e assim sucessivamente até o limite máxmio definido, então inicia-se
+	 * novamente a contagem. <br />
+	 * O limite máximo padrão assumido pela classe é 9. <br />
+	 * Exemplo para o número 654321: <code>
+	 * +---+---+---+---+---+---+
+	 * | 6 | 5 | 4 | 3 | 2 | 1 |
+	 * +---+---+---+---+---+---+
+	 *   |   |   |   |   |   |
+	 *  x7  x6  x5  x4  x3  x2
+	 *   |   |   |   |   |   |
+	 *  =42 =30 =20 =12 =6  =2
+	 *   +---+---+---+---+---+-> = (112 / 11) = 10, resto 2; Então o módulo é igual a 2.
+	 * </code>
+	 * </p>
+	 * 
+	 * @param numero
+	 * @param limiteMin
+	 * @param limiteMax
+	 * @return
+	 * @throws IllegalArgumentException
+	 * 
+	 * @since 0.2
+	 */
+
+	public static int calculeMod11(String numero, int limiteMin, int limiteMax)
 			throws IllegalArgumentException {
 
-		return (calcularSomaSequencialMod11(numero, limiteMin, limiteMax) % 11);
+		return (calculeSomaSequencialMod11(numero, limiteMin, limiteMax) % 11);
 	}
 
-	public static int calcularSomaSequencialMod11(String numero, int limiteMin,
-			int limiteMax) throws IllegalArgumentException{
+	public static int calculeSomaSequencialMod11(String numero, int limiteMin,
+			int limiteMax) throws IllegalArgumentException {
 
 		int peso = 0;
 		int soma = 0;
@@ -150,99 +222,148 @@ public class Modulo extends ACurbitaObject{
 		return soma;
 	}
 
-	public static int calcularMod10(long numero, int limiteMin, int limiteMax) {
+	public static int calculeMod10(long numero, int limiteMin, int limiteMax) {
 
-		return calcularMod10(String.valueOf(numero), limiteMin, limiteMax);
+		return calculeMod10(String.valueOf(numero), limiteMin, limiteMax);
 	}
 
-	public static int calcularMod10(String numero, int limiteMin, int limiteMax)
+	public static int calculeMod10(String numero, int limiteMin, int limiteMax)
 			throws IllegalArgumentException {
 
-		return (calcularSomaSequencialMod10(numero, limiteMin, limiteMax) % 10);
+		return (calculeSomaSequencialMod10(numero, limiteMin, limiteMax) % 10);
 	}
 
-	public static int calcularSomaSequencialMod10(String numero,
-			int limiteMin, int limiteMax) throws IllegalArgumentException{
+	/**
+	 * *
+	 * <p>
+	 * Rotina do módulo 10.<br />
+	 * O módulo 10 funciona da seguinte maneira:
+	 * </p>
+	 * <p>
+	 * Cada dígito do número, começando da direita para a esquerda (menos
+	 * significativo para o mais significativo), é multiplicado pelo números 2 e
+	 * 1, alternadamente, iniciando pelo 2. <br />
+	 * Exemplo para o número 123456: <code>
+	 * +---+---+---+---+---+---+
+	 * | 1 | 2 | 3 | 4 | 5 | 6 |
+	 * +---+---+---+---+---+---+
+	 *   |   |   |   |   |   |
+	 *  x1  x2  x1  x2  x1  x2
+	 *   |   |   |   |   |   |
+	 *  =1  =4  =3  =8  =5  =[ 3 <= ( 1 + 2 <==12 ) ] = 24
+	 *   +---+---+---+---+---+-> = (24 / 10) = 3, resto 3; Então o módulo é igual a 3.
+	 * </code>
+	 * </p>
+	 * 
+	 * @param numero
+	 * @param limiteMin
+	 * @param limiteMax
+	 * @return
+	 * @throws IllegalArgumentException
+	 * 
+	 * @since 0.2
+	 */
+
+	public static int calculeSomaSequencialMod10(String numero, int limiteMin,
+			int limiteMax) throws IllegalArgumentException {
 
 		int produto = 0;
 		int peso = 0;
 		int soma = 0;
-		
-		if(StringUtils.isNotBlank(numero) && StringUtils.isNumeric(numero)){
-			
+
+		if (StringUtils.isNotBlank(numero) && StringUtils.isNumeric(numero)) {
+
 			StringBuilder sb = new StringBuilder(numero);
 			sb.reverse();
-			
+
 			peso = limiteMax;
-			
-			for(char c : sb.toString().toCharArray()){
-				
+
+			for (char c : sb.toString().toCharArray()) {
+
 				produto = peso * Character.getNumericValue(c);
-				
-				if(produto > 9){
-					
+
+				if (produto > 9) {
+
 					soma += produto / 10;
 					soma += produto % 10;
-				}
-				else
+				} else
 					soma += produto;
-				
-				peso = ( peso == limiteMax ) ? limiteMin : limiteMax;
+
+				peso = (peso == limiteMax) ? limiteMin : limiteMax;
 			}
-			
-		}else
-			throw new IllegalArgumentException(O_ARGUMENTO_DEVE_CONTER_APENAS_NUMEROS);
-		
+
+		} else
+			throw new IllegalArgumentException(
+					O_ARGUMENTO_DEVE_CONTER_APENAS_NUMEROS);
+
 		return soma;
 	}
 
-	public int calcular(String numero) throws IllegalArgumentException {
+	public int calcule(String numero) throws IllegalArgumentException {
 
 		int modulo = 0;
-		
+
 		switch (mod) {
 
 		case MODULO10:
-			
-			modulo = calcularMod10(numero, getLimiteMinimo(), getLimiteMaximo());
-			
+
+			modulo = calculeMod10(numero, getLimiteMinimo(), getLimiteMaximo());
+
 			break;
 
 		case MODULO11:
 
-			modulo = calcularMod11(numero, getLimiteMinimo(), getLimiteMaximo());
-			
+			modulo = calculeMod11(numero, getLimiteMinimo(), getLimiteMaximo());
+
 			break;
 		}
-		
+
 		return modulo;
 	}
 
-	public int calcular(long numero) {
-		
-		return calcular(String.valueOf(numero));
+	public int calcule(long numero) {
+
+		return calcule(String.valueOf(numero));
 	}
+
 	
-	private void initDefault(){
+	/**
+	 * <p>
+	 * Inicializa as variáveis <code>limiteMaximo</code> e <code>limiteMinimo</code> com os valores padrões de acordo com a instância do módulo da classe.
+	 * </p>
+	 * 
+	 * <p>
+	 * Valores padrões: 
+	 * <br />
+	 * <br />
+	 * <code>MODULO10</code>: (limiteMinimo = 1 e limiteMaximo = 2)<br />
+	 * 
+	 * <code>MODULO11</code>: (limiteMinimo = 2 e limiteMaximo = 9)<br />
+	 * </p>
+	 * 
+	 * @since 0.2
+	 */
 		
+	private void initDefault() {
+
 		switch (mod) {
 
 		case MODULO10:
-			
+
 			setLimiteMinimo(1);
 			setLimiteMaximo(2);
 
 			break;
 
 		case MODULO11:
-			
+
 			setLimiteMinimo(2);
 			setLimiteMaximo(9);
 
 			break;
 		}
 	}
-	
+
 	/**
 	 * @return the limiteMaximo
 	 */
@@ -251,7 +372,8 @@ public class Modulo extends ACurbitaObject{
 	}
 
 	/**
-	 * @param limiteMaximo the limiteMaximo to set
+	 * @param limiteMaximo
+	 *            the limiteMaximo to set
 	 */
 	public void setLimiteMaximo(int limiteMaximo) {
 		this.limiteMaximo = limiteMaximo;
@@ -265,7 +387,8 @@ public class Modulo extends ACurbitaObject{
 	}
 
 	/**
-	 * @param limiteMinimo the limiteMinimo to set
+	 * @param limiteMinimo
+	 *            the limiteMinimo to set
 	 */
 	public void setLimiteMinimo(int limiteMinimo) {
 		this.limiteMinimo = limiteMinimo;
@@ -279,7 +402,8 @@ public class Modulo extends ACurbitaObject{
 	}
 
 	/**
-	 * @param mod the mod to set
+	 * @param mod
+	 *            the mod to set
 	 */
 	public void setMod(EnumModulo mod) {
 		this.mod = mod;

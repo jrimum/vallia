@@ -82,6 +82,12 @@ public class DV4CPF extends ADigitoVerificador {
 	 * 
 	 */
 	private static final long serialVersionUID = 2059692008894172695L;
+	
+	
+	/**
+	 *Liminte mínimo do para cálculo no módulo 11.
+	 */
+	private static final int LIMITE_MINIMO = 2;
 
 	/**
 	 * Expressão regular para validação dos nove primeiros números do CPF sem
@@ -96,19 +102,19 @@ public class DV4CPF extends ADigitoVerificador {
 	private static final String REGEX_CPF_DV_FORMATED = "\\d{3}\\.\\d{3}\\.\\d{3}";
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcular(long)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(long)
 	 */
 	@Override
-	public int calcular(long numero) {
+	public int calcule(long numero) {
 		
-		return calcular(Filler.ZERO_LEFT.fill(String.valueOf(numero), 9));
+		return calcule(Filler.ZERO_LEFT.fill(String.valueOf(numero), 9));
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcular(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(java.lang.String)
 	 */
 	@Override
-	public int calcular(String numero) throws IllegalArgumentException {
+	public int calcule(String numero) throws IllegalArgumentException {
 
 		int dv1 = 0;
 		int dv2 = 0;
@@ -125,8 +131,8 @@ public class DV4CPF extends ADigitoVerificador {
 
 					numero = StringUtils.replaceChars(numero, ".", "");
 
-					dv1 = calcular(numero, 10);
-					dv2 = calcular(numero + dv1, 11);
+					dv1 = calcule(numero, 10);
+					dv2 = calcule(numero + dv1, 11);
 
 					break validacao;
 				}
@@ -153,19 +159,17 @@ public class DV4CPF extends ADigitoVerificador {
 	 * @throws IllegalArgumentException
 	 *             caso o número não esteja no formatador desejável.
 	 */
-	private int calcular(String numero, int limiteMaximoDoModulo)
+	private int calcule(String numero, int limiteMaximoDoModulo)
 			throws IllegalArgumentException {
 
 		int dv = 0;
 		int resto = 0;
-		AModulo modulo = AModulo.getInstance(EnumModulo.MODULO_11);
-
-		modulo.setLimiteMaximo(limiteMaximoDoModulo);
-		resto = modulo.calcular(numero);
+		
+		resto = Modulo.calculeMod11(numero, LIMITE_MINIMO, limiteMaximoDoModulo);
 
 		if (resto >= 2) {
 
-			dv = modulo.getValor() - resto;
+			dv = EnumModulo.MODULO11.valor() - resto;
 		}
 
 		return dv;

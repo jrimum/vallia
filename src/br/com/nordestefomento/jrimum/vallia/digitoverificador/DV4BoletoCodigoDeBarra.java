@@ -64,9 +64,12 @@ import org.apache.commons.lang.StringUtils;
  */
 public class DV4BoletoCodigoDeBarra extends ADigitoVerificador {
 
+	private static final long serialVersionUID = 7977220668336110040L;
+	
 	private static final int TAMANHO_SEM_DV = 43;
 	
-	private static final long serialVersionUID = 7977220668336110040L;
+	private static final Modulo modulo11 = new Modulo(EnumModulo.MODULO11);
+	
 	
 	public DV4BoletoCodigoDeBarra() {
 		
@@ -74,18 +77,16 @@ public class DV4BoletoCodigoDeBarra extends ADigitoVerificador {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcular(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(java.lang.String)
 	 */
 	@Override
-	public int calcular(String numero) throws IllegalArgumentException {
+	public int calcule(String numero) throws IllegalArgumentException {
 		
 		int dv = 0;
 		
-		AModulo aModulo = AModulo.getInstance(EnumModulo.MODULO_11);
-		
 		if(StringUtils.isNotBlank(numero) && StringUtils.isNumeric(numero) && (numero.length() == TAMANHO_SEM_DV)) {
 			
-			dv = aModulo.getValor() - aModulo.calcular(numero);
+			dv = modulo11.valor() - modulo11.calcule(numero);
 			
 			if((dv == 0) || (dv == 1) || (dv > 9))
 				dv = 1;

@@ -55,11 +55,11 @@ public class TestDV4BoletoCodigoDeBarra extends TestCase {
 		dv_Validator_CodigoDeBarra = new DV4BoletoCodigoDeBarra();
 	}
 
-	public void testCalcularString() {
+	public void testCalculeString() {
 
 		try {
 
-			dv_Validator_CodigoDeBarra.calcular(null);
+			dv_Validator_CodigoDeBarra.calcule(null);
 			
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -72,7 +72,7 @@ public class TestDV4BoletoCodigoDeBarra extends TestCase {
 
 		try {
 			
-			dv_Validator_CodigoDeBarra.calcular("123456789");
+			dv_Validator_CodigoDeBarra.calcule("123456789");
 			
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -85,7 +85,7 @@ public class TestDV4BoletoCodigoDeBarra extends TestCase {
 
 		try {
 			
-			dv_Validator_CodigoDeBarra.calcular("ABC123456789");
+			dv_Validator_CodigoDeBarra.calcule("ABC123456789");
 			
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -97,7 +97,7 @@ public class TestDV4BoletoCodigoDeBarra extends TestCase {
 		}
 
 		assertEquals(6, dv_Validator_CodigoDeBarra
-				.calcular("1049300600000022061014044910000000020061732"));
+				.calcule("1049300600000022061014044910000000020061732"));
 	}
 
 }

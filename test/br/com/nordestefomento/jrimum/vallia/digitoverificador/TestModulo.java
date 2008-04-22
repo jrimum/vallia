@@ -48,17 +48,17 @@ public class TestModulo {
 	}
 
 	@Test
-	public final void testCalcularMod11LongIntInt() {
+	public final void testCalculeMod11LongIntInt() {
 		
-		assertEquals(2, Modulo.calcularMod11(654321,2,9));
+		assertEquals(2, Modulo.calculeMod11(654321,2,9));
 	}
 
 	@Test
-	public final void testCalcularMod11StringIntInt() {
+	public final void testCalculeMod11StringIntInt() {
 		
 		try {
 
-			Modulo.calcularMod11("abc123", 2, 9);
+			Modulo.calculeMod11("abc123", 2, 9);
 
 			assertTrue(false);
 			fail("IllegalArgumentException esperado não ocorreu.");
@@ -69,27 +69,27 @@ public class TestModulo {
 			System.out.println(iaex.getMessage());
 		}
 
-		assertEquals(2, Modulo.calcularMod11("654321",2,9));
+		assertEquals(2, Modulo.calculeMod11("654321",2,9));
 	}
 
 	@Test
-	public final void testCalcularSomaSequencialMod11() {
+	public final void testCalculeSomaSequencialMod11() {
 	
-		assertEquals(112,Modulo.calcularSomaSequencialMod11("654321", 2, 9));	
+		assertEquals(112,Modulo.calculeSomaSequencialMod11("654321", 2, 9));	
 	}
 
 	@Test
-	public final void testCalcularMod10LongIntInt() {
+	public final void testCalculeMod10LongIntInt() {
 		
-		assertEquals(4, Modulo.calcularMod10(123456,1,2));
+		assertEquals(4, Modulo.calculeMod10(123456,1,2));
 	}
 
 	@Test
-	public final void testCalcularMod10StringIntInt() {
+	public final void testCalculeMod10StringIntInt() {
 		
 		try {
 
-			Modulo.calcularMod10("acb123", 1, 2);
+			Modulo.calculeMod10("acb123", 1, 2);
 
 			assertTrue(false);
 			fail("IllegalArgumentException esperado não ocorreu.");
@@ -100,29 +100,29 @@ public class TestModulo {
 			System.out.println(iaex.getMessage());
 		}
 
-		assertEquals(4, Modulo.calcularMod10("123456",1,2));
+		assertEquals(4, Modulo.calculeMod10("123456",1,2));
 	}
 	
 	@Test
-	public final void testCalcularSomaSequencialMod10() {
+	public final void testCalculeSomaSequencialMod10() {
 		
-		assertEquals(24,Modulo.calcularSomaSequencialMod10("123456", 1, 2));
+		assertEquals(24,Modulo.calculeSomaSequencialMod10("123456", 1, 2));
 	}
 
 	@Test
-	public final void testCalcularString() {
+	public final void testCalculeString() {
 		
-		assertEquals(2, modulo11.calcular("654321"));
+		assertEquals(2, modulo11.calcule("654321"));
 		
-		assertEquals(4, modulo10.calcular("123456"));
+		assertEquals(4, modulo10.calcule("123456"));
 	}
 
 	@Test
-	public final void testCalcularLong() {
+	public final void testCalculeLong() {
 		
-		assertEquals(2, modulo11.calcular(654321));
+		assertEquals(2, modulo11.calcule(654321));
 		
-		assertEquals(4, modulo10.calcular(123456));
+		assertEquals(4, modulo10.calcule(123456));
 	}
 
 }

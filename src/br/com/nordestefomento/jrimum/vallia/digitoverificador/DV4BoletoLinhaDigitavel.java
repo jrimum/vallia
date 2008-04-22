@@ -80,6 +80,8 @@ public class DV4BoletoLinhaDigitavel extends ADigitoVerificador {
 	
 	private static final long serialVersionUID = -9177413216786384292L;
 	
+	private static final Modulo modulo10 = new Modulo(EnumModulo.MODULO10); 
+	
 	/**
 	 * Expressão regular para validação do campo da linha digitável.<br />
 	 * 
@@ -92,33 +94,31 @@ public class DV4BoletoLinhaDigitavel extends ADigitoVerificador {
 	}
 	
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcular(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(java.lang.String)
 	 */
 	@Override
-	public int calcular(long numero) {
+	public int calcule(long numero) {
 		
-		return calcular(Filler.ZERO_LEFT.fill(String.valueOf(numero), 10));
+		return calcule(Filler.ZERO_LEFT.fill(String.valueOf(numero), 10));
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcular(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(java.lang.String)
 	 */
 	@Override
-	public int calcular(String numero) throws IllegalArgumentException {
+	public int calcule(String numero) throws IllegalArgumentException {
 		
 		int dv = 0;
 		int resto = 0;
-		
-		AModulo aModulo = AModulo.getInstance(EnumModulo.MODULO_10);
 		
 		if(StringUtils.isNotBlank(numero) && Pattern.matches(REGEX_CAMPO, numero)) {
 		
 			numero = StringUtils.replaceChars(numero, ".", "");
 			
-			resto = aModulo.calcular(numero);
+			resto = modulo10.calcule(numero);
 
 			if(resto != 0)			
-				dv = aModulo.getValor() - resto;
+				dv = modulo10.valor() - resto;
 		}
 		else
 			throw new IllegalArgumentException("O campo [ "+numero+" ] da linha digitável deve conter apenas números com 9 ou 10 dígitos !");

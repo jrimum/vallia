@@ -30,61 +30,41 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import java.io.Serializable;
+import br.com.nordestefomento.jrimum.ICurbitaObject;
 
 /**
  * 
+ * <p>
  * Enumeração das implementações dos módulos.
+ * </p>
  * 
- * @author Gabriel Guimarães
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author Misael Barreto 
- * @author Rômulo Augusto
- * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
+ * <p>
+ * OBJETIVO/PROPÓSITO
+ * </p>
  * 
- * @since JMatryx 1.0
+ * <p>
+ * EXEMPLO:
+ * </p>
  * 
- * @version 1.0
+ * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
+ * 
+ * @since 0.2
+ * 
+ * @version 0.2
  */
-public enum EnumModulo implements Serializable {
+public enum EnumModulo implements ICurbitaObject {
 
-	MODULO_10, MODULO_11, MODULO10, MODULO11;
-
-	public AModulo getModulo() {
-		
-		AModulo modulo = null;
-		
-		switch(this) {
-			
-			case MODULO_10:
-				modulo = new Modulo10();
-				break;
-				
-			case MODULO_11:
-				modulo = new Modulo11();
-				break;
-		}		
-		
-		return modulo;
-		
-	}
+	MODULO10{
+		public int valor(){
+			return 10;
+		}
+	}, 
 	
-	public int getValor() {
-		
-		int valor = 0;
-		
-		switch(this) {
-			
-			case MODULO_10:
-				valor = 10;
-				break;
-				
-			case MODULO_11:
-				valor = 11;
-				break;
-		}		
-		
-		return valor;
-		
-	}	
+	MODULO11{
+		public int valor(){
+			return 11;
+		}
+	};
+	
+	public abstract int valor();
 }

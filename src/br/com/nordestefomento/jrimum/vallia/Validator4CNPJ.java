@@ -67,7 +67,7 @@ class Validator4CNPJ extends AValidator4CadastroDePessoa {
 		
 		dv = Integer.parseInt(getCodigoDoCadastro().substring(12, 14));
 
-		dvCalculado = digitoVerificador.calcular(getCodigoDoCadastro().substring(0, 12));
+		dvCalculado = digitoVerificador.calcule(getCodigoDoCadastro().substring(0, 12));
 		
 		isValido = (dv == dvCalculado);	
 			

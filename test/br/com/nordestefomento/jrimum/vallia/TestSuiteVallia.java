@@ -36,8 +36,6 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestDV4BoletoCodig
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestDV4BoletoLinhaDigitavel;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestDV4CNPJ;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestDV4CPF;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestModulo10;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestModulo11;
 
 public class TestSuiteVallia {
 
@@ -52,8 +50,6 @@ public class TestSuiteVallia {
 		suite.addTestSuite(TestDV4BoletoLinhaDigitavel.class);
 		suite.addTestSuite(TestDV4CPF.class);
 		suite.addTestSuite(TestDV4CNPJ.class);
-		suite.addTestSuite(TestModulo10.class);
-		suite.addTestSuite(TestModulo11.class);
 	    
 	    return suite;
 	}

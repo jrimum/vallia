@@ -63,7 +63,7 @@ public abstract class ADigitoVerificador extends ACurbitaObject{
 	 * @throws IllegalArgumentException caso a String não esteja em um formatador aceitável.
 	 * (O formatador é definido nas subclasses implementadoras).
 	 */
-	public abstract int calcular(String numero) throws IllegalArgumentException;
+	public abstract int calcule(String numero) throws IllegalArgumentException;
 	
 	/**
 	 * Calcula o dígito verificador de um número de acordo com uma lógica específica.
@@ -72,7 +72,7 @@ public abstract class ADigitoVerificador extends ACurbitaObject{
 	 * <br />
 	 * O valor padrão de retorno é igual a 0 (zero).
 	 */
-	public int calcular(long numero) {
+	public int calcule(long numero) {
 		
 		return 0;
 	}

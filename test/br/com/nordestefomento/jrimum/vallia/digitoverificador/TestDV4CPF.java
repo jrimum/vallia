@@ -57,11 +57,11 @@ public class TestDV4CPF extends TestCase {
 		dv_Validator_CPF = new DV4CPF();
 	}
 
-	public void testCalcularString() {
+	public void testCalculeString() {
 		
 		try {
 
-			dv_Validator_CPF.calcular(null);
+			dv_Validator_CPF.calcule(null);
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -74,7 +74,7 @@ public class TestDV4CPF extends TestCase {
 
 		try {
 
-			dv_Validator_CPF.calcular("abc123");
+			dv_Validator_CPF.calcule("abc123");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -87,7 +87,7 @@ public class TestDV4CPF extends TestCase {
 
 		try {
 
-			dv_Validator_CPF.calcular("00000000000");
+			dv_Validator_CPF.calcule("00000000000");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -100,7 +100,7 @@ public class TestDV4CPF extends TestCase {
 
 		try {
 
-			dv_Validator_CPF.calcular("2223336667");
+			dv_Validator_CPF.calcule("2223336667");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -113,7 +113,7 @@ public class TestDV4CPF extends TestCase {
 
 		try {
 
-			dv_Validator_CPF.calcular("000.000.000.000");
+			dv_Validator_CPF.calcule("000.000.000.000");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -126,7 +126,7 @@ public class TestDV4CPF extends TestCase {
 
 		try {
 
-			dv_Validator_CPF.calcular("222.333.666.7");
+			dv_Validator_CPF.calcule("222.333.666.7");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -137,15 +137,15 @@ public class TestDV4CPF extends TestCase {
 			System.out.println(iaex.getMessage());
 		}
 
-		assertEquals(38, dv_Validator_CPF.calcular("222333666"));
-		assertEquals(38, dv_Validator_CPF.calcular("222.333.666"));
+		assertEquals(38, dv_Validator_CPF.calcule("222333666"));
+		assertEquals(38, dv_Validator_CPF.calcule("222.333.666"));
 
 	}
 
-	public void testCalcularLong() {
+	public void testCalculeLong() {
 
-		assertEquals(38, dv_Validator_CPF.calcular(222333666));
-		assertEquals(87, dv_Validator_CPF.calcular(2333666));
+		assertEquals(38, dv_Validator_CPF.calcule(222333666));
+		assertEquals(87, dv_Validator_CPF.calcule(2333666));
 	}
 
 }

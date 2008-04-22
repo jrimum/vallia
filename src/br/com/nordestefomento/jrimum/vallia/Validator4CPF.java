@@ -71,7 +71,7 @@ class Validator4CPF extends AValidator4CadastroDePessoa {
 		
 		dv = Integer.parseInt(getCodigoDoCadastro().substring(9, 11));
 
-		dvCalculado = digitoVerificador.calcular(getCodigoDoCadastro().substring(0, 9));
+		dvCalculado = digitoVerificador.calcule(getCodigoDoCadastro().substring(0, 9));
 		
 		isValido = (dvCalculado >= 0 && dv == dvCalculado);
 		

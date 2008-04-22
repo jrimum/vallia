@@ -59,11 +59,11 @@ public class TestDV4CNPJ extends TestCase {
 		dv_Validator_CNPJ = new DV4CNPJ();
 	}
 
-	public void testCalcularString() {
+	public void testCalculeString() {
 
 		try {
 
-			dv_Validator_CNPJ.calcular(null);
+			dv_Validator_CNPJ.calcule(null);
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -76,7 +76,7 @@ public class TestDV4CNPJ extends TestCase {
 
 		try {
 
-			dv_Validator_CNPJ.calcular("abc123");
+			dv_Validator_CNPJ.calcule("abc123");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -87,15 +87,15 @@ public class TestDV4CNPJ extends TestCase {
 			System.out.println(iaex.getMessage());
 		}
 
-		assertEquals(81, dv_Validator_CNPJ.calcular("112223330001"));
-		assertEquals(81, dv_Validator_CNPJ.calcular("11.222.333/0001"));
+		assertEquals(81, dv_Validator_CNPJ.calcule("112223330001"));
+		assertEquals(81, dv_Validator_CNPJ.calcule("11.222.333/0001"));
 
 	}
 
-	public void testCalcularLong() {
+	public void testCalculeLong() {
 
-		assertEquals(81, dv_Validator_CNPJ.calcular(112223330001L));
-		assertEquals(65, dv_Validator_CNPJ.calcular(2223330001L));
+		assertEquals(81, dv_Validator_CNPJ.calcule(112223330001L));
+		assertEquals(65, dv_Validator_CNPJ.calcule(2223330001L));
 	}
 
 }

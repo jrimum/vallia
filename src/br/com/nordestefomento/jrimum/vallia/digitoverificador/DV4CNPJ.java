@@ -81,6 +81,16 @@ public class DV4CNPJ extends ADigitoVerificador {
 	 * 
 	 */
 	private static final long serialVersionUID = -4702398145481452503L;
+	
+	/**
+	 *Liminte mínimo do para cálculo no módulo 11.
+	 */
+	private static final int LIMITE_MINIMO = 2;
+	
+	/**
+	 *Liminte máximo do para cálculo no módulo 11.
+	 */
+	private static final int LIMITE_MAXIMO = 9;
 
 	/**
 	 * Expressão regular para validação dos doze primeiros números do CNPJ sem
@@ -95,19 +105,19 @@ public class DV4CNPJ extends ADigitoVerificador {
 	private static final String REGEX_CNPJ_DV_FORMATED = "\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}";
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcular(long)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(long)
 	 */
 	@Override
-	public int calcular(long numero) {
+	public int calcule(long numero) {
 
-		return calcular(Filler.ZERO_LEFT.fill(String.valueOf(numero), 12));
+		return calcule(Filler.ZERO_LEFT.fill(String.valueOf(numero), 12));
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcular(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(java.lang.String)
 	 */
 	@Override
-	public int calcular(String numero) throws IllegalArgumentException {
+	public int calcule(String numero) throws IllegalArgumentException {
 
 		int dv1 = 0;
 		int dv2 = 0;
@@ -126,8 +136,8 @@ public class DV4CNPJ extends ADigitoVerificador {
 					numero = StringUtils.replaceChars(numero, ".", "");
 					numero = StringUtils.replaceChars(numero, "/", "");
 
-					dv1 = calcularDigito(numero);
-					dv2 = calcularDigito(numero + dv1);
+					dv1 = calculeDigito(numero);
+					dv2 = calculeDigito(numero + dv1);
 
 					break validacao;
 				}
@@ -158,17 +168,17 @@ public class DV4CNPJ extends ADigitoVerificador {
 	 * 
 	 * @since Vallia 1.0
 	 */
-	private int calcularDigito(String numero) throws IllegalArgumentException {
+	private int calculeDigito(String numero) throws IllegalArgumentException {
 
 		int dv = 0;
 		int resto = 0;
-		AModulo modulo = AModulo.getInstance(EnumModulo.MODULO_11);
+		
 
-		resto = modulo.calcular(numero);
+		resto = Modulo.calculeMod11(numero, LIMITE_MINIMO, LIMITE_MAXIMO);
 
 		if (resto >= 2) {
 
-			dv = modulo.getValor() - resto;
+			dv = EnumModulo.MODULO11.valor() - resto;
 		}
 
 		return dv;

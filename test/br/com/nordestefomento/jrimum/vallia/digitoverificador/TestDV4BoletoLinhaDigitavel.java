@@ -60,11 +60,11 @@ public class TestDV4BoletoLinhaDigitavel extends TestCase {
 		dv_Validator_LinhaDigitavel = new DV4BoletoLinhaDigitavel();
 	}
 
-	public void testCalcularString() {
+	public void testCalculeString() {
 		
 		try {
 					
-			dv_Validator_LinhaDigitavel.calcular(null);
+			dv_Validator_LinhaDigitavel.calcule(null);
 			
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -77,7 +77,7 @@ public class TestDV4BoletoLinhaDigitavel extends TestCase {
 		
 		try {
 			
-			dv_Validator_LinhaDigitavel.calcular("abc123");
+			dv_Validator_LinhaDigitavel.calcule("abc123");
 			
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -90,7 +90,7 @@ public class TestDV4BoletoLinhaDigitavel extends TestCase {
 		
 		try {
 			
-			dv_Validator_LinhaDigitavel.calcular("12345678910");
+			dv_Validator_LinhaDigitavel.calcule("12345678910");
 	
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -101,17 +101,17 @@ public class TestDV4BoletoLinhaDigitavel extends TestCase {
 			System.out.println(iaex.getMessage());
 		}
 		
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcular("999977721"));
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcular("99997.7721"));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcular("3053015008"));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcular("30530.15008"));
+		assertEquals(3, dv_Validator_LinhaDigitavel.calcule("999977721"));
+		assertEquals(3, dv_Validator_LinhaDigitavel.calcule("99997.7721"));
+		assertEquals(2, dv_Validator_LinhaDigitavel.calcule("3053015008"));
+		assertEquals(2, dv_Validator_LinhaDigitavel.calcule("30530.15008"));
 	}
 
-	public void testCalcularLong() {
+	public void testCalculeLong() {
 		
-		assertEquals(0, dv_Validator_LinhaDigitavel.calcular(0));		
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcular(999977721L));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcular(3053015008L));
+		assertEquals(0, dv_Validator_LinhaDigitavel.calcule(0));		
+		assertEquals(3, dv_Validator_LinhaDigitavel.calcule(999977721L));
+		assertEquals(2, dv_Validator_LinhaDigitavel.calcule(3053015008L));
 	}
 
 }
