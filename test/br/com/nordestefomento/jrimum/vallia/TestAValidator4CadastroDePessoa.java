@@ -33,7 +33,7 @@ package br.com.nordestefomento.jrimum.vallia;
 import br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj;
 import br.com.nordestefomento.jrimum.vallia.Validator4CNPJ;
 import br.com.nordestefomento.jrimum.vallia.Validator4CPF;
-import br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj.EnumCadastroDePessoa;
+import br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj.EnumCpfCnpj;
 
 import junit.framework.TestCase;
 
@@ -59,7 +59,7 @@ public class TestAValidator4CadastroDePessoa extends TestCase {
 
 		try {
 			
-			EnumCadastroDePessoa nulo = null;
+			EnumCpfCnpj nulo = null;
 
 			AValidator4ACpfCnpj.getInstance(nulo);
 

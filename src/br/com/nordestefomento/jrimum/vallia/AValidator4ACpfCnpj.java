@@ -101,7 +101,7 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 	 * 
 	 * @version 1.0
 	 */
-	public enum EnumCadastroDePessoa {
+	public enum EnumCpfCnpj {
 
 		CPF, CNPJ;
 
@@ -131,9 +131,9 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj.EnumCadastroDePessoa
+	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj.EnumCpfCnpj
 	 */
-	private EnumCadastroDePessoa tipoDeCadastro;
+	private EnumCpfCnpj tipoDeCadastro;
 
 	/**
 	 * Valida o dígito verificador do cadastro de pessoa passado durante a
@@ -187,7 +187,7 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 		return validator_A_CP;
 	}
 
-	public static AValidator4ACpfCnpj getInstance(EnumCadastroDePessoa tipoDeCadastro){
+	public static AValidator4ACpfCnpj getInstance(EnumCpfCnpj tipoDeCadastro){
 		
 		AValidator4ACpfCnpj validator_A_CP = null;
 
@@ -211,10 +211,10 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	private static EnumCadastroDePessoa selectTipoDeCadastro(
+	private static EnumCpfCnpj selectTipoDeCadastro(
 			String codigoDoCadastro) throws IllegalArgumentException {
 
-		EnumCadastroDePessoa tipo = null;
+		EnumCpfCnpj tipo = null;
 
 		switch_Tipo: {
 
@@ -226,7 +226,7 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 				
 				if (Pattern.matches(REGEX_CPF, codigoDoCadastro)) {
 
-					tipo = EnumCadastroDePessoa.CPF;
+					tipo = EnumCpfCnpj.CPF;
 
 					break switch_Tipo;
 					
@@ -234,7 +234,7 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 
 				if (Pattern.matches(REGEX_CNPJ, codigoDoCadastro)) {
 
-					tipo = EnumCadastroDePessoa.CNPJ;
+					tipo = EnumCpfCnpj.CNPJ;
 
 					break switch_Tipo;
 				}
@@ -271,7 +271,7 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 	}
 
 	public static boolean isParametrosValidos(String codigoDoCadastro,
-			EnumCadastroDePessoa tipoDeCadastro) throws IllegalArgumentException {
+			EnumCpfCnpj tipoDeCadastro) throws IllegalArgumentException {
 
 		boolean isValido = false;
 
