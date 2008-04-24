@@ -30,9 +30,12 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CPF;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * 
@@ -48,15 +51,17 @@ import junit.framework.TestCase;
  * @version 1.0
  * 
  */
-public class TestDV4CPF extends TestCase {
+public class TestDV4CPF{
 
 	private DV4CPF dv_Validator_CPF;
 
-	protected void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 
 		dv_Validator_CPF = new DV4CPF();
 	}
 
+	@Test
 	public void testCalculeString() {
 		
 		try {
@@ -142,6 +147,7 @@ public class TestDV4CPF extends TestCase {
 
 	}
 
+	@Test
 	public void testCalculeLong() {
 
 		assertEquals(38, dv_Validator_CPF.calcule(222333666));

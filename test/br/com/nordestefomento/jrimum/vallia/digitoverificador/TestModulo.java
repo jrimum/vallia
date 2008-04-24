@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-public class TestModulo {
+public class TestModulo{
 
 	private static Modulo modulo10  = new Modulo(EnumModulo.MODULO10);
 	

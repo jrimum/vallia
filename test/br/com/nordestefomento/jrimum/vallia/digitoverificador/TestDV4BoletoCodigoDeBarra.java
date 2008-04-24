@@ -30,10 +30,12 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4BoletoCodigoDeBarra;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Teste da classe <code>DV_Boleto_CódigoDeBarra</code>.
@@ -44,17 +46,17 @@ import junit.framework.TestCase;
  * @author Rômulo Augusto
  * @since 16/03/2007
  */
-public class TestDV4BoletoCodigoDeBarra extends TestCase {
+public class TestDV4BoletoCodigoDeBarra{
 
 	private ADigitoVerificador dv_Validator_CodigoDeBarra;
 
-	protected void setUp() throws Exception {
-
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
 
 		dv_Validator_CodigoDeBarra = new DV4BoletoCodigoDeBarra();
 	}
 
+	@Test
 	public void testCalculeString() {
 
 		try {

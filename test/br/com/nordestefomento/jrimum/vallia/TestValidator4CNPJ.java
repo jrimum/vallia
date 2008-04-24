@@ -30,9 +30,10 @@
 
 package br.com.nordestefomento.jrimum.vallia;
 
-import br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
 /**
  * 
@@ -48,10 +49,11 @@ import junit.framework.TestCase;
  * 
  * @version 1.0
  */
-public class TestValidator4CNPJ extends TestCase {
+public class TestValidator4CNPJ{
 	
 	private AValidator4ACpfCnpj validadorCNPJ;
 
+	@Test
 	public void testIsValido() {
 		
 		validadorCNPJ = AValidator4ACpfCnpj.getInstance("11222333000181");

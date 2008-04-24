@@ -30,27 +30,33 @@
 
 package br.com.nordestefomento.jrimum.vallia;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestDV4BoletoCodigoDeBarra;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestDV4BoletoLinhaDigitavel;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestDV4CNPJ;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestDV4CPF;
+import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestModulo;
 
+@RunWith(Suite.class)
+@Suite.SuiteClasses
+( 
+		{
+			TestAValidator4CadastroDePessoa.class,
+			TestValidator4CNPJ.class,
+			TestValidator4CPF.class,
+			TestDV4BoletoCodigoDeBarra.class,
+			TestDV4BoletoLinhaDigitavel.class,
+			TestDV4CNPJ.class,
+			TestDV4CPF.class,
+			TestModulo.class
+		}
+)
 public class TestSuiteVallia {
 
-	public static Test suite() {
-	    
-		TestSuite suite= new TestSuite();
-		
-		suite.addTestSuite(TestAValidator4CadastroDePessoa.class);
-		suite.addTestSuite(TestValidator4CPF.class);
-		suite.addTestSuite(TestValidator4CNPJ.class);
-		suite.addTestSuite(TestDV4BoletoCodigoDeBarra.class);
-		suite.addTestSuite(TestDV4BoletoLinhaDigitavel.class);
-		suite.addTestSuite(TestDV4CPF.class);
-		suite.addTestSuite(TestDV4CNPJ.class);
-	    
-	    return suite;
-	}
+	/*
+	 * The class remains completely empty, being used only as a holder for the
+	 * above annotations
+	 */
 }

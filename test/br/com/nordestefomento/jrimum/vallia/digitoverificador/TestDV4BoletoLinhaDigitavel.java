@@ -30,10 +30,12 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4BoletoLinhaDigitavel;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import junit.framework.TestCase;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * 
@@ -49,17 +51,17 @@ import junit.framework.TestCase;
  * 
  * @version 1.0
  */
-public class TestDV4BoletoLinhaDigitavel extends TestCase {
+public class TestDV4BoletoLinhaDigitavel{
 	
 	private ADigitoVerificador dv_Validator_LinhaDigitavel;
 
-	protected void setUp() throws Exception {
-		
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
 		
 		dv_Validator_LinhaDigitavel = new DV4BoletoLinhaDigitavel();
 	}
 
+	@Test
 	public void testCalculeString() {
 		
 		try {
@@ -107,6 +109,7 @@ public class TestDV4BoletoLinhaDigitavel extends TestCase {
 		assertEquals(2, dv_Validator_LinhaDigitavel.calcule("30530.15008"));
 	}
 
+	@Test
 	public void testCalculeLong() {
 		
 		assertEquals(0, dv_Validator_LinhaDigitavel.calcule(0));		

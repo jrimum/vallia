@@ -30,12 +30,13 @@
 
 package br.com.nordestefomento.jrimum.vallia;
 
-import br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj;
-import br.com.nordestefomento.jrimum.vallia.Validator4CNPJ;
-import br.com.nordestefomento.jrimum.vallia.Validator4CPF;
-import br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj.EnumCpfCnpj;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj.EnumCpfCnpj;
 
 /**
  * 
@@ -51,10 +52,11 @@ import junit.framework.TestCase;
  * 
  * @version 1.0
  */
-public class TestAValidator4CadastroDePessoa extends TestCase {
+public class TestAValidator4CadastroDePessoa{
 
 	private AValidator4ACpfCnpj validator;
 
+	@Test
 	public void testGetInstance() {
 
 		try {
@@ -119,6 +121,7 @@ public class TestAValidator4CadastroDePessoa extends TestCase {
 
 	}
 
+	@Test
 	public void testSetCadastroDePessoa() {
 
 		// Um validador de cpf não pode aceitar um cnpj
@@ -139,6 +142,7 @@ public class TestAValidator4CadastroDePessoa extends TestCase {
 
 	}
 
+	@Test
 	public void testIsFisica() {
 
 		validator = AValidator4ACpfCnpj.getInstance("22233366638");
@@ -146,6 +150,7 @@ public class TestAValidator4CadastroDePessoa extends TestCase {
 		assertTrue(validator instanceof Validator4CPF);
 	}
 
+	@Test
 	public void testIsJuridica() {
 
 		validator = AValidator4ACpfCnpj.getInstance("11222333000181");
