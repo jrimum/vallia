@@ -51,12 +51,12 @@ import org.junit.Test;
  */
 public class TestValidator4CPF{
 
-	private AValidator4ACpfCnpj validadorCPF;
+	private AValidator4CPRF validadorCPF;
 	
 	@Test
 	public void testIsValido() {
 		
-		validadorCPF = AValidator4ACpfCnpj.getInstance("22233366638");
+		validadorCPF = AValidator4CPRF.getInstance("22233366638");
 		
 		assertTrue(validadorCPF.isValido());
 		

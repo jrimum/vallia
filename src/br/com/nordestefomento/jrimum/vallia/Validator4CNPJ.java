@@ -47,7 +47,7 @@ package br.com.nordestefomento.jrimum.vallia;
  * 
  * @version 1.0
  */
-class Validator4CNPJ extends AValidator4ACpfCnpj {
+class Validator4CNPJ extends AValidator4CPRF {
 
 	/**
 	 * 
@@ -56,7 +56,7 @@ class Validator4CNPJ extends AValidator4ACpfCnpj {
 
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj#isValido()
+	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4CPRF#isValido()
 	 */
 	@Override
 	public boolean isValido() {
@@ -76,7 +76,7 @@ class Validator4CNPJ extends AValidator4ACpfCnpj {
 	
 	
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj#removeFormatacao()
+	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4CPRF#removeFormatacao()
 	 */
 	@Override
 	protected void removeFormatacao() {

@@ -55,7 +55,7 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CPF;
  * 
  * @version 1.0
  */
-public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
+public abstract class AValidator4CPRF extends ACurbitaObject {
 	
 	/**
 	 * Cadastro de pessoa para validação.
@@ -101,13 +101,13 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 	 * 
 	 * @version 1.0
 	 */
-	public enum EnumCpfCnpj {
+	public enum EnumCPRF {
 
 		CPF, CNPJ;
 
-		public AValidator4ACpfCnpj getAutenticador() {
+		public AValidator4CPRF getAutenticador() {
 
-			AValidator4ACpfCnpj validador = null;
+			AValidator4CPRF validador = null;
 
 			switch (this) {
 			
@@ -131,9 +131,9 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4ACpfCnpj.EnumCpfCnpj
+	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4CPRF.EnumCPRF
 	 */
-	private EnumCpfCnpj tipoDeCadastro;
+	private EnumCPRF tipoDeCadastro;
 
 	/**
 	 * Valida o dígito verificador do cadastro de pessoa passado durante a
@@ -141,7 +141,7 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 	 * 
 	 * @return verdadeiro se o dígito verificador for válido.
 	 * 
-	 * @see AValidator4ACpfCnpj.getInstance(java.lang.String)
+	 * @see AValidator4CPRF.getInstance(java.lang.String)
 	 */
 	public abstract boolean isValido();
 	
@@ -169,15 +169,15 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 	 * 
 	 * @param codigoDoCadastro -
 	 *            identificador do cadastro de pessoa.
-	 * @return uma instância de <code>AValidator4ACpfCnpj</code>.
+	 * @return uma instância de <code>AValidator4CPRF</code>.
 	 * @exception IllegalArgumentException -
 	 *                caso o parâmetro não esteja em um formatador válido de
 	 *                cadastro de pessoa.
 	 */
-	public static AValidator4ACpfCnpj getInstance(
+	public static AValidator4CPRF getInstance(
 			String codigoDoCadastro) throws IllegalArgumentException {
 
-		AValidator4ACpfCnpj validator_A_CP = null;
+		AValidator4CPRF validator_A_CP = null;
 
 		validator_A_CP = getInstance(selectTipoDeCadastro(codigoDoCadastro));	
 		
@@ -187,9 +187,9 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 		return validator_A_CP;
 	}
 
-	public static AValidator4ACpfCnpj getInstance(EnumCpfCnpj tipoDeCadastro){
+	public static AValidator4CPRF getInstance(EnumCPRF tipoDeCadastro){
 		
-		AValidator4ACpfCnpj validator_A_CP = null;
+		AValidator4CPRF validator_A_CP = null;
 
 		if(tipoDeCadastro != null){
 			
@@ -211,10 +211,10 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	private static EnumCpfCnpj selectTipoDeCadastro(
+	private static EnumCPRF selectTipoDeCadastro(
 			String codigoDoCadastro) throws IllegalArgumentException {
 
-		EnumCpfCnpj tipo = null;
+		EnumCPRF tipo = null;
 
 		switch_Tipo: {
 
@@ -226,7 +226,7 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 				
 				if (Pattern.matches(REGEX_CPF, codigoDoCadastro)) {
 
-					tipo = EnumCpfCnpj.CPF;
+					tipo = EnumCPRF.CPF;
 
 					break switch_Tipo;
 					
@@ -234,7 +234,7 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 
 				if (Pattern.matches(REGEX_CNPJ, codigoDoCadastro)) {
 
-					tipo = EnumCpfCnpj.CNPJ;
+					tipo = EnumCPRF.CNPJ;
 
 					break switch_Tipo;
 				}
@@ -271,7 +271,7 @@ public abstract class AValidator4ACpfCnpj extends ACurbitaObject {
 	}
 
 	public static boolean isParametrosValidos(String codigoDoCadastro,
-			EnumCpfCnpj tipoDeCadastro) throws IllegalArgumentException {
+			EnumCPRF tipoDeCadastro) throws IllegalArgumentException {
 
 		boolean isValido = false;
 
