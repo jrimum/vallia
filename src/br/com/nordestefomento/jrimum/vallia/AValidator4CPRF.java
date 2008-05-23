@@ -35,6 +35,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 import br.com.nordestefomento.jrimum.ACurbitaObject;
+import br.com.nordestefomento.jrimum.ICurbitaObject;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CNPJ;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CPF;
@@ -101,9 +102,10 @@ public abstract class AValidator4CPRF extends ACurbitaObject {
 	 * 
 	 * @version 1.0
 	 */
-	public enum EnumCPRF {
+	public enum EnumCPRF implements ICurbitaObject{
 
-		CPF, CNPJ;
+		CPF, 
+		CNPJ;
 
 		public AValidator4CPRF getAutenticador() {
 
@@ -127,6 +129,14 @@ public abstract class AValidator4CPRF extends ACurbitaObject {
 			}
 
 			return validador;
+		}
+		
+		/**
+		 * @see br.com.nordestefomento.jrimum.ACurbitaObject#toString()
+		 * @see java.lang.Enum#toString()
+		 */
+		public String toString(){
+			return ACurbitaObject.toString(this);
 		}
 	}
 
@@ -191,7 +201,7 @@ public abstract class AValidator4CPRF extends ACurbitaObject {
 		
 		AValidator4CPRF validator_A_CP = null;
 
-		if(tipoDeCadastro != null){
+		if(isNotNull(tipoDeCadastro)){
 			
 			validator_A_CP = tipoDeCadastro.getAutenticador();
 			
@@ -275,7 +285,7 @@ public abstract class AValidator4CPRF extends ACurbitaObject {
 
 		boolean isValido = false;
 
-		if (codigoDoCadastro != null && tipoDeCadastro != null) {
+		if (isNotNull(codigoDoCadastro) && isNotNull(tipoDeCadastro)) {
 
 			if (Pattern.matches(REGEX_CADASTRO, codigoDoCadastro)) {
 
