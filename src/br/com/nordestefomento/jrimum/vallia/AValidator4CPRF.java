@@ -46,15 +46,15 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CPF;
  * Representa a família de validadores para o cadastro de pessoa.
  * 
  * 
- * @author Gabriel Guimarães
+ * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
  * @author Misael Barreto 
  * @author Rômulo Augusto
  * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
  * 
- * @since JMatryx 1.0
+ * @since 0.2
  * 
- * @version 1.0
+ * @version 0.2
  */
 public abstract class AValidator4CPRF extends ACurbitaObject {
 	
@@ -91,16 +91,16 @@ public abstract class AValidator4CPRF extends ACurbitaObject {
 	 * com este tipo.
 	 * 
 	 * 
-	 * @author Gabriel Guimarães
+	 * 
 	 * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
 	 * @author Misael Barreto
 	 * @author Rômulo Augusto
 	 * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento
 	 *         Mercantil</a>
 	 * 
-	 * @since JMatryx 1.0
+	 * @since 0.2
 	 * 
-	 * @version 1.0
+	 * @version 0.2
 	 */
 	public enum EnumCPRF implements ICurbitaObject{
 

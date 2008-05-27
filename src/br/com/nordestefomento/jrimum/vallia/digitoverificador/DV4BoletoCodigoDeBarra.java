@@ -52,15 +52,15 @@ import org.apache.commons.lang.StringUtils;
  * 
  * @see Modulo11 
  * 
- * @author Gabriel Guimarães
+ * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
  * @author Misael Barreto 
  * @author Rômulo Augusto
  * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
  * 
- * @since JMatryx 1.0
+ * @since 0.2
  * 
- * @version 1.0
+ * @version 0.2
  */
 public class DV4BoletoCodigoDeBarra extends ADigitoVerificador {
 

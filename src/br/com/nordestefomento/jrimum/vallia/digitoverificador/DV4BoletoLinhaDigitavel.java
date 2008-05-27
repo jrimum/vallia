@@ -65,15 +65,15 @@ import br.com.nordestefomento.jrimum.utilix.Filler;
  * Obs2.: A rotina de módulo utilizada é a módulo 10.
  * </p>
  *  
- * @author Gabriel Guimarães
+ * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
  * @author Misael Barreto 
  * @author Rômulo Augusto
  * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
  * 
- * @since JMatryx 1.0
+ * @since 0.2
  * 
- * @version 1.0
+ * @version 0.2
  */
 public class DV4BoletoLinhaDigitavel extends ADigitoVerificador {
 
