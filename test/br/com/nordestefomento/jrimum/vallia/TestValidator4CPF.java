@@ -56,7 +56,7 @@ public class TestValidator4CPF{
 	@Test
 	public void testIsValido() {
 		
-		validadorCPF = AValidator4CPRF.getInstance("22233366638");
+		validadorCPF = AValidator4CPRF.create("22233366638");
 		
 		assertTrue(validadorCPF.isValido());
 		

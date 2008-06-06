@@ -56,7 +56,7 @@ public class TestValidator4CNPJ{
 	@Test
 	public void testIsValido() {
 		
-		validadorCNPJ = AValidator4CPRF.getInstance("11222333000181");
+		validadorCNPJ = AValidator4CPRF.create("11222333000181");
 		
 		assertTrue(validadorCNPJ.isValido());
 		

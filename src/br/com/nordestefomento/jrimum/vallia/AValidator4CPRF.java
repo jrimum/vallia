@@ -184,12 +184,12 @@ public abstract class AValidator4CPRF extends ACurbitaObject {
 	 *                caso o parâmetro não esteja em um formatador válido de
 	 *                cadastro de pessoa.
 	 */
-	public static AValidator4CPRF getInstance(
+	public static AValidator4CPRF create(
 			String codigoDoCadastro) throws IllegalArgumentException {
 
 		AValidator4CPRF validator_A_CP = null;
 
-		validator_A_CP = getInstance(selectTipoDeCadastro(codigoDoCadastro));	
+		validator_A_CP = create(selectTipoDeCadastro(codigoDoCadastro));	
 		
 		validator_A_CP.codigoDoCadastro = new StringBuilder (codigoDoCadastro);
 		validator_A_CP.removeFormatacao();
@@ -197,7 +197,7 @@ public abstract class AValidator4CPRF extends ACurbitaObject {
 		return validator_A_CP;
 	}
 
-	public static AValidator4CPRF getInstance(EnumCPRF tipoDeCadastro){
+	public static AValidator4CPRF create(EnumCPRF tipoDeCadastro){
 		
 		AValidator4CPRF validator_A_CP = null;
 
