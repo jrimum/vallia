@@ -78,6 +78,7 @@ public class TestDV4BoletoCodigoCompensacaoBanco {
 		assertEquals(5, dv4CodigoCompensacaoBanco.calcule("356"));//BancoReal
 		assertEquals(0, dv4CodigoCompensacaoBanco.calcule("409"));//Unibanco
 		assertEquals(7, dv4CodigoCompensacaoBanco.calcule("422"));//BancoSafra
+		assertEquals(0, dv4CodigoCompensacaoBanco.calcule("748"));//Sicredi
 		
 	}
 
@@ -91,6 +92,7 @@ public class TestDV4BoletoCodigoCompensacaoBanco {
 		assertEquals(5, dv4CodigoCompensacaoBanco.calcule(356));//BancoReal
 		assertEquals(0, dv4CodigoCompensacaoBanco.calcule(409));//Unibanco
 		assertEquals(7, dv4CodigoCompensacaoBanco.calcule(422));//BancoSafra
+		assertEquals(0, dv4CodigoCompensacaoBanco.calcule(748));//Sicredi
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
