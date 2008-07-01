@@ -77,21 +77,36 @@ public class DV4BoletoCodigoDeBarra extends ADigitoVerificador {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.
+	 * ADigitoVerificador#calcule(java.lang.String)
 	 */
 	@Override
 	public int calcule(String numero) throws IllegalArgumentException {
 		
 		int dv = 0;
+		int resto = 0;
 		
-		if(StringUtils.isNotBlank(numero) && StringUtils.isNumeric(numero) && (numero.length() == TAMANHO_SEM_DV)) {
+		if(StringUtils.isNotBlank(numero) 
+				&& StringUtils.isNumeric(numero) 
+				&& (numero.length() == TAMANHO_SEM_DV)) {
 			
-			dv = modulo11.valor() - modulo11.calcule(numero);
+			// Realizando o cálculo do dígito verificador utilizando módulo 11.
+			// Obtendo o resto da divisão por 11.
+			resto = modulo11.calcule(numero);
 			
-			if((dv == 0) || (dv == 1) || (dv > 9))
+			// Seguindo as especificações da FEBRABAN, caso o resto seja
+			// (0), (1) ou (10), será atribuído (1) ao digito verificador.
+			if((resto == 0) || (resto == 1) || (resto == 10))
 				dv = 1;
-		}else
-			throw new IllegalArgumentException("O código de barras [ "+numero+" ] deve conter apenas números e length = 43 !");
+			// Caso contrário, dv = 11 - resto.
+			else
+				dv = modulo11.valor() - resto;
+			
+		} else {
+			throw new IllegalArgumentException("O código de barras " +
+					"[ "+numero+" ] deve conter apenas números e "
+					+ TAMANHO_SEM_DV + " caracteres.");
+		}
 		
 		return dv;
 	}
