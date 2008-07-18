@@ -139,7 +139,7 @@ public class DV4CPF extends ADigitoVerificador {
 			}
 
 			throw new IllegalArgumentException(
-					"O CPF [ "+numero+" ] deve conter apenas números, sendo eles no formatador ###.###.### ou ######### !");
+					"O CPF [ "+numero+" ] deve conter apenas números, sendo eles no formato ###.###.### ou ######### !");
 
 		}
 

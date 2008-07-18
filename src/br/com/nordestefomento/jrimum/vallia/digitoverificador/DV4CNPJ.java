@@ -144,7 +144,7 @@ public class DV4CNPJ extends ADigitoVerificador {
 			}
 
 			throw new IllegalArgumentException(
-				"O CNPJ [ "+numero+" ] deve conter apenas números, sendo eles no formatador ##.###.###/#### ou ############ !");
+				"O CNPJ [ "+numero+" ] deve conter apenas números, sendo eles no formato ##.###.###/#### ou ############ !");
 			
 		}
 		

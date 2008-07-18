@@ -294,7 +294,7 @@ public abstract class AValidator4CPRF extends ACurbitaObject {
 			} else {
 
 				throw new IllegalArgumentException(
-						"O cadastro num tamanho incorreto ou o cadastro não exsite: [ "
+						"O cadastro está em um tamanho incorreto ou não exsite: [ "
 								+ codigoDoCadastro + " ]");
 			}
 		} else {
