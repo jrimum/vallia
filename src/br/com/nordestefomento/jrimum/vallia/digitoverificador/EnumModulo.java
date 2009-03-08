@@ -30,8 +30,9 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
+import java.io.Serializable;
+
 import br.com.nordestefomento.jrimum.ACurbitaObject;
-import br.com.nordestefomento.jrimum.ICurbitaObject;
 
 /**
  * 
@@ -53,7 +54,7 @@ import br.com.nordestefomento.jrimum.ICurbitaObject;
  * 
  * @version 0.2
  */
-public enum EnumModulo implements ICurbitaObject {
+public enum EnumModulo implements Serializable {
 
 	MODULO10{
 		public int valor(){

@@ -30,12 +30,12 @@
 
 package br.com.nordestefomento.jrimum.vallia;
 
+import java.io.Serializable;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 
 import br.com.nordestefomento.jrimum.ACurbitaObject;
-import br.com.nordestefomento.jrimum.ICurbitaObject;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CNPJ;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CPF;
@@ -58,6 +58,8 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CPF;
  */
 public abstract class AValidator4CPRF extends ACurbitaObject {
 	
+	private static final long serialVersionUID = -3107505512223559948L;
+
 	/**
 	 * Cadastro de pessoa para validação.
 	 */
@@ -102,7 +104,7 @@ public abstract class AValidator4CPRF extends ACurbitaObject {
 	 * 
 	 * @version 0.2
 	 */
-	public enum EnumCPRF implements ICurbitaObject{
+	public enum EnumCPRF implements Serializable {
 
 		CPF, 
 		CNPJ;
