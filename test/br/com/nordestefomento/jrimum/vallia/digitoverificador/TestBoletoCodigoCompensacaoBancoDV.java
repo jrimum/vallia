@@ -51,7 +51,7 @@ import org.junit.Test;
  * @version 0.2
  */
 	
-public class TestDV4BoletoCodigoCompensacaoBanco {
+public class TestBoletoCodigoCompensacaoBancoDV {
 
 	private final int CODIGO_COMPENSACAO_LIMITE_MINIMO = 1; 
 	private final int CODIGO_COMPENSACAO_LIMITE_MAXIMO = 999; 

@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:52:12
+ * Created at: 30/03/2008 - 18:53:16
  * 
  * ================================================================================
  * 
@@ -23,48 +23,59 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:52:12
+ * Criado em: 30/03/2008 - 18:53:16
  * 
  */
 
 
-package br.com.nordestefomento.jrimum.vallia;
+package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator.EnumCPRF;
-
 /**
- * 
- * Teste da classe <code>AbstractCPRFValidator</code>.
- * 
+ * Teste da classe <code>DV_Boleto_CódigoDeBarra</code>.
  * 
  * @author Gabriel Guimarães
  * @author Gilmar P.S.L
  * @author Misael Barreto
  * @author Rômulo Augusto
- * 
- * @since JMatryx 1.0
- * 
- * @version 1.0
+ * @since 16/03/2007
  */
-public class TestAValidator4CadastroDePessoa{
+public class TestBoletoCodigoDeBarraDV{
 
-	private AbstractCPRFValidator validator;
+	private AbstractDigitoVerificador dv_Validator_CodigoDeBarra;
+
+	@Before
+	public void setUp() throws Exception {
+
+		dv_Validator_CodigoDeBarra = new BoletoCodigoDeBarraDV();
+	}
 
 	@Test
-	public void testGetInstance() {
+	public void testCalculeString() {
+
+		try {
+
+			dv_Validator_CodigoDeBarra.calcule(null);
+			
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
 
 		try {
 			
-			EnumCPRF nulo = null;
-
-			AbstractCPRFValidator.create(nulo);
-
+			dv_Validator_CodigoDeBarra.calcule("123456789");
+			
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
 
@@ -75,9 +86,9 @@ public class TestAValidator4CadastroDePessoa{
 		}
 
 		try {
-
-			AbstractCPRFValidator.create("abc123");
-
+			
+			dv_Validator_CodigoDeBarra.calcule("ABC123456789");
+			
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
 
@@ -87,76 +98,8 @@ public class TestAValidator4CadastroDePessoa{
 			System.out.println(iaex.getMessage());
 		}
 
-		try {
-
-			AbstractCPRFValidator.create("222333666");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			AbstractCPRFValidator.create("112223330001");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-		
-		assertNotNull(AbstractCPRFValidator.create("22233366638"));
-		assertNotNull(AbstractCPRFValidator.create("222.333.666-38"));
-
-		assertNotNull(AbstractCPRFValidator.create("11222333000181"));
-		assertNotNull(AbstractCPRFValidator.create("11.222.333/0001-81"));
-
-	}
-
-	@Test
-	public void testSetCadastroDePessoa() {
-
-		// Um validador de cpf não pode aceitar um cnpj
-
-		validator = AbstractCPRFValidator.create("222.333.666-38");
-
-		try {
-
-			validator.setCodigoDoCadastro("11.222.333/0001-81");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-		}
-
-	}
-
-	@Test
-	public void testIsFisica() {
-
-		validator = AbstractCPRFValidator.create("22233366638");
-
-		assertTrue(validator instanceof CPFValidator);
-	}
-
-	@Test
-	public void testIsJuridica() {
-
-		validator = AbstractCPRFValidator.create("11222333000181");
-
-		assertTrue(validator instanceof CNPJValidator);
-
+		assertEquals(6, dv_Validator_CodigoDeBarra
+				.calcule("1049300600000022061014044910000000020061732"));
 	}
 
 }

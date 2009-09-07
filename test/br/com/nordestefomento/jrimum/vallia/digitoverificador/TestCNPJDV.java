@@ -51,7 +51,7 @@ import org.junit.Test;
  * @version 1.0
  * 
  */
-public class TestDV4CNPJ{
+public class TestCNPJDV{
 
 	private CNPJDV dv_Validator_CNPJ;
 

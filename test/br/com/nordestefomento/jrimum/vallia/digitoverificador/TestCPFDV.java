@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:53:28
+ * Created at: 30/03/2008 - 18:53:54
  * 
  * ================================================================================
  * 
@@ -23,7 +23,7 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:53:28
+ * Criado em: 30/03/2008 - 18:53:54
  * 
  */
 
@@ -39,8 +39,7 @@ import org.junit.Test;
 
 /**
  * 
- * Teste da classe <code>DV_Boleto_LinhaDigitável</code>
- * 
+ * Teste da classe CPFDV.
  * 
  * @author Gabriel Guimarães
  * @author Gilmar P.S.L
@@ -50,71 +49,109 @@ import org.junit.Test;
  * @since JMatryx 1.0
  * 
  * @version 1.0
+ * 
  */
-public class TestDV4BoletoLinhaDigitavel{
-	
-	private AbstractDigitoVerificador dv_Validator_LinhaDigitavel;
+public class TestCPFDV{
+
+	private CPFDV dv_Validator_CPF;
 
 	@Before
 	public void setUp() throws Exception {
-		
-		dv_Validator_LinhaDigitavel = new BoletoLinhaDigitavelDV();
+
+		dv_Validator_CPF = new CPFDV();
 	}
 
 	@Test
 	public void testCalculeString() {
 		
 		try {
-					
-			dv_Validator_LinhaDigitavel.calcule(null);
-			
+
+			dv_Validator_CPF.calcule(null);
+
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
-			
-		}catch(IllegalArgumentException iaex) {
-			
+
+		} catch (IllegalArgumentException iaex) {
+
 			assertTrue(true);
 			System.out.println(iaex.getMessage());
 		}
-		
+
 		try {
-			
-			dv_Validator_LinhaDigitavel.calcule("abc123");
-			
+
+			dv_Validator_CPF.calcule("abc123");
+
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
-	
-		}catch(IllegalArgumentException iaex) {
-			
+
+		} catch (IllegalArgumentException iaex) {
+
 			assertTrue(true);
 			System.out.println(iaex.getMessage());
 		}
-		
+
 		try {
-			
-			dv_Validator_LinhaDigitavel.calcule("12345678910");
-	
+
+			dv_Validator_CPF.calcule("00000000000");
+
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
-			
-		}catch(IllegalArgumentException iaex) {
-			
+
+		} catch (IllegalArgumentException iaex) {
+
 			assertTrue(true);
 			System.out.println(iaex.getMessage());
 		}
-		
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcule("999977721"));
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcule("99997.7721"));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcule("3053015008"));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcule("30530.15008"));
+
+		try {
+
+			dv_Validator_CPF.calcule("2223336667");
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
+
+		try {
+
+			dv_Validator_CPF.calcule("000.000.000.000");
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
+
+		try {
+
+			dv_Validator_CPF.calcule("222.333.666.7");
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
+
+		assertEquals(38, dv_Validator_CPF.calcule("222333666"));
+		assertEquals(38, dv_Validator_CPF.calcule("222.333.666"));
+
 	}
 
 	@Test
 	public void testCalculeLong() {
-		
-		assertEquals(0, dv_Validator_LinhaDigitavel.calcule(0));		
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcule(999977721L));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcule(3053015008L));
+
+		assertEquals(38, dv_Validator_CPF.calcule(222333666));
+		assertEquals(87, dv_Validator_CPF.calcule(2333666));
 	}
 
 }
