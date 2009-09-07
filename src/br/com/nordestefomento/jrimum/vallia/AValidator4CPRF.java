@@ -30,12 +30,14 @@
 
 package br.com.nordestefomento.jrimum.vallia;
 
+import static br.com.nordestefomento.jrimum.utilix.ACurbitaObject.isNotNull;
+
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 
-import br.com.nordestefomento.jrimum.ACurbitaObject;
+import br.com.nordestefomento.jrimum.utilix.ACurbitaObject;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CNPJ;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CPF;
@@ -56,7 +58,7 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CPF;
  * 
  * @version 0.2
  */
-public abstract class AValidator4CPRF extends ACurbitaObject {
+public abstract class AValidator4CPRF {
 	
 	private static final long serialVersionUID = -3107505512223559948L;
 
@@ -134,7 +136,7 @@ public abstract class AValidator4CPRF extends ACurbitaObject {
 		}
 		
 		/**
-		 * @see br.com.nordestefomento.jrimum.ACurbitaObject#toString()
+		 * @see br.com.nordestefomento.jrimum.utilix.ACurbitaObject#toString()
 		 * @see java.lang.Enum#toString()
 		 */
 		public String toString(){

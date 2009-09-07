@@ -30,7 +30,7 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import br.com.nordestefomento.jrimum.ACurbitaObject;
+import br.com.nordestefomento.jrimum.utilix.ACurbitaObject;
 
 /**
  * 
