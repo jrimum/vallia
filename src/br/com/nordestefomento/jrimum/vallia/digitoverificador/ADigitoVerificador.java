@@ -30,7 +30,6 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import br.com.nordestefomento.jrimum.utilix.ACurbitaObject;
 
 /**
  * 
@@ -50,11 +49,7 @@ import br.com.nordestefomento.jrimum.utilix.ACurbitaObject;
  * 
  * @version 0.2
  */
-public abstract class ADigitoVerificador extends ACurbitaObject{
-
-	public ADigitoVerificador() {
-		super();
-	}
+public abstract class ADigitoVerificador {
 	
 	/**
 	 * Calcula o dígito verificador de um número de acordo com uma lógica específica.

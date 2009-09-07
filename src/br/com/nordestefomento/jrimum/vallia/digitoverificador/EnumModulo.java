@@ -32,7 +32,7 @@ package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
 import java.io.Serializable;
 
-import br.com.nordestefomento.jrimum.utilix.ACurbitaObject;
+import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
 
 /**
  * 
@@ -71,10 +71,10 @@ public enum EnumModulo implements Serializable {
 	public abstract int valor();
 	
 	/**
-	 * @see br.com.nordestefomento.jrimum.utilix.ACurbitaObject#toString()
+	 * @see br.com.nordestefomento.jrimum.utilix.ObjectUtil#toString()
 	 * @see java.lang.Enum#toString()
 	 */
 	public String toString(){
-		return ACurbitaObject.toString(this)+" valor() => "+this.valor();
+		return ObjectUtil.toString(this)+" valor() => "+this.valor();
 	}
 }

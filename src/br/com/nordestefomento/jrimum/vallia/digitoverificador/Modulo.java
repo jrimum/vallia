@@ -30,12 +30,13 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
 import static br.com.nordestefomento.jrimum.vallia.digitoverificador.EnumModulo.MODULO10;
 import static br.com.nordestefomento.jrimum.vallia.digitoverificador.EnumModulo.MODULO11;
 
 import org.apache.commons.lang.StringUtils;
 
-import br.com.nordestefomento.jrimum.utilix.ACurbitaObject;
+import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
 
 /**
  * 
@@ -59,7 +60,7 @@ import br.com.nordestefomento.jrimum.utilix.ACurbitaObject;
  * @version
  */
 
-public class Modulo extends ACurbitaObject {
+public class Modulo {
 
 	/**
 	 * 
@@ -80,14 +81,6 @@ public class Modulo extends ACurbitaObject {
 	private int limiteMaximo;
 
 	private int limiteMinimo;
-
-	/**
-	 * 
-	 */
-	@SuppressWarnings("unused")
-	private Modulo() {
-		super();
-	}
 
 	/**
 	 * @param mod
@@ -411,5 +404,10 @@ public class Modulo extends ACurbitaObject {
 	 */
 	public void setMod(EnumModulo mod) {
 		this.mod = mod;
+	}
+	
+	@Override
+	public String toString() {
+		return ObjectUtil.toString(this);
 	}
 }

@@ -30,11 +30,9 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
 
 import org.apache.commons.lang.StringUtils;
-
-
-
 
 /**
  * <p>
@@ -81,8 +79,9 @@ public class DV4CodigoDeCompensacaoBancosBACEN extends ADigitoVerificador {
 			
 			return calcule(Integer.valueOf(numero.trim()));		
 			
-		}else 
+		} else {
 			throw new IllegalArgumentException(MSG);
+		}
 	}
 
 	
@@ -152,12 +151,13 @@ public class DV4CodigoDeCompensacaoBancosBACEN extends ADigitoVerificador {
 		
 	public boolean isCodigoValido(String codigo)throws IllegalArgumentException{
 		
-		if (StringUtils.isNotBlank(codigo) && StringUtils.isNumeric(codigo)){
+		if (StringUtils.isNotBlank(codigo) && StringUtils.isNumeric(codigo)) {
 			
 			return isCodigoValido(Integer.valueOf(codigo.trim()));
 			
-		}else
+		} else {
 			throw new IllegalArgumentException(MSG);
+		}
 	}
 	
 	
