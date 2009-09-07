@@ -47,7 +47,7 @@ import org.apache.commons.lang.StringUtils;
  * @version 0.2
  */
 	
-public class DV4CodigoDeCompensacaoBancosBACEN extends ADigitoVerificador {
+public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador {
 
 	
 	/**
@@ -65,7 +65,7 @@ public class DV4CodigoDeCompensacaoBancosBACEN extends ADigitoVerificador {
 	 * Calcula o dígito verificador para código de compensação passado.
 	 * </p>
 	 * 
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
 	 * 
 	 * @param numero 
 	 * @return int digito
@@ -113,7 +113,7 @@ public class DV4CodigoDeCompensacaoBancosBACEN extends ADigitoVerificador {
 	 
 	 * @since 0.2
 	 * 
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(long)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
 	 */
 	@Override
 	public int calcule(long numero) {

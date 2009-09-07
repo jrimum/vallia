@@ -53,12 +53,12 @@ import org.junit.Test;
  */
 public class TestDV4BoletoLinhaDigitavel{
 	
-	private ADigitoVerificador dv_Validator_LinhaDigitavel;
+	private AbstractDigitoVerificador dv_Validator_LinhaDigitavel;
 
 	@Before
 	public void setUp() throws Exception {
 		
-		dv_Validator_LinhaDigitavel = new DV4BoletoLinhaDigitavel();
+		dv_Validator_LinhaDigitavel = new BoletoLinhaDigitavelDV();
 	}
 
 	@Test

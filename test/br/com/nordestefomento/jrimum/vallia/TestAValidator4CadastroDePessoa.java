@@ -36,11 +36,11 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import br.com.nordestefomento.jrimum.vallia.AValidator4CPRF.EnumCPRF;
+import br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator.EnumCPRF;
 
 /**
  * 
- * Teste da classe <code>AValidator4CPRF</code>.
+ * Teste da classe <code>AbstractCPRFValidator</code>.
  * 
  * 
  * @author Gabriel Guimarães
@@ -54,7 +54,7 @@ import br.com.nordestefomento.jrimum.vallia.AValidator4CPRF.EnumCPRF;
  */
 public class TestAValidator4CadastroDePessoa{
 
-	private AValidator4CPRF validator;
+	private AbstractCPRFValidator validator;
 
 	@Test
 	public void testGetInstance() {
@@ -63,7 +63,7 @@ public class TestAValidator4CadastroDePessoa{
 			
 			EnumCPRF nulo = null;
 
-			AValidator4CPRF.create(nulo);
+			AbstractCPRFValidator.create(nulo);
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -76,7 +76,7 @@ public class TestAValidator4CadastroDePessoa{
 
 		try {
 
-			AValidator4CPRF.create("abc123");
+			AbstractCPRFValidator.create("abc123");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -89,7 +89,7 @@ public class TestAValidator4CadastroDePessoa{
 
 		try {
 
-			AValidator4CPRF.create("222333666");
+			AbstractCPRFValidator.create("222333666");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -102,7 +102,7 @@ public class TestAValidator4CadastroDePessoa{
 
 		try {
 
-			AValidator4CPRF.create("112223330001");
+			AbstractCPRFValidator.create("112223330001");
 
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
@@ -113,11 +113,11 @@ public class TestAValidator4CadastroDePessoa{
 			System.out.println(iaex.getMessage());
 		}
 		
-		assertNotNull(AValidator4CPRF.create("22233366638"));
-		assertNotNull(AValidator4CPRF.create("222.333.666-38"));
+		assertNotNull(AbstractCPRFValidator.create("22233366638"));
+		assertNotNull(AbstractCPRFValidator.create("222.333.666-38"));
 
-		assertNotNull(AValidator4CPRF.create("11222333000181"));
-		assertNotNull(AValidator4CPRF.create("11.222.333/0001-81"));
+		assertNotNull(AbstractCPRFValidator.create("11222333000181"));
+		assertNotNull(AbstractCPRFValidator.create("11.222.333/0001-81"));
 
 	}
 
@@ -126,7 +126,7 @@ public class TestAValidator4CadastroDePessoa{
 
 		// Um validador de cpf não pode aceitar um cnpj
 
-		validator = AValidator4CPRF.create("222.333.666-38");
+		validator = AbstractCPRFValidator.create("222.333.666-38");
 
 		try {
 
@@ -145,17 +145,17 @@ public class TestAValidator4CadastroDePessoa{
 	@Test
 	public void testIsFisica() {
 
-		validator = AValidator4CPRF.create("22233366638");
+		validator = AbstractCPRFValidator.create("22233366638");
 
-		assertTrue(validator instanceof Validator4CPF);
+		assertTrue(validator instanceof CPFValidator);
 	}
 
 	@Test
 	public void testIsJuridica() {
 
-		validator = AValidator4CPRF.create("11222333000181");
+		validator = AbstractCPRFValidator.create("11222333000181");
 
-		assertTrue(validator instanceof Validator4CNPJ);
+		assertTrue(validator instanceof CNPJValidator);
 
 	}
 

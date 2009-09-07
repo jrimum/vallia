@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:21:41
+ * Created at: 30/03/2008 - 18:52:37
  * 
  * ================================================================================
  * 
@@ -23,53 +23,46 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:21:41
+ * Criado em: 30/03/2008 - 18:52:37
  * 
  */
 
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package br.com.nordestefomento.jrimum.vallia;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /**
  * 
- *<p>
- * FactoryCampoLivre padrão utilizada por qualquer classe que implemente uma lógica de cálculo de um 
- * dígito verificador qualquer.
- * </p>
+ * Teste da classe <code>Validator_CadastroDePessoaJurídica</code>.
  * 
  * 
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author Misael Barreto 
+ * @author Gabriel Guimarães
+ * @author Gilmar P.S.L
+ * @author Misael Barreto
  * @author Rômulo Augusto
- * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
  * 
- * @since 0.2
+ * @since JMatryx 1.0
  * 
- * @version 0.2
+ * @version 1.0
  */
-public abstract class ADigitoVerificador {
+public class TestCNPJValidator{
 	
-	/**
-	 * Calcula o dígito verificador de um número de acordo com uma lógica específica.
-	 * @param numero - número que será calculado o dígito verificador.
-	 * @return dígito verificador.
-	 * @throws IllegalArgumentException caso a String não esteja em um formatador aceitável.
-	 * (O formatador é definido nas subclasses implementadoras).
-	 */
-	public abstract int calcule(String numero) throws IllegalArgumentException;
-	
-	/**
-	 * Calcula o dígito verificador de um número de acordo com uma lógica específica.
-	 * @param numero - número que será calculado o dígito verificador.
-	 * @return dígito verificador.
-	 * <br />
-	 * O valor padrão de retorno é igual a 0 (zero).
-	 */
-	public int calcule(long numero) {
+	private AbstractCPRFValidator validadorCNPJ;
+
+	@Test
+	public void testIsValido() {
 		
-		return 0;
+		validadorCNPJ = AbstractCPRFValidator.create("11222333000181");
+		
+		assertTrue(validadorCNPJ.isValido());
+		
+		validadorCNPJ.setCodigoDoCadastro("11222333000182");
+		
+		assertFalse(validadorCNPJ.isValido());
 	}
-	
+
 }

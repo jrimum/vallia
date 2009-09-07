@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:51:09
+ * Created at: 30/03/2008 - 18:22:39
  * 
  * ================================================================================
  * 
@@ -23,7 +23,7 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:51:09
+ * Criado em: 30/03/2008 - 18:22:39
  * 
  */
 
@@ -39,14 +39,14 @@ import br.com.nordestefomento.jrimum.utilix.Filler;
 
 /**
  * 
- * O cálculo do dígito verificador do CPF é realizado em duas etapas e é
+ * O cálculo do dígito verificador do CNPJ é realizado em duas etapas e é
  * auxiliado pela rotina de módulo 11. <br />
  * Abaixo é demonstrado como esse cálculo é feito:
  * 
- * <h3>Exemplo para um número hipotético 222.333.666-XX:</h3>
+ * <h3>Exemplo para um número hipotético 11.222.333/0001-XX:</h3>
  * <p>
  * Primeiramente obtém-se um número R, calculado através da rotina de módulo 11,
- * a partir dos nove primeiros números do CPF, nesse caso 222333666. <br />
+ * a partir dos doze primeiros números do CNPJ, nesse caso 112223330001. <br />
  * Para obter o primeiro dígito verificador deve-se seguir a seguinte lógica:
  * <br />
  * <br />
@@ -56,12 +56,11 @@ import br.com.nordestefomento.jrimum.utilix.Filler;
  * </p>
  * <p>
  * Para obter o segundo dígito verificador é da mesma forma do primeiro, porém
- * deve ser calculado a partir dos dez primeiros números do CPF, ou seja,
- * 222333666 + primeiro dígito.
+ * deve ser calculado a partir dos treze primeiros números do CNPJ, ou seja,
+ * 112223330001 + primeiro dígito.
  * </p>
  * <p>
- * Obs.: Os limites mínimos e máximos do módulo 11 para o cálculo do primeiro e
- * do segundo dígito verificador são 2 - 10 e 2 e 11, respectivamente.
+ * Obs.: O limite mínimo e máximo do módulo 11 são 2 e 9, respectivamente.
  * </p>
  * 
  * @see Modulo11
@@ -76,96 +75,106 @@ import br.com.nordestefomento.jrimum.utilix.Filler;
  * 
  * @version 0.2
  */
-public class DV4CPF extends ADigitoVerificador {
+public class CNPJDV extends AbstractDigitoVerificador {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2059692008894172695L;
-	
+	private static final long serialVersionUID = -4702398145481452503L;
 	
 	/**
 	 *Liminte mínimo do para cálculo no módulo 11.
 	 */
 	private static final int LIMITE_MINIMO = 2;
-
+	
 	/**
-	 * Expressão regular para validação dos nove primeiros números do CPF sem
-	 * formatação: "#########".
+	 *Liminte máximo do para cálculo no módulo 11.
 	 */
-	private static final String REGEX_CPF_DV = "\\d{9}";
+	private static final int LIMITE_MAXIMO = 9;
 
 	/**
-	 * Expressão regular para validação dos nove primeiros números do CPF
-	 * formatado: "###.###.###".
+	 * Expressão regular para validação dos doze primeiros números do CNPJ sem
+	 * formatação: "############".
 	 */
-	private static final String REGEX_CPF_DV_FORMATED = "\\d{3}\\.\\d{3}\\.\\d{3}";
+	private static final String REGEX_CNPJ_DV = "\\d{12}";
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(long)
+	 * Expressão regular para validação dos doze primeiros números do CNPJ
+	 * formatado: "##.###.###/####".
+	 */
+	private static final String REGEX_CNPJ_DV_FORMATED = "\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}";
+
+	/**
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
 	 */
 	@Override
 	public int calcule(long numero) {
-		
-		return calcule(Filler.ZERO_LEFT.fill(String.valueOf(numero), 9));
+
+		return calcule(Filler.ZERO_LEFT.fill(String.valueOf(numero), 12));
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
 	 */
 	@Override
 	public int calcule(String numero) throws IllegalArgumentException {
 
 		int dv1 = 0;
 		int dv2 = 0;
+
 		boolean isFormatoValido = false;
 
 		validacao: {
 
 			if (StringUtils.isNotBlank(numero)) {
 
-				isFormatoValido = (Pattern.matches(REGEX_CPF_DV, numero) || Pattern
-						.matches(REGEX_CPF_DV_FORMATED, numero));
+				isFormatoValido = (Pattern.matches(REGEX_CNPJ_DV, numero) || Pattern
+						.matches(REGEX_CNPJ_DV_FORMATED, numero));
 
 				if (isFormatoValido) {
 
 					numero = StringUtils.replaceChars(numero, ".", "");
+					numero = StringUtils.replaceChars(numero, "/", "");
 
-					dv1 = calcule(numero, 10);
-					dv2 = calcule(numero + dv1, 11);
+					dv1 = calculeDigito(numero);
+					dv2 = calculeDigito(numero + dv1);
 
 					break validacao;
 				}
 			}
 
 			throw new IllegalArgumentException(
-					"O CPF [ "+numero+" ] deve conter apenas números, sendo eles no formato ###.###.### ou ######### !");
-
+				"O CNPJ [ "+numero+" ] deve conter apenas números, sendo eles no formato ##.###.###/#### ou ############ !");
+			
 		}
-
+		
 		return Integer.parseInt(dv1 + "" + dv2);
-
+		
 	}
 
 	/**
-	 * Método auxiliar para o cálculo do dígito verificador. <br />
-	 * Calcula os dígitos separadamente.
+	 * <p>
+	 * Método auxiliar para o cálculo do dígito verificador.
+	 * </p>
 	 * 
-	 * @param numero -
-	 *            número a partir do qual será extraído o dígito verificador.
-	 * @param limiteMaximoDoModulo -
-	 *            limite máximo do módulo utilizado, no caso, módulo 11.
-	 * @return um número que faz parte de um dígito verificador.
+	 * <p>
+	 * Calcula os dígitos separadamente.
+	 * </p>
+	 * 
+	 * @param numero - número a partir do qual será extraído o dígito verificador.
+	 * @return Um número que faz parte de um dígito verificador.
 	 * @throws IllegalArgumentException
 	 *             caso o número não esteja no formatador desejável.
+	 * 
+	 * @since Vallia 1.0
 	 */
-	private int calcule(String numero, int limiteMaximoDoModulo)
-			throws IllegalArgumentException {
+	private int calculeDigito(String numero) throws IllegalArgumentException {
 
 		int dv = 0;
 		int resto = 0;
 		
-		resto = Modulo.calculeMod11(numero, LIMITE_MINIMO, limiteMaximoDoModulo);
+
+		resto = Modulo.calculeMod11(numero, LIMITE_MINIMO, LIMITE_MAXIMO);
 
 		if (resto >= 2) {
 
@@ -174,4 +183,5 @@ public class DV4CPF extends ADigitoVerificador {
 
 		return dv;
 	}
+
 }

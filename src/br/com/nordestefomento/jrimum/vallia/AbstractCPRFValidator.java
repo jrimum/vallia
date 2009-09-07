@@ -38,9 +38,9 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CNPJ;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CPF;
+import br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador;
+import br.com.nordestefomento.jrimum.vallia.digitoverificador.CNPJDV;
+import br.com.nordestefomento.jrimum.vallia.digitoverificador.CPFDV;
 
 
 /**
@@ -58,7 +58,7 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.DV4CPF;
  * 
  * @version 0.2
  */
-public abstract class AValidator4CPRF {
+public abstract class AbstractCPRFValidator {
 	
 	private static final long serialVersionUID = -3107505512223559948L;
 
@@ -70,7 +70,7 @@ public abstract class AValidator4CPRF {
 	/**
 	 * Validador de dígito verificador do cadastro de Pessoa.
 	 */
-	protected ADigitoVerificador digitoVerificador;
+	protected AbstractDigitoVerificador digitoVerificador;
 
 	/**
 	 * Expressão regular para validação de CPF: "###.###.###-##" ou
@@ -111,23 +111,23 @@ public abstract class AValidator4CPRF {
 		CPF, 
 		CNPJ;
 
-		public AValidator4CPRF getAutenticador() {
+		public AbstractCPRFValidator getAutenticador() {
 
-			AValidator4CPRF validador = null;
+			AbstractCPRFValidator validador = null;
 
 			switch (this) {
 			
 			case CPF:
 				
-				validador = new Validator4CPF();
-				validador.digitoVerificador = new DV4CPF();
+				validador = new CPFValidator();
+				validador.digitoVerificador = new CPFDV();
 				
 				break;
 
 			case CNPJ:
 				
-				validador = new Validator4CNPJ();
-				validador.digitoVerificador = new DV4CNPJ();
+				validador = new CNPJValidator();
+				validador.digitoVerificador = new CNPJDV();
 				
 				break;
 			}
@@ -145,7 +145,7 @@ public abstract class AValidator4CPRF {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4CPRF.EnumCPRF
+	 * @see br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator.EnumCPRF
 	 */
 	private EnumCPRF tipoDeCadastro;
 
@@ -155,7 +155,7 @@ public abstract class AValidator4CPRF {
 	 * 
 	 * @return verdadeiro se o dígito verificador for válido.
 	 * 
-	 * @see AValidator4CPRF.getInstance(java.lang.String)
+	 * @see AbstractCPRFValidator.getInstance(java.lang.String)
 	 */
 	public abstract boolean isValido();
 	
@@ -183,15 +183,15 @@ public abstract class AValidator4CPRF {
 	 * 
 	 * @param codigoDoCadastro -
 	 *            identificador do cadastro de pessoa.
-	 * @return uma instância de <code>AValidator4CPRF</code>.
+	 * @return uma instância de <code>AbstractCPRFValidator</code>.
 	 * @exception IllegalArgumentException -
 	 *                caso o parâmetro não esteja em um formatador válido de
 	 *                cadastro de pessoa.
 	 */
-	public static AValidator4CPRF create(
+	public static AbstractCPRFValidator create(
 			String codigoDoCadastro) throws IllegalArgumentException {
 
-		AValidator4CPRF validator_A_CP = null;
+		AbstractCPRFValidator validator_A_CP = null;
 
 		validator_A_CP = create(selectTipoDeCadastro(codigoDoCadastro));	
 		
@@ -201,9 +201,9 @@ public abstract class AValidator4CPRF {
 		return validator_A_CP;
 	}
 
-	public static AValidator4CPRF create(EnumCPRF tipoDeCadastro){
+	public static AbstractCPRFValidator create(EnumCPRF tipoDeCadastro){
 		
-		AValidator4CPRF validator_A_CP = null;
+		AbstractCPRFValidator validator_A_CP = null;
 
 		if(isNotNull(tipoDeCadastro)){
 			
@@ -331,7 +331,7 @@ public abstract class AValidator4CPRF {
 	 */
 	public boolean isFisica() {
 
-		return this instanceof Validator4CPF;
+		return this instanceof CPFValidator;
 	}
 
 	/**
@@ -341,7 +341,7 @@ public abstract class AValidator4CPRF {
 	 */
 	public boolean isJuridica() {
 
-		return this instanceof Validator4CNPJ;
+		return this instanceof CNPJValidator;
 	}
 
 }

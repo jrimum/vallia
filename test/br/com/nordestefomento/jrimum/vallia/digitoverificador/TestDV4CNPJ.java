@@ -53,12 +53,12 @@ import org.junit.Test;
  */
 public class TestDV4CNPJ{
 
-	private DV4CNPJ dv_Validator_CNPJ;
+	private CNPJDV dv_Validator_CNPJ;
 
 	@Before
 	public void setUp() throws Exception {
 
-		dv_Validator_CNPJ = new DV4CNPJ();
+		dv_Validator_CNPJ = new CNPJDV();
 	}
 
 	@Test

@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:21:21
+ * Created at: 30/03/2008 - 18:19:49
  * 
  * ================================================================================
  * 
@@ -23,7 +23,7 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:21:21
+ * Criado em: 30/03/2008 - 18:19:49
  * 
  */
 
@@ -31,16 +31,11 @@
 package br.com.nordestefomento.jrimum.vallia;
 
 
+
 /**
  * 
- * O cadastro de pessoa física tem as seguintes características:
- * <ul>
- * <li>Contém apenas números.</li>
- * <li>Possui tamanho 11 sem formatação e 14 com formatação.</li>
- * <li>Pode estar no formatador ###.###.###-XX, onde XX é o dígito verificador.</li>
- * </ul>
+ * Descrição:
  * 
- * A validação consiste em verificar essas características e se o dígito verificador é válido.
  * 
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
@@ -52,15 +47,16 @@ package br.com.nordestefomento.jrimum.vallia;
  * 
  * @version 0.2
  */
-class Validator4CPF extends AValidator4CPRF {
+class CNPJValidator extends AbstractCPRFValidator {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7284156043760247784L;
+	private static final long serialVersionUID = -7818892654534965062L;
+
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4CPRF#isValido()
+	 * @see br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator#isValido()
 	 */
 	@Override
 	public boolean isValido() {
@@ -69,29 +65,31 @@ class Validator4CPF extends AValidator4CPRF {
 		int dv = 0;
 		int dvCalculado = -1;
 		
-		dv = Integer.parseInt(getCodigoDoCadastro().substring(9, 11));
+		dv = Integer.parseInt(getCodigoDoCadastro().substring(12, 14));
 
-		dvCalculado = digitoVerificador.calcule(getCodigoDoCadastro().substring(0, 9));
+		dvCalculado = digitoVerificador.calcule(getCodigoDoCadastro().substring(0, 12));
 		
-		isValido = (dvCalculado >= 0 && dv == dvCalculado);
-		
+		isValido = (dv == dvCalculado);	
+			
 		return isValido;
 	}
-
+	
+	
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AValidator4CPRF#removeFormatacao()
+	 * @see br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator#removeFormatacao()
 	 */
 	@Override
 	protected void removeFormatacao() {
 		
-		String codigo = getCodigoDoCadastro();
+		String codigo = codigoDoCadastro.toString();
 		
 		codigo = codigo.replace(".", "");
+		codigo = codigo.replace("/", "");
 		codigo = codigo.replace("-", "");
 
 		codigoDoCadastro.delete(0, codigoDoCadastro.length());
 		
 		codigoDoCadastro.append(codigo);
 	}
-	
+
 }

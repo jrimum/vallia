@@ -39,7 +39,7 @@ import org.junit.Test;
 
 /**
  * 
- * Teste da classe DV4CPF.
+ * Teste da classe CPFDV.
  * 
  * @author Gabriel Guimarães
  * @author Gilmar P.S.L
@@ -53,12 +53,12 @@ import org.junit.Test;
  */
 public class TestDV4CPF{
 
-	private DV4CPF dv_Validator_CPF;
+	private CPFDV dv_Validator_CPF;
 
 	@Before
 	public void setUp() throws Exception {
 
-		dv_Validator_CPF = new DV4CPF();
+		dv_Validator_CPF = new CPFDV();
 	}
 
 	@Test

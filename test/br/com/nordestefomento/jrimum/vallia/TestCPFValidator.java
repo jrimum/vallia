@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:52:37
+ * Created at: 30/03/2008 - 18:52:49
  * 
  * ================================================================================
  * 
@@ -23,7 +23,7 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:52:37
+ * Criado em: 30/03/2008 - 18:52:49
  * 
  */
 
@@ -37,7 +37,7 @@ import org.junit.Test;
 
 /**
  * 
- * Teste da classe <code>Validator_CadastroDePessoaJurídica</code>.
+ * Teste da classe <code>Validator_CadastroDePessoaFísica</code>.
  * 
  * 
  * @author Gabriel Guimarães
@@ -49,20 +49,20 @@ import org.junit.Test;
  * 
  * @version 1.0
  */
-public class TestValidator4CNPJ{
-	
-	private AValidator4CPRF validadorCNPJ;
+public class TestCPFValidator{
 
+	private AbstractCPRFValidator validadorCPF;
+	
 	@Test
 	public void testIsValido() {
 		
-		validadorCNPJ = AValidator4CPRF.create("11222333000181");
+		validadorCPF = AbstractCPRFValidator.create("22233366638");
 		
-		assertTrue(validadorCNPJ.isValido());
+		assertTrue(validadorCPF.isValido());
 		
-		validadorCNPJ.setCodigoDoCadastro("11222333000182");
+		validadorCPF.setCodigoDoCadastro("22233366639");
 		
-		assertFalse(validadorCNPJ.isValido());
+		assertFalse(validadorCPF.isValido());
 	}
 
 }

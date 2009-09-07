@@ -62,7 +62,7 @@ import org.apache.commons.lang.StringUtils;
  * 
  * @version 0.2
  */
-public class DV4BoletoCodigoDeBarra extends ADigitoVerificador {
+public class BoletoCodigoDeBarraDV extends AbstractDigitoVerificador {
 
 	private static final long serialVersionUID = 7977220668336110040L;
 	
@@ -71,14 +71,14 @@ public class DV4BoletoCodigoDeBarra extends ADigitoVerificador {
 	private static final Modulo modulo11 = new Modulo(EnumModulo.MODULO11);
 	
 	
-	public DV4BoletoCodigoDeBarra() {
+	public BoletoCodigoDeBarraDV() {
 		
 		super();
 	}
 
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.
-	 * ADigitoVerificador#calcule(java.lang.String)
+	 * AbstractDigitoVerificador#calcule(java.lang.String)
 	 */
 	@Override
 	public int calcule(String numero) throws IllegalArgumentException {

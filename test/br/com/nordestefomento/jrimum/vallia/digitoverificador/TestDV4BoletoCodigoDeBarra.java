@@ -48,12 +48,12 @@ import org.junit.Test;
  */
 public class TestDV4BoletoCodigoDeBarra{
 
-	private ADigitoVerificador dv_Validator_CodigoDeBarra;
+	private AbstractDigitoVerificador dv_Validator_CodigoDeBarra;
 
 	@Before
 	public void setUp() throws Exception {
 
-		dv_Validator_CodigoDeBarra = new DV4BoletoCodigoDeBarra();
+		dv_Validator_CodigoDeBarra = new BoletoCodigoDeBarraDV();
 	}
 
 	@Test

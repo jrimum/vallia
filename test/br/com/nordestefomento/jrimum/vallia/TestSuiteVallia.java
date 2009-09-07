@@ -44,8 +44,8 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestModulo;
 ( 
 		{
 			TestAValidator4CadastroDePessoa.class,
-			TestValidator4CNPJ.class,
-			TestValidator4CPF.class,
+			TestCNPJValidator.class,
+			TestCPFValidator.class,
 			TestDV4BoletoCodigoDeBarra.class,
 			TestDV4BoletoLinhaDigitavel.class,
 			TestDV4CNPJ.class,
