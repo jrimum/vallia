@@ -169,7 +169,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 
 		if (resto >= 2) {
 
-			dv = EnumModulo.MODULO11.valor() - resto;
+			dv = TipoDeModulo.MODULO11.valor() - resto;
 		}
 
 		return dv;

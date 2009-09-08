@@ -80,7 +80,7 @@ public class BoletoLinhaDigitavelDV extends AbstractDigitoVerificador {
 	
 	private static final long serialVersionUID = -9177413216786384292L;
 	
-	private static final Modulo modulo10 = new Modulo(EnumModulo.MODULO10); 
+	private static final Modulo modulo10 = new Modulo(TipoDeModulo.MODULO10); 
 	
 	/**
 	 * Expressão regular para validação do campo da linha digitável.<br />

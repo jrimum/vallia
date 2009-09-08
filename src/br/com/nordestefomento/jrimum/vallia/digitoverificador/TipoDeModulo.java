@@ -54,7 +54,7 @@ import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
  * 
  * @version 0.2
  */
-public enum EnumModulo implements Serializable {
+public enum TipoDeModulo implements Serializable {
 
 	MODULO10{
 		public int valor(){
