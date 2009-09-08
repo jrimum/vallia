@@ -52,7 +52,7 @@ import br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator.EnumCPRF;
  * 
  * @version 1.0
  */
-public class TestAbstractCadastroDePessoaValidator{
+public class TestAbstractCPRFValidator{
 
 	private AbstractCPRFValidator validator;
 

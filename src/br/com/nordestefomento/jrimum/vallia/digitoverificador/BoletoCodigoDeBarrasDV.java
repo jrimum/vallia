@@ -62,7 +62,7 @@ import org.apache.commons.lang.StringUtils;
  * 
  * @version 0.2
  */
-public class BoletoCodigoDeBarraDV extends AbstractDigitoVerificador {
+public class BoletoCodigoDeBarrasDV extends AbstractDigitoVerificador {
 
 	private static final long serialVersionUID = 7977220668336110040L;
 	
@@ -71,7 +71,7 @@ public class BoletoCodigoDeBarraDV extends AbstractDigitoVerificador {
 	private static final Modulo modulo11 = new Modulo(EnumModulo.MODULO11);
 	
 	
-	public BoletoCodigoDeBarraDV() {
+	public BoletoCodigoDeBarrasDV() {
 		
 		super();
 	}

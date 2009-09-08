@@ -33,7 +33,7 @@ package br.com.nordestefomento.jrimum.vallia;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestBoletoCodigoDeBarraDV;
+import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestBoletoCodigoDeBarrasDV;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestBoletoLinhaDigitavelDV;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestCNPJDV;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestCPFDV;
@@ -43,10 +43,10 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestModulo;
 @Suite.SuiteClasses
 ( 
 		{
-			TestAbstractCadastroDePessoaValidator.class,
+			TestAbstractCPRFValidator.class,
 			TestCNPJValidator.class,
 			TestCPFValidator.class,
-			TestBoletoCodigoDeBarraDV.class,
+			TestBoletoCodigoDeBarrasDV.class,
 			TestBoletoLinhaDigitavelDV.class,
 			TestCNPJDV.class,
 			TestCPFDV.class,
