@@ -55,11 +55,8 @@ import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  * 
- * @since
- * 
- * @version
+ * @version 0.2
  */
-
 public class Modulo {
 
 	/**
@@ -179,12 +176,11 @@ public class Modulo {
 	 * @param numero
 	 * @param limiteMin
 	 * @param limiteMax
-	 * @return
+	 * @return valor do módulo
 	 * @throws IllegalArgumentException
 	 * 
 	 * @since 0.2
 	 */
-
 	public static int calculeMod11(String numero, int limiteMin, int limiteMax)
 			throws IllegalArgumentException {
 
@@ -255,12 +251,11 @@ public class Modulo {
 	 * @param numero
 	 * @param limiteMin
 	 * @param limiteMax
-	 * @return
+	 * @return soma sequencial usada no cálculo do módulo
 	 * @throws IllegalArgumentException
 	 * 
 	 * @since 0.2
 	 */
-
 	public static int calculeSomaSequencialMod10(String numero, int limiteMin,
 			int limiteMax) throws IllegalArgumentException {
 

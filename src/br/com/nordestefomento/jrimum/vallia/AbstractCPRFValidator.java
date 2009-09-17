@@ -154,15 +154,12 @@ public abstract class AbstractCPRFValidator {
 	 * instanciação do validador.
 	 * 
 	 * @return verdadeiro se o dígito verificador for válido.
-	 * 
-	 * @see AbstractCPRFValidator.getInstance(java.lang.String)
 	 */
 	public abstract boolean isValido();
 	
 	/**
 	 * Revome a formatação existente em
 	 * <code>códigoDoCadastro</code>.
-	 * 
 	 */
 	protected abstract void removeFormatacao();
 

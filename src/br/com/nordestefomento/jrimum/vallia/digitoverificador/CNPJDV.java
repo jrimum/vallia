@@ -63,8 +63,7 @@ import br.com.nordestefomento.jrimum.utilix.Filler;
  * Obs.: O limite mínimo e máximo do módulo 11 são 2 e 9, respectivamente.
  * </p>
  * 
- * @see Modulo11
- * 
+ * @see Modulo
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
  * @author Misael Barreto 

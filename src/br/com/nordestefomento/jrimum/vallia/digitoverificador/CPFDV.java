@@ -64,7 +64,7 @@ import br.com.nordestefomento.jrimum.utilix.Filler;
  * do segundo dígito verificador são 2 - 10 e 2 e 11, respectivamente.
  * </p>
  * 
- * @see Modulo11
+ * @see Modulo
  * 
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>

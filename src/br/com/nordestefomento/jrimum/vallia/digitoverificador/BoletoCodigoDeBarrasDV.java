@@ -50,15 +50,12 @@ import org.apache.commons.lang.StringUtils;
  * Obs.: A rotina de módulo utilizada é o módulo 11.
  * </p>
  * 
- * @see Modulo11 
- * 
+ * @see Modulo
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
  * @author Misael Barreto 
  * @author Rômulo Augusto
  * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
- * 
- * @since 0.2
  * 
  * @version 0.2
  */
@@ -77,8 +74,7 @@ public class BoletoCodigoDeBarrasDV extends AbstractDigitoVerificador {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.
-	 * AbstractDigitoVerificador#calcule(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(String)
 	 */
 	@Override
 	public int calcule(String numero) throws IllegalArgumentException {
