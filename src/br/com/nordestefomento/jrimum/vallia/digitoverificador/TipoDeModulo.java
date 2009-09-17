@@ -32,8 +32,6 @@ package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
 import java.io.Serializable;
 
-import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
-
 /**
  * 
  * <p>
@@ -69,12 +67,4 @@ public enum TipoDeModulo implements Serializable {
 	};
 	
 	public abstract int valor();
-	
-	/**
-	 * @see br.com.nordestefomento.jrimum.utilix.ObjectUtil#toString()
-	 * @see java.lang.Enum#toString()
-	 */
-	public String toString(){
-		return ObjectUtil.toString(this)+" valor() => "+this.valor();
-	}
 }
