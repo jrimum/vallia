@@ -8,9 +8,9 @@ import org.junit.Test;
 
 public class TestModulo{
 
-	private static Modulo modulo10  = new Modulo(EnumModulo.MODULO10);
+	private static Modulo modulo10  = new Modulo(TipoDeModulo.MODULO10);
 	
-	private static Modulo modulo11  = new Modulo(EnumModulo.MODULO11);
+	private static Modulo modulo11  = new Modulo(TipoDeModulo.MODULO11);
 
 	@Test
 	public final void testModuloEnumModulo() {

@@ -30,11 +30,9 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
 
 import org.apache.commons.lang.StringUtils;
-
-
-
 
 /**
  * <p>
@@ -49,7 +47,7 @@ import org.apache.commons.lang.StringUtils;
  * @version 0.2
  */
 	
-public class DV4CodigoDeCompensacaoBancosBACEN extends ADigitoVerificador {
+public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador {
 
 	
 	/**
@@ -67,7 +65,7 @@ public class DV4CodigoDeCompensacaoBancosBACEN extends ADigitoVerificador {
 	 * Calcula o dígito verificador para código de compensação passado.
 	 * </p>
 	 * 
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
 	 * 
 	 * @param numero 
 	 * @return int digito
@@ -81,8 +79,9 @@ public class DV4CodigoDeCompensacaoBancosBACEN extends ADigitoVerificador {
 			
 			return calcule(Integer.valueOf(numero.trim()));		
 			
-		}else 
+		} else {
 			throw new IllegalArgumentException(MSG);
+		}
 	}
 
 	
@@ -114,7 +113,7 @@ public class DV4CodigoDeCompensacaoBancosBACEN extends ADigitoVerificador {
 	 
 	 * @since 0.2
 	 * 
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(long)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
 	 */
 	@Override
 	public int calcule(long numero) {
@@ -152,12 +151,13 @@ public class DV4CodigoDeCompensacaoBancosBACEN extends ADigitoVerificador {
 		
 	public boolean isCodigoValido(String codigo)throws IllegalArgumentException{
 		
-		if (StringUtils.isNotBlank(codigo) && StringUtils.isNumeric(codigo)){
+		if (StringUtils.isNotBlank(codigo) && StringUtils.isNumeric(codigo)) {
 			
 			return isCodigoValido(Integer.valueOf(codigo.trim()));
 			
-		}else
+		} else {
 			throw new IllegalArgumentException(MSG);
+		}
 	}
 	
 	

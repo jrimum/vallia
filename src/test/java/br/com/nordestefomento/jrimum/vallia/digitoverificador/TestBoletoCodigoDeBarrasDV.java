@@ -46,14 +46,14 @@ import org.junit.Test;
  * @author Rômulo Augusto
  * @since 16/03/2007
  */
-public class TestDV4BoletoCodigoDeBarra{
+public class TestBoletoCodigoDeBarrasDV{
 
-	private ADigitoVerificador dv_Validator_CodigoDeBarra;
+	private AbstractDigitoVerificador dv_Validator_CodigoDeBarra;
 
 	@Before
 	public void setUp() throws Exception {
 
-		dv_Validator_CodigoDeBarra = new DV4BoletoCodigoDeBarra();
+		dv_Validator_CodigoDeBarra = new BoletoCodigoDeBarrasDV();
 	}
 
 	@Test

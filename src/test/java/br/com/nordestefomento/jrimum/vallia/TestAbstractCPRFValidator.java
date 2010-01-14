@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:53:54
+ * Created at: 30/03/2008 - 18:52:12
  * 
  * ================================================================================
  * 
@@ -23,23 +23,25 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:53:54
+ * Criado em: 30/03/2008 - 18:52:12
  * 
  */
 
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package br.com.nordestefomento.jrimum.vallia;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import org.junit.Before;
 import org.junit.Test;
+
+import br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator.EnumCPRF;
 
 /**
  * 
- * Teste da classe DV4CPF.
+ * Teste da classe <code>AbstractCPRFValidator</code>.
+ * 
  * 
  * @author Gabriel Guimarães
  * @author Gilmar P.S.L
@@ -49,109 +51,112 @@ import org.junit.Test;
  * @since JMatryx 1.0
  * 
  * @version 1.0
- * 
  */
-public class TestDV4CPF{
+public class TestAbstractCPRFValidator{
 
-	private DV4CPF dv_Validator_CPF;
-
-	@Before
-	public void setUp() throws Exception {
-
-		dv_Validator_CPF = new DV4CPF();
-	}
+	private AbstractCPRFValidator validator;
 
 	@Test
-	public void testCalculeString() {
+	public void testGetInstance() {
+
+		try {
+			
+			EnumCPRF nulo = null;
+
+			AbstractCPRFValidator.create(nulo);
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
+
+		try {
+
+			AbstractCPRFValidator.create("abc123");
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
+
+		try {
+
+			AbstractCPRFValidator.create("222333666");
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
+
+		try {
+
+			AbstractCPRFValidator.create("112223330001");
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
 		
-		try {
+		assertNotNull(AbstractCPRFValidator.create("22233366638"));
+		assertNotNull(AbstractCPRFValidator.create("222.333.666-38"));
 
-			dv_Validator_CPF.calcule(null);
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			dv_Validator_CPF.calcule("abc123");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			dv_Validator_CPF.calcule("00000000000");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			dv_Validator_CPF.calcule("2223336667");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			dv_Validator_CPF.calcule("000.000.000.000");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			dv_Validator_CPF.calcule("222.333.666.7");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		assertEquals(38, dv_Validator_CPF.calcule("222333666"));
-		assertEquals(38, dv_Validator_CPF.calcule("222.333.666"));
+		assertNotNull(AbstractCPRFValidator.create("11222333000181"));
+		assertNotNull(AbstractCPRFValidator.create("11.222.333/0001-81"));
 
 	}
 
 	@Test
-	public void testCalculeLong() {
+	public void testSetCadastroDePessoa() {
 
-		assertEquals(38, dv_Validator_CPF.calcule(222333666));
-		assertEquals(87, dv_Validator_CPF.calcule(2333666));
+		// Um validador de cpf não pode aceitar um cnpj
+
+		validator = AbstractCPRFValidator.create("222.333.666-38");
+
+		try {
+
+			validator.setCodigoDoCadastro("11.222.333/0001-81");
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+		}
+
+	}
+
+	@Test
+	public void testIsFisica() {
+
+		validator = AbstractCPRFValidator.create("22233366638");
+
+		assertTrue(validator instanceof CPFValidator);
+	}
+
+	@Test
+	public void testIsJuridica() {
+
+		validator = AbstractCPRFValidator.create("11222333000181");
+
+		assertTrue(validator instanceof CNPJValidator);
+
 	}
 
 }

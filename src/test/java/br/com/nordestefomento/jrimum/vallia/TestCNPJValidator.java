@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:52:20
+ * Created at: 30/03/2008 - 18:52:37
  * 
  * ================================================================================
  * 
@@ -23,40 +23,46 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:52:20
+ * Criado em: 30/03/2008 - 18:52:37
  * 
  */
 
 
 package br.com.nordestefomento.jrimum.vallia;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestBoletoCodigoDeBarrasDV;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestBoletoLinhaDigitavelDV;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestCNPJDV;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestCPFDV;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.TestModulo;
+import org.junit.Test;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses
-( 
-		{
-			TestAbstractCPRFValidator.class,
-			TestCNPJValidator.class,
-			TestCPFValidator.class,
-			TestBoletoCodigoDeBarrasDV.class,
-			TestBoletoLinhaDigitavelDV.class,
-			TestCNPJDV.class,
-			TestCPFDV.class,
-			TestModulo.class
-		}
-)
-public class TestSuiteVallia {
+/**
+ * 
+ * Teste da classe <code>Validator_CadastroDePessoaJurídica</code>.
+ * 
+ * 
+ * @author Gabriel Guimarães
+ * @author Gilmar P.S.L
+ * @author Misael Barreto
+ * @author Rômulo Augusto
+ * 
+ * @since JMatryx 1.0
+ * 
+ * @version 1.0
+ */
+public class TestCNPJValidator{
+	
+	private AbstractCPRFValidator validadorCNPJ;
 
-	/*
-	 * The class remains completely empty, being used only as a holder for the
-	 * above annotations
-	 */
+	@Test
+	public void testIsValido() {
+		
+		validadorCNPJ = AbstractCPRFValidator.create("11222333000181");
+		
+		assertTrue(validadorCNPJ.isValido());
+		
+		validadorCNPJ.setCodigoDoCadastro("11222333000182");
+		
+		assertFalse(validadorCNPJ.isValido());
+	}
+
 }

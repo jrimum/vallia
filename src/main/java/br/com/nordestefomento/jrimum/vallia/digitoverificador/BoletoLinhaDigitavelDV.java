@@ -75,12 +75,12 @@ import br.com.nordestefomento.jrimum.utilix.Filler;
  * 
  * @version 0.2
  */
-public class DV4BoletoLinhaDigitavel extends ADigitoVerificador {
+public class BoletoLinhaDigitavelDV extends AbstractDigitoVerificador {
 
 	
 	private static final long serialVersionUID = -9177413216786384292L;
 	
-	private static final Modulo modulo10 = new Modulo(EnumModulo.MODULO10); 
+	private static final Modulo modulo10 = new Modulo(TipoDeModulo.MODULO10); 
 	
 	/**
 	 * Expressão regular para validação do campo da linha digitável.<br />
@@ -89,12 +89,12 @@ public class DV4BoletoLinhaDigitavel extends ADigitoVerificador {
 	 */
 	private static final String REGEX_CAMPO = "(\\d{9})|(\\d{10})|(\\d{5})\\.(\\d{4})|(\\d{5})\\.(\\d{5})";
 
-	public DV4BoletoLinhaDigitavel() {
+	public BoletoLinhaDigitavelDV() {
 		super();
 	}
 	
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
 	 */
 	@Override
 	public int calcule(long numero) {
@@ -103,7 +103,7 @@ public class DV4BoletoLinhaDigitavel extends ADigitoVerificador {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.ADigitoVerificador#calcule(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
 	 */
 	@Override
 	public int calcule(String numero) throws IllegalArgumentException {

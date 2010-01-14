@@ -30,12 +30,13 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import static br.com.nordestefomento.jrimum.vallia.digitoverificador.EnumModulo.MODULO10;
-import static br.com.nordestefomento.jrimum.vallia.digitoverificador.EnumModulo.MODULO11;
+import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
+import static br.com.nordestefomento.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO10;
+import static br.com.nordestefomento.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO11;
 
 import org.apache.commons.lang.StringUtils;
 
-import br.com.nordestefomento.jrimum.ACurbitaObject;
+import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
 
 /**
  * 
@@ -54,12 +55,9 @@ import br.com.nordestefomento.jrimum.ACurbitaObject;
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  * 
- * @since
- * 
- * @version
+ * @version 0.2
  */
-
-public class Modulo extends ACurbitaObject {
+public class Modulo {
 
 	/**
 	 * 
@@ -71,28 +69,20 @@ public class Modulo extends ACurbitaObject {
 	 */
 	private static final String O_ARGUMENTO_DEVE_CONTER_APENAS_NUMEROS = "O argumento deve conter apenas números !";
 	
-	public static final int MOD10 = EnumModulo.MODULO10.valor();
+	public static final int MOD10 = TipoDeModulo.MODULO10.valor();
 	
-	public static final int MOD11 = EnumModulo.MODULO11.valor();
+	public static final int MOD11 = TipoDeModulo.MODULO11.valor();
 	
-	private EnumModulo mod;
+	private TipoDeModulo mod;
 
 	private int limiteMaximo;
 
 	private int limiteMinimo;
 
 	/**
-	 * 
-	 */
-	@SuppressWarnings("unused")
-	private Modulo() {
-		super();
-	}
-
-	/**
 	 * @param mod
 	 */
-	public Modulo(EnumModulo mod) {
+	public Modulo(TipoDeModulo mod) {
 		super();
 
 		if (isNotNull(mod, "modulo")) {
@@ -107,7 +97,7 @@ public class Modulo extends ACurbitaObject {
 	 * @param limiteMinimo
 	 * @param mod
 	 */
-	public Modulo(EnumModulo mod, int limiteMaximo, int limiteMinimo) {
+	public Modulo(TipoDeModulo mod, int limiteMaximo, int limiteMinimo) {
 		super();
 
 		if (isNotNull(mod, "modulo")) {
@@ -186,12 +176,11 @@ public class Modulo extends ACurbitaObject {
 	 * @param numero
 	 * @param limiteMin
 	 * @param limiteMax
-	 * @return
+	 * @return valor do módulo
 	 * @throws IllegalArgumentException
 	 * 
 	 * @since 0.2
 	 */
-
 	public static int calculeMod11(String numero, int limiteMin, int limiteMax)
 			throws IllegalArgumentException {
 
@@ -262,12 +251,11 @@ public class Modulo extends ACurbitaObject {
 	 * @param numero
 	 * @param limiteMin
 	 * @param limiteMax
-	 * @return
+	 * @return soma sequencial usada no cálculo do módulo
 	 * @throws IllegalArgumentException
 	 * 
 	 * @since 0.2
 	 */
-
 	public static int calculeSomaSequencialMod10(String numero, int limiteMin,
 			int limiteMax) throws IllegalArgumentException {
 
@@ -401,7 +389,7 @@ public class Modulo extends ACurbitaObject {
 	/**
 	 * @return the mod
 	 */
-	public EnumModulo getMod() {
+	public TipoDeModulo getMod() {
 		return mod;
 	}
 
@@ -409,7 +397,12 @@ public class Modulo extends ACurbitaObject {
 	 * @param mod
 	 *            the mod to set
 	 */
-	public void setMod(EnumModulo mod) {
+	public void setMod(TipoDeModulo mod) {
 		this.mod = mod;
+	}
+	
+	@Override
+	public String toString() {
+		return ObjectUtil.toString(this);
 	}
 }

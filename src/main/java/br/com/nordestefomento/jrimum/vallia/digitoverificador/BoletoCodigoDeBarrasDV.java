@@ -50,35 +50,31 @@ import org.apache.commons.lang.StringUtils;
  * Obs.: A rotina de módulo utilizada é o módulo 11.
  * </p>
  * 
- * @see Modulo11 
- * 
+ * @see Modulo
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
  * @author Misael Barreto 
  * @author Rômulo Augusto
  * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
  * 
- * @since 0.2
- * 
  * @version 0.2
  */
-public class DV4BoletoCodigoDeBarra extends ADigitoVerificador {
+public class BoletoCodigoDeBarrasDV extends AbstractDigitoVerificador {
 
 	private static final long serialVersionUID = 7977220668336110040L;
 	
 	private static final int TAMANHO_SEM_DV = 43;
 	
-	private static final Modulo modulo11 = new Modulo(EnumModulo.MODULO11);
+	private static final Modulo modulo11 = new Modulo(TipoDeModulo.MODULO11);
 	
 	
-	public DV4BoletoCodigoDeBarra() {
+	public BoletoCodigoDeBarrasDV() {
 		
 		super();
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.
-	 * ADigitoVerificador#calcule(java.lang.String)
+	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(String)
 	 */
 	@Override
 	public int calcule(String numero) throws IllegalArgumentException {

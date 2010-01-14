@@ -51,16 +51,16 @@ import org.junit.Test;
  * @version 0.2
  */
 	
-public class TestDV4BoletoCodigoCompensacaoBanco {
+public class TestCodigoDeCompensacaoBancosBACENDV {
 
 	private final int CODIGO_COMPENSACAO_LIMITE_MINIMO = 1; 
 	private final int CODIGO_COMPENSACAO_LIMITE_MAXIMO = 999; 
 	
-	private DV4CodigoDeCompensacaoBancosBACEN dv4CodigoCompensacaoBanco = null;
+	private CodigoDeCompensacaoBancosBACENDV dv4CodigoCompensacaoBanco = null;
 	
 	@Before
 	public void setUp() throws Exception {
-		dv4CodigoCompensacaoBanco = new DV4CodigoDeCompensacaoBancosBACEN();
+		dv4CodigoCompensacaoBanco = new CodigoDeCompensacaoBancosBACENDV();
 	}	
 		
 	@After
