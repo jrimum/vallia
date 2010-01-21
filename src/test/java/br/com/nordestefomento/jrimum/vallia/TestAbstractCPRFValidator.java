@@ -36,7 +36,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator.EnumCPRF;
+import br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator.TipoDeCPRF;
 
 /**
  * 
@@ -61,7 +61,7 @@ public class TestAbstractCPRFValidator{
 
 		try {
 			
-			EnumCPRF nulo = null;
+			TipoDeCPRF nulo = null;
 
 			AbstractCPRFValidator.create(nulo);
 

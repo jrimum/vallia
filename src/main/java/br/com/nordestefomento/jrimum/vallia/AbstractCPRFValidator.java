@@ -106,7 +106,7 @@ public abstract class AbstractCPRFValidator {
 	 * 
 	 * @version 0.2
 	 */
-	public enum EnumCPRF implements Serializable {
+	public enum TipoDeCPRF implements Serializable {
 
 		CPF, 
 		CNPJ;
@@ -145,9 +145,9 @@ public abstract class AbstractCPRFValidator {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator.EnumCPRF
+	 * @see br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator.TipoDeCPRF
 	 */
-	private EnumCPRF tipoDeCadastro;
+	private TipoDeCPRF tipoDeCadastro;
 
 	/**
 	 * Valida o dígito verificador do cadastro de pessoa passado durante a
@@ -185,34 +185,33 @@ public abstract class AbstractCPRFValidator {
 	 *                caso o parâmetro não esteja em um formatador válido de
 	 *                cadastro de pessoa.
 	 */
-	public static AbstractCPRFValidator create(
-			String codigoDoCadastro) throws IllegalArgumentException {
+	public static AbstractCPRFValidator create(String codigoDoCadastro) throws IllegalArgumentException {
 
-		AbstractCPRFValidator validator_A_CP = null;
+		AbstractCPRFValidator validatorCPRF = null;
 
-		validator_A_CP = create(selectTipoDeCadastro(codigoDoCadastro));	
+		validatorCPRF = create(selectTipoDeCadastro(codigoDoCadastro));	
 		
-		validator_A_CP.codigoDoCadastro = new StringBuilder (codigoDoCadastro);
-		validator_A_CP.removeFormatacao();
+		validatorCPRF.codigoDoCadastro = new StringBuilder (codigoDoCadastro);
+		validatorCPRF.removeFormatacao();
 
-		return validator_A_CP;
+		return validatorCPRF;
 	}
 
-	public static AbstractCPRFValidator create(EnumCPRF tipoDeCadastro){
+	public static AbstractCPRFValidator create(TipoDeCPRF tipoDeCadastro){
 		
-		AbstractCPRFValidator validator_A_CP = null;
+		AbstractCPRFValidator validatorCPRF = null;
 
-		if(isNotNull(tipoDeCadastro)){
+		if (isNotNull(tipoDeCadastro)) {
 			
-			validator_A_CP = tipoDeCadastro.getAutenticador();
+			validatorCPRF = tipoDeCadastro.getAutenticador();
 			
-			validator_A_CP.tipoDeCadastro = tipoDeCadastro;
+			validatorCPRF.tipoDeCadastro = tipoDeCadastro;
 			
-		}else
-			throw new IllegalArgumentException(
-					"Tipo de Cadastro [ "+tipoDeCadastro+" ] nulo !");
+		} else {
+			throw new IllegalArgumentException("Tipo de Cadastro [ "+ tipoDeCadastro + " ] nulo !");
+		}
 		
-		return validator_A_CP;
+		return validatorCPRF;
 	}
 	
 	/**
@@ -222,10 +221,9 @@ public abstract class AbstractCPRFValidator {
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
-	private static EnumCPRF selectTipoDeCadastro(
-			String codigoDoCadastro) throws IllegalArgumentException {
+	private static TipoDeCPRF selectTipoDeCadastro(String codigoDoCadastro) throws IllegalArgumentException {
 
-		EnumCPRF tipo = null;
+		TipoDeCPRF tipo = null;
 
 		switch_Tipo: {
 
@@ -237,27 +235,24 @@ public abstract class AbstractCPRFValidator {
 				
 				if (Pattern.matches(REGEX_CPF, codigoDoCadastro)) {
 
-					tipo = EnumCPRF.CPF;
+					tipo = TipoDeCPRF.CPF;
 
 					break switch_Tipo;
-					
 				}
 
 				if (Pattern.matches(REGEX_CNPJ, codigoDoCadastro)) {
 
-					tipo = EnumCPRF.CNPJ;
+					tipo = TipoDeCPRF.CNPJ;
 
 					break switch_Tipo;
 				}
 				
 			}
 			
-			throw new IllegalArgumentException(
-					"O código de cadastro [ "+codigoDoCadastro+" ] não está em um formatador válido !");
+			throw new IllegalArgumentException("O código de cadastro [ " + codigoDoCadastro + " ] não está em um formatador válido !");
 		}
 
 		return tipo;
-
 	}
 
 	/**
@@ -275,14 +270,13 @@ public abstract class AbstractCPRFValidator {
 			this.codigoDoCadastro.append(codigoDoCadastro);
 			
 			removeFormatacao();
-		} else
-			throw new IllegalArgumentException("Este é um validador de: "
-					+ this.tipoDeCadastro);
+		} else {
+			throw new IllegalArgumentException("Este é um validador de: " + this.tipoDeCadastro);
+		}
 
 	}
 
-	public static boolean isParametrosValidos(String codigoDoCadastro,
-			EnumCPRF tipoDeCadastro) throws IllegalArgumentException {
+	public static boolean isParametrosValidos(String codigoDoCadastro, TipoDeCPRF tipoDeCadastro) throws IllegalArgumentException {
 
 		boolean isValido = false;
 
