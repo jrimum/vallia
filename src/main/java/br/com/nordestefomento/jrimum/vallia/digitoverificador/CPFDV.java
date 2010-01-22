@@ -99,7 +99,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 	 * Expressão regular para validação dos nove primeiros números do CPF
 	 * formatado: "###.###.###".
 	 */
-	private static final String REGEX_CPF_DV_FORMATED = "\\d{3}\\.\\d{3}\\.\\d{3}";
+	private static final String REGEX_CPF_DV_FORMATTED = "\\d{3}\\.\\d{3}\\.\\d{3}";
 
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
@@ -125,7 +125,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 			if (StringUtils.isNotBlank(numero)) {
 
 				isFormatoValido = (Pattern.matches(REGEX_CPF_DV, numero) || Pattern
-						.matches(REGEX_CPF_DV_FORMATED, numero));
+						.matches(REGEX_CPF_DV_FORMATTED, numero));
 
 				if (isFormatoValido) {
 

@@ -60,7 +60,7 @@ public class TestCNPJValidator{
 		
 		assertTrue(validadorCNPJ.isValido());
 		
-		validadorCNPJ.setCodigoDoCadastro("11222333000182");
+		validadorCNPJ = AbstractCPRFValidator.create("11222333000182");
 		
 		assertFalse(validadorCNPJ.isValido());
 	}

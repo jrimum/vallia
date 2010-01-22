@@ -101,7 +101,7 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	 * Expressão regular para validação dos doze primeiros números do CNPJ
 	 * formatado: "##.###.###/####".
 	 */
-	private static final String REGEX_CNPJ_DV_FORMATED = "\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}";
+	private static final String REGEX_CNPJ_DV_FORMATTED = "\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}";
 
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
@@ -128,7 +128,7 @@ public class CNPJDV extends AbstractDigitoVerificador {
 			if (StringUtils.isNotBlank(numero)) {
 
 				isFormatoValido = (Pattern.matches(REGEX_CNPJ_DV, numero) || Pattern
-						.matches(REGEX_CNPJ_DV_FORMATED, numero));
+						.matches(REGEX_CNPJ_DV_FORMATTED, numero));
 
 				if (isFormatoValido) {
 

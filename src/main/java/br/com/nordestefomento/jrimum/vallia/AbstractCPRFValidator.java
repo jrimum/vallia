@@ -255,27 +255,6 @@ public abstract class AbstractCPRFValidator {
 		return tipo;
 	}
 
-	/**
-	 * Armazena o valor do cadastro de pessoa.
-	 * 
-	 * @param codigoDoCadastro -
-	 *            cadastro de pessoa para validação.
-	 */
-	public void setCodigoDoCadastro(String codigoDoCadastro) {
-
-		if (selectTipoDeCadastro(codigoDoCadastro) == this.tipoDeCadastro) {
-
-			this.codigoDoCadastro.delete(0, codigoDoCadastro.length());
-			
-			this.codigoDoCadastro.append(codigoDoCadastro);
-			
-			removeFormatacao();
-		} else {
-			throw new IllegalArgumentException("Este é um validador de: " + this.tipoDeCadastro);
-		}
-
-	}
-
 	public static boolean isParametrosValidos(String codigoDoCadastro, TipoDeCPRF tipoDeCadastro) throws IllegalArgumentException {
 
 		boolean isValido = false;

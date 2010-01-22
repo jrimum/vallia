@@ -60,7 +60,7 @@ public class TestCPFValidator{
 		
 		assertTrue(validadorCPF.isValido());
 		
-		validadorCPF.setCodigoDoCadastro("22233366639");
+		validadorCPF = AbstractCPRFValidator.create("22233366639");
 		
 		assertFalse(validadorCPF.isValido());
 	}

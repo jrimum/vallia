@@ -122,27 +122,6 @@ public class TestAbstractCPRFValidator{
 	}
 
 	@Test
-	public void testSetCadastroDePessoa() {
-
-		// Um validador de cpf não pode aceitar um cnpj
-
-		validator = AbstractCPRFValidator.create("222.333.666-38");
-
-		try {
-
-			validator.setCodigoDoCadastro("11.222.333/0001-81");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-		}
-
-	}
-
-	@Test
 	public void testIsFisica() {
 
 		validator = AbstractCPRFValidator.create("22233366638");
