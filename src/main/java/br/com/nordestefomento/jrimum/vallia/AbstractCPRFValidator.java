@@ -147,6 +147,7 @@ public abstract class AbstractCPRFValidator {
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator.TipoDeCPRF
 	 */
+	@SuppressWarnings("unused")
 	private TipoDeCPRF tipoDeCadastro;
 
 	/**
