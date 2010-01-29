@@ -27,23 +27,13 @@
  * 
  */
 
-
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
 import java.io.Serializable;
 
 /**
- * 
  * <p>
  * Enumeração das implementações dos módulos.
- * </p>
- * 
- * <p>
- * OBJETIVO/PROPÓSITO
- * </p>
- * 
- * <p>
- * EXEMPLO:
  * </p>
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
@@ -54,17 +44,17 @@ import java.io.Serializable;
  */
 public enum TipoDeModulo implements Serializable {
 
-	MODULO10{
-		public int valor(){
+	MODULO10 {
+		public int valor() {
 			return 10;
 		}
-	}, 
-	
-	MODULO11{
-		public int valor(){
+	},
+
+	MODULO11 {
+		public int valor() {
 			return 11;
 		}
 	};
-	
+
 	public abstract int valor();
 }

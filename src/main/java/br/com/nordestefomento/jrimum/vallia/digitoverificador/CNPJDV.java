@@ -27,7 +27,6 @@
  * 
  */
 
-
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
 import java.util.regex.Pattern;
@@ -36,19 +35,19 @@ import org.apache.commons.lang.StringUtils;
 
 import br.com.nordestefomento.jrimum.utilix.Filler;
 
-
 /**
- * 
+ * <p>
  * O cálculo do dígito verificador do CNPJ é realizado em duas etapas e é
- * auxiliado pela rotina de módulo 11. <br />
+ * auxiliado pela rotina de módulo 11.
+ * </p>
+ * <p>
  * Abaixo é demonstrado como esse cálculo é feito:
- * 
+ * </p>
  * <h3>Exemplo para um número hipotético 11.222.333/0001-XX:</h3>
  * <p>
  * Primeiramente obtém-se um número R, calculado através da rotina de módulo 11,
  * a partir dos doze primeiros números do CNPJ, nesse caso 112223330001. <br />
- * Para obter o primeiro dígito verificador deve-se seguir a seguinte lógica:
- * <br />
+ * Para obter o primeiro dígito verificador deve-se seguir a seguinte lógica: <br />
  * <br />
  * Se o número R for menor que 2, o dígito terá valor 0 (zero); senão, será a
  * subtração do valor do módulo (11) menos o valor do número R, ou seja,
@@ -66,9 +65,10 @@ import br.com.nordestefomento.jrimum.utilix.Filler;
  * @see Modulo
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author Misael Barreto 
+ * @author Misael Barreto
  * @author Rômulo Augusto
- * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
+ * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento
+ *         Mercantil</a>
  * 
  * @since 0.2
  * 
@@ -80,12 +80,12 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	 * 
 	 */
 	private static final long serialVersionUID = -4702398145481452503L;
-	
+
 	/**
 	 *Liminte mínimo do para cálculo no módulo 11.
 	 */
 	private static final int LIMITE_MINIMO = 2;
-	
+
 	/**
 	 *Liminte máximo do para cálculo no módulo 11.
 	 */
@@ -143,12 +143,14 @@ public class CNPJDV extends AbstractDigitoVerificador {
 			}
 
 			throw new IllegalArgumentException(
-				"O CNPJ [ "+numero+" ] deve conter apenas números, sendo eles no formato ##.###.###/#### ou ############ !");
-			
+					"O CNPJ [ "
+							+ numero
+							+ " ] deve conter apenas números, sendo eles no formato ##.###.###/#### ou ############ !");
+
 		}
-		
+
 		return Integer.parseInt(dv1 + "" + dv2);
-		
+
 	}
 
 	/**
@@ -160,7 +162,8 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	 * Calcula os dígitos separadamente.
 	 * </p>
 	 * 
-	 * @param numero - número a partir do qual será extraído o dígito verificador.
+	 * @param numero
+	 *            - número a partir do qual será extraído o dígito verificador.
 	 * @return Um número que faz parte de um dígito verificador.
 	 * @throws IllegalArgumentException
 	 *             caso o número não esteja no formatador desejável.
@@ -171,7 +174,6 @@ public class CNPJDV extends AbstractDigitoVerificador {
 
 		int dv = 0;
 		int resto = 0;
-		
 
 		resto = Modulo.calculeMod11(numero, LIMITE_MINIMO, LIMITE_MAXIMO);
 

@@ -27,7 +27,6 @@
  * 
  */
 
-
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
 import java.util.regex.Pattern;
@@ -36,19 +35,19 @@ import org.apache.commons.lang.StringUtils;
 
 import br.com.nordestefomento.jrimum.utilix.Filler;
 
-
 /**
- * 
+ * <p>
  * O cálculo do dígito verificador do CPF é realizado em duas etapas e é
- * auxiliado pela rotina de módulo 11. <br />
+ * auxiliado pela rotina de módulo 11.
+ * </p>
+ * <p>
  * Abaixo é demonstrado como esse cálculo é feito:
- * 
+ * </p>
  * <h3>Exemplo para um número hipotético 222.333.666-XX:</h3>
  * <p>
  * Primeiramente obtém-se um número R, calculado através da rotina de módulo 11,
  * a partir dos nove primeiros números do CPF, nesse caso 222333666. <br />
- * Para obter o primeiro dígito verificador deve-se seguir a seguinte lógica:
- * <br />
+ * Para obter o primeiro dígito verificador deve-se seguir a seguinte lógica: <br />
  * <br />
  * Se o número R for menor que 2, o dígito terá valor 0 (zero); senão, será a
  * subtração do valor do módulo (11) menos o valor do número R, ou seja,
@@ -68,9 +67,10 @@ import br.com.nordestefomento.jrimum.utilix.Filler;
  * 
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author Misael Barreto 
+ * @author Misael Barreto
  * @author Rômulo Augusto
- * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
+ * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento
+ *         Mercantil</a>
  * 
  * @since 0.2
  * 
@@ -82,8 +82,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 	 * 
 	 */
 	private static final long serialVersionUID = 2059692008894172695L;
-	
-	
+
 	/**
 	 *Liminte mínimo do para cálculo no módulo 11.
 	 */
@@ -106,7 +105,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 	 */
 	@Override
 	public int calcule(long numero) {
-		
+
 		return calcule(Filler.ZERO_LEFT.fill(String.valueOf(numero), 9));
 	}
 
@@ -139,7 +138,9 @@ public class CPFDV extends AbstractDigitoVerificador {
 			}
 
 			throw new IllegalArgumentException(
-					"O CPF [ "+numero+" ] deve conter apenas números, sendo eles no formato ###.###.### ou ######### !");
+					"O CPF [ "
+							+ numero
+							+ " ] deve conter apenas números, sendo eles no formato ###.###.### ou ######### !");
 
 		}
 
@@ -151,10 +152,10 @@ public class CPFDV extends AbstractDigitoVerificador {
 	 * Método auxiliar para o cálculo do dígito verificador. <br />
 	 * Calcula os dígitos separadamente.
 	 * 
-	 * @param numero -
-	 *            número a partir do qual será extraído o dígito verificador.
-	 * @param limiteMaximoDoModulo -
-	 *            limite máximo do módulo utilizado, no caso, módulo 11.
+	 * @param numero
+	 *            - número a partir do qual será extraído o dígito verificador.
+	 * @param limiteMaximoDoModulo
+	 *            - limite máximo do módulo utilizado, no caso, módulo 11.
 	 * @return um número que faz parte de um dígito verificador.
 	 * @throws IllegalArgumentException
 	 *             caso o número não esteja no formatador desejável.
@@ -164,8 +165,9 @@ public class CPFDV extends AbstractDigitoVerificador {
 
 		int dv = 0;
 		int resto = 0;
-		
-		resto = Modulo.calculeMod11(numero, LIMITE_MINIMO, limiteMaximoDoModulo);
+
+		resto = Modulo
+				.calculeMod11(numero, LIMITE_MINIMO, limiteMaximoDoModulo);
 
 		if (resto >= 2) {
 

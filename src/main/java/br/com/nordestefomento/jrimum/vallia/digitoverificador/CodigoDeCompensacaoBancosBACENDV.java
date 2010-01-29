@@ -36,7 +36,8 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * <p>
- *  Cálcula para o dígito de compensação para o código de compensação dos bancos supervisionados pelo <a href="http://www.bcb.gov.br/?CHEQUESCOMPE">BACEN</a>
+ * Cálculo para o dígito verificador do código de compensação dos bancos
+ * supervisionados pelo <a href="http://www.bcb.gov.br/?CHEQUESCOMPE">BACEN</a>
  * </p>
  * 
  * @author <a href="http://gilmatryx.googlepages.com">Gilmar P.S.L.</a>

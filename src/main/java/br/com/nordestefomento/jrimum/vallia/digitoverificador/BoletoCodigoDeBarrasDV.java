@@ -58,6 +58,8 @@ import org.apache.commons.lang.StringUtils;
  * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
  * 
  * @version 0.2
+ * 
+ * @since 0.2
  */
 public class BoletoCodigoDeBarrasDV extends AbstractDigitoVerificador {
 

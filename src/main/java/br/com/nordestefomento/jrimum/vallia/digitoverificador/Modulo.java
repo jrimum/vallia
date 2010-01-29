@@ -39,23 +39,19 @@ import org.apache.commons.lang.StringUtils;
 import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
 
 /**
- * 
  * <p>
  * Representa o módulo no contexto de autenticação, ou seja, uma rotina que
  * auxilia no cálculo do dígito verificador.
  * </p>
- * 
  * <p>
  * As rotinas tradicionais são Módulo 10 e Módulo 11.
- * </p>
- * 
- * <p>
- * EXEMPLO:
  * </p>
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  * 
  * @version 0.2
+ * 
+ * @since 0.2
  */
 public class Modulo {
 
@@ -68,11 +64,11 @@ public class Modulo {
 	 * Mensagem da exceção lançada no método calcular.
 	 */
 	private static final String O_ARGUMENTO_DEVE_CONTER_APENAS_NUMEROS = "O argumento deve conter apenas números !";
-	
+
 	public static final int MOD10 = TipoDeModulo.MODULO10.valor();
-	
+
 	public static final int MOD11 = TipoDeModulo.MODULO11.valor();
-	
+
 	private TipoDeModulo mod;
 
 	private int limiteMaximo;
@@ -116,9 +112,9 @@ public class Modulo {
 	 * 
 	 * <p>
 	 * Se por um acaso a instância <code>enum</code> for nula uma
-	 * <code>NullPointerException</code> será lançada. Caso a
-	 * <code>enum</code> contenha um módulo não implementado por essa classe o
-	 * retorno será <tt>-1</tt>
+	 * <code>NullPointerException</code> será lançada. Caso a <code>enum</code>
+	 * contenha um módulo não implementado por essa classe o retorno será
+	 * <tt>-1</tt>
 	 * </p>
 	 * 
 	 * @return valor da instância do módulo.
@@ -143,7 +139,7 @@ public class Modulo {
 		}
 
 	}
-	
+
 	public static int calculeMod11(long numero, int limiteMin, int limiteMax) {
 
 		return calculeMod11(String.valueOf(numero), limiteMin, limiteMax);
@@ -318,15 +314,15 @@ public class Modulo {
 		return calcule(String.valueOf(numero));
 	}
 
-	
 	/**
 	 * <p>
-	 * Inicializa as variáveis <code>limiteMaximo</code> e <code>limiteMinimo</code> com os valores padrões de acordo com a instância do módulo da classe.
+	 * Inicializa as variáveis <code>limiteMaximo</code> e
+	 * <code>limiteMinimo</code> com os valores padrões de acordo com a
+	 * instância do módulo da classe.
 	 * </p>
 	 * 
 	 * <p>
-	 * Valores padrões: 
-	 * <br />
+	 * Valores padrões: <br />
 	 * <br />
 	 * <code>MODULO10</code>: (limiteMinimo = 1 e limiteMaximo = 2)<br />
 	 * 
@@ -335,7 +331,7 @@ public class Modulo {
 	 * 
 	 * @since 0.2
 	 */
-		
+
 	private void initDefault() {
 
 		switch (mod) {
@@ -400,7 +396,7 @@ public class Modulo {
 	public void setMod(TipoDeModulo mod) {
 		this.mod = mod;
 	}
-	
+
 	@Override
 	public String toString() {
 		return ObjectUtil.toString(this);

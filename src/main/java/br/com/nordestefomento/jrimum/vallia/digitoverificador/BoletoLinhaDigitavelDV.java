@@ -27,7 +27,6 @@
  * 
  */
 
-
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
 import java.util.regex.Pattern;
@@ -36,11 +35,10 @@ import org.apache.commons.lang.StringUtils;
 
 import br.com.nordestefomento.jrimum.utilix.Filler;
 
-
 /**
  * <p>
- * Segundo o padrão FEBRABAN a linha digitável possui cinco campos, dos quais apenas os três primeiros necessitam de 
- * validação com dígito verificador.
+ * Segundo o padrão FEBRABAN a linha digitável possui cinco campos, dos quais
+ * apenas os três primeiros necessitam de validação com dígito verificador.
  * </p>
  * <p>
  * Para fins de validação é preciso saber o seguinte:
@@ -51,25 +49,25 @@ import br.com.nordestefomento.jrimum.utilix.Filler;
  * </ul>
  * </p>
  * <p>
- * Obs1.: Todos os campos listados podem vir com um ponto (.) de separação exatamente após o dígito da 5ª posição.
- * <br />
+ * Obs1.: Todos os campos listados podem vir com um ponto (.) de separação
+ * exatamente após o dígito da 5ª posição. <br />
  * Exemplo de linha digitável:<br />
  * <code>99997.77213 30530.150082 18975.000003 1 10010000035000</code>
  * </p>
- * 
  * <p>
- * O cálculo do dígito verificador é descrito através da expressão <code>DV = 11 - R</code>, 
- * onde R é o resultado do cálculo do módulo.<br />
- * Obs1.: O dígito verificador será 0 (zero) se o resto (resultado do módulo) for 0 (zero).
- * <br />
+ * O cálculo do dígito verificador é descrito através da expressão
+ * <code>DV = 11 - R</code>, onde R é o resultado do cálculo do módulo.<br />
+ * Obs1.: O dígito verificador será 0 (zero) se o resto (resultado do módulo)
+ * for 0 (zero). <br />
  * Obs2.: A rotina de módulo utilizada é a módulo 10.
  * </p>
- *  
+ * 
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author Misael Barreto 
+ * @author Misael Barreto
  * @author Rômulo Augusto
- * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
+ * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento
+ *         Mercantil</a>
  * 
  * @since 0.2
  * 
@@ -77,28 +75,28 @@ import br.com.nordestefomento.jrimum.utilix.Filler;
  */
 public class BoletoLinhaDigitavelDV extends AbstractDigitoVerificador {
 
-	
 	private static final long serialVersionUID = -9177413216786384292L;
-	
-	private static final Modulo modulo10 = new Modulo(TipoDeModulo.MODULO10); 
-	
+
+	private static final Modulo modulo10 = new Modulo(TipoDeModulo.MODULO10);
+
 	/**
 	 * Expressão regular para validação do campo da linha digitável.<br />
 	 * 
-	 * Pode estar nos seguintes formatos: #########, #####.####, ##########, #####.#####.
+	 * Pode estar nos seguintes formatos: #########, #####.####, ##########,
+	 * #####.#####.
 	 */
 	private static final String REGEX_CAMPO = "(\\d{9})|(\\d{10})|(\\d{5})\\.(\\d{4})|(\\d{5})\\.(\\d{5})";
 
 	public BoletoLinhaDigitavelDV() {
 		super();
 	}
-	
+
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
 	 */
 	@Override
 	public int calcule(long numero) {
-		
+
 		return calcule(Filler.ZERO_LEFT.fill(String.valueOf(numero), 10));
 	}
 
@@ -107,22 +105,25 @@ public class BoletoLinhaDigitavelDV extends AbstractDigitoVerificador {
 	 */
 	@Override
 	public int calcule(String numero) throws IllegalArgumentException {
-		
+
 		int dv = 0;
 		int resto = 0;
-		
-		if(StringUtils.isNotBlank(numero) && Pattern.matches(REGEX_CAMPO, numero)) {
-		
+
+		if (StringUtils.isNotBlank(numero)
+				&& Pattern.matches(REGEX_CAMPO, numero)) {
+
 			numero = StringUtils.replaceChars(numero, ".", "");
-			
+
 			resto = modulo10.calcule(numero);
 
-			if(resto != 0)			
+			if (resto != 0)
 				dv = modulo10.valor() - resto;
-		}
-		else
-			throw new IllegalArgumentException("O campo [ "+numero+" ] da linha digitável deve conter apenas números com 9 ou 10 dígitos !");
-		
+		} else
+			throw new IllegalArgumentException(
+					"O campo [ "
+							+ numero
+							+ " ] da linha digitável deve conter apenas números com 9 ou 10 dígitos !");
+
 		return dv;
 	}
 

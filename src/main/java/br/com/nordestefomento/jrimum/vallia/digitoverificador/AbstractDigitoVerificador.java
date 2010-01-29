@@ -32,12 +32,10 @@ package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
 
 /**
- * 
  *<p>
  * FactoryCampoLivre padrão utilizada por qualquer classe que implemente uma lógica de cálculo de um 
  * dígito verificador qualquer.
  * </p>
- * 
  * 
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>

@@ -44,8 +44,9 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.CPFDV;
 
 
 /**
- * 
- * Representa a família de validadores para o cadastro de pessoa.
+ * <p>
+ * Representa a família de validadores para o cadastro de pessoa na receita federal (CPRF).
+ * </p>
  * 
  * 
  * 
@@ -57,6 +58,7 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.CPFDV;
  * @since 0.2
  * 
  * @version 0.2
+ * 
  */
 public abstract class AbstractCPRFValidator {
 	
