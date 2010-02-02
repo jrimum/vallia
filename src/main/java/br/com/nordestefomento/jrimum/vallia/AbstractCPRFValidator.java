@@ -27,7 +27,6 @@
  * 
  */
 
-
 package br.com.nordestefomento.jrimum.vallia;
 
 import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
@@ -42,18 +41,19 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVeri
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.CNPJDV;
 import br.com.nordestefomento.jrimum.vallia.digitoverificador.CPFDV;
 
-
 /**
  * <p>
- * Representa a família de validadores para o cadastro de pessoa na receita federal (CPRF).
+ * Representa a família de validadores para o cadastro de pessoa na receita
+ * federal (CPRF).
  * </p>
  * 
  * 
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author Misael Barreto 
+ * @author Misael Barreto
  * @author Rômulo Augusto
- * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
+ * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento
+ *         Mercantil</a>
  * 
  * @since 0.2
  * 
@@ -61,40 +61,52 @@ import br.com.nordestefomento.jrimum.vallia.digitoverificador.CPFDV;
  * 
  */
 public abstract class AbstractCPRFValidator {
-	
+
 	private static final long serialVersionUID = -3107505512223559948L;
 
 	/**
+	 * <p>
 	 * Cadastro de pessoa para validação.
+	 * </p>
 	 */
 	protected StringBuilder codigoDoCadastro;
-	
+
 	/**
+	 * <p>
 	 * Validador de dígito verificador do cadastro de Pessoa.
+	 * </p>
 	 */
 	protected AbstractDigitoVerificador digitoVerificador;
 
 	/**
+	 * <p>
 	 * Expressão regular para validação de CPF: "###.###.###-##" ou
 	 * "###########".
+	 * </p>
 	 */
 	private static final String REGEX_CPF = "(\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2})|(\\d{11})";
 
 	/**
+	 * <p>
 	 * Expressão regular para validação de CNPJ: "##.###.###/####-##" ou
 	 * "##############".
+	 * </p>
 	 */
 	private static final String REGEX_CNPJ = "(\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2})|(\\d{14})";
-	
+
 	/**
-	 * Expressão regular para validação de um cadastro: "###" ou "##############".
+	 * <p>
+	 * Expressão regular para validação de um cadastro: "###" ou
+	 * "##############".
+	 * </p>
 	 */
 	private static final String REGEX_CADASTRO = "\\d{3,14}";
 
 	/**
-	 * 
+	 * <p>
 	 * Representa o tipo de cadastro e fornece o autenticador correto de a cordo
 	 * com este tipo.
+	 * </p>
 	 * 
 	 * 
 	 * 
@@ -110,38 +122,37 @@ public abstract class AbstractCPRFValidator {
 	 */
 	public enum TipoDeCPRF implements Serializable {
 
-		CPF, 
-		CNPJ;
+		CPF, CNPJ;
 
 		public AbstractCPRFValidator getAutenticador() {
 
 			AbstractCPRFValidator validador = null;
 
 			switch (this) {
-			
+
 			case CPF:
-				
+
 				validador = new CPFValidator();
 				validador.digitoVerificador = new CPFDV();
-				
+
 				break;
 
 			case CNPJ:
-				
+
 				validador = new CNPJValidator();
 				validador.digitoVerificador = new CNPJDV();
-				
+
 				break;
 			}
 
 			return validador;
 		}
-		
+
 		/**
 		 * @see br.com.nordestefomento.jrimum.utilix.ObjectUtil#toString()
 		 * @see java.lang.Enum#toString()
 		 */
-		public String toString(){
+		public String toString() {
 			return ObjectUtil.toString(this);
 		}
 	}
@@ -153,16 +164,19 @@ public abstract class AbstractCPRFValidator {
 	private TipoDeCPRF tipoDeCadastro;
 
 	/**
+	 * <p>
 	 * Valida o dígito verificador do cadastro de pessoa passado durante a
 	 * instanciação do validador.
+	 * </p>
 	 * 
 	 * @return verdadeiro se o dígito verificador for válido.
 	 */
 	public abstract boolean isValido();
-	
+
 	/**
-	 * Revome a formatação existente em
-	 * <code>códigoDoCadastro</code>.
+	 * <p>
+	 * Revome a formatação existente em <code>códigoDoCadastro</code>.
+	 * </p>
 	 */
 	protected abstract void removeFormatacao();
 
@@ -176,55 +190,74 @@ public abstract class AbstractCPRFValidator {
 	 * <ul>
 	 * <li>Verificar se o parâmetro não é nulo.</li>
 	 * <li>Verificar se o parâmetro não é vazio.</li>
-	 * <li>Verificar se o parâmetro está em algum formatador válido para cadastro
-	 * de pessoa.</li>
+	 * <li>Verificar se o parâmetro está em algum formatador válido para
+	 * cadastro de pessoa.</li>
 	 * </ul>
 	 * </p>
 	 * 
-	 * @param codigoDoCadastro -
-	 *            identificador do cadastro de pessoa.
+	 * @param codigoDoCadastro
+	 *            - identificador do cadastro de pessoa.
 	 * @return uma instância de <code>AbstractCPRFValidator</code>.
-	 * @exception IllegalArgumentException -
-	 *                caso o parâmetro não esteja em um formatador válido de
+	 * @exception IllegalArgumentException
+	 *                - caso o parâmetro não esteja em um formatador válido de
 	 *                cadastro de pessoa.
+	 * @since 0.2
 	 */
-	public static AbstractCPRFValidator create(String codigoDoCadastro) throws IllegalArgumentException {
+	public static AbstractCPRFValidator create(String codigoDoCadastro)
+			throws IllegalArgumentException {
 
 		AbstractCPRFValidator validatorCPRF = null;
 
-		validatorCPRF = create(selectTipoDeCadastro(codigoDoCadastro));	
-		
-		validatorCPRF.codigoDoCadastro = new StringBuilder (codigoDoCadastro);
+		validatorCPRF = create(selectTipoDeCadastro(codigoDoCadastro));
+
+		validatorCPRF.codigoDoCadastro = new StringBuilder(codigoDoCadastro);
 		validatorCPRF.removeFormatacao();
 
 		return validatorCPRF;
 	}
 
-	public static AbstractCPRFValidator create(TipoDeCPRF tipoDeCadastro){
-		
+	/**
+	 * <p>
+	 * Cria um validador a partir do tipo de CPRF.
+	 * </p>
+	 * 
+	 * @param tipoDeCadastro
+	 * @return um validador
+	 * 
+	 * @since 0.2
+	 */
+
+	public static AbstractCPRFValidator create(TipoDeCPRF tipoDeCadastro) {
+
 		AbstractCPRFValidator validatorCPRF = null;
 
 		if (isNotNull(tipoDeCadastro)) {
-			
+
 			validatorCPRF = tipoDeCadastro.getAutenticador();
-			
+
 			validatorCPRF.tipoDeCadastro = tipoDeCadastro;
-			
+
 		} else {
-			throw new IllegalArgumentException("Tipo de Cadastro [ "+ tipoDeCadastro + " ] nulo !");
+			throw new IllegalArgumentException("Tipo de Cadastro [ "
+					+ tipoDeCadastro + " ] nulo !");
 		}
-		
+
 		return validatorCPRF;
 	}
-	
+
 	/**
+	 * <p>
 	 * Faz a pré-validação e se correto identifica o tipo de cadastro.
+	 * </p>
 	 * 
 	 * @param codigoDoCadastro
 	 * @return
 	 * @throws IllegalArgumentException
+	 * 
+	 * @since 0.2
 	 */
-	private static TipoDeCPRF selectTipoDeCadastro(String codigoDoCadastro) throws IllegalArgumentException {
+	private static TipoDeCPRF selectTipoDeCadastro(String codigoDoCadastro)
+			throws IllegalArgumentException {
 
 		TipoDeCPRF tipo = null;
 
@@ -235,7 +268,7 @@ public abstract class AbstractCPRFValidator {
 				/*
 				 * FILTRO
 				 */
-				
+
 				if (Pattern.matches(REGEX_CPF, codigoDoCadastro)) {
 
 					tipo = TipoDeCPRF.CPF;
@@ -249,16 +282,32 @@ public abstract class AbstractCPRFValidator {
 
 					break switch_Tipo;
 				}
-				
+
 			}
-			
-			throw new IllegalArgumentException("O código de cadastro [ " + codigoDoCadastro + " ] não está em um formatador válido !");
+
+			throw new IllegalArgumentException("O código de cadastro [ "
+					+ codigoDoCadastro
+					+ " ] não está em um formatador válido !");
 		}
 
 		return tipo;
 	}
 
-	public static boolean isParametrosValidos(String codigoDoCadastro, TipoDeCPRF tipoDeCadastro) throws IllegalArgumentException {
+	/**
+	 * <p>
+	 * Define se os parâmetros válidos em relação a nulidade e formato de CPRF.
+	 * </p>
+	 * 
+	 * @param codigoDoCadastro
+	 * @param tipoDeCadastro
+	 * @return indicação de aprovação
+	 * @throws IllegalArgumentException
+	 * 
+	 * @since 0.2
+	 */
+
+	public static boolean isParametrosValidos(String codigoDoCadastro,
+			TipoDeCPRF tipoDeCadastro) throws IllegalArgumentException {
 
 		boolean isValido = false;
 
@@ -284,13 +333,17 @@ public abstract class AbstractCPRFValidator {
 
 		return isValido;
 	}
-	
+
 	/**
+	 * <p>
 	 * Recupera o cadastro de pessoa a ser validado. <br />
 	 * Obs.: A String retornada não possui formatação, ou seja, possui apenas os
 	 * dígitos.
+	 * </p>
 	 * 
 	 * @return cadastro de pessoa a ser validado.
+	 * 
+	 * @since 0.2
 	 */
 	public String getCodigoDoCadastro() {
 
@@ -298,9 +351,12 @@ public abstract class AbstractCPRFValidator {
 	}
 
 	/**
+	 * <p>
 	 * Indica se o validador é de pessoa física.
+	 * </p>
 	 * 
 	 * @return verdadeiro se for de pessoa física.
+	 * @since 0.2
 	 */
 	public boolean isFisica() {
 
@@ -308,9 +364,10 @@ public abstract class AbstractCPRFValidator {
 	}
 
 	/**
-	 * Indica se o validador é de pessoa jurídica.
+	 * </p> Indica se o validador é de pessoa jurídica. </p>
 	 * 
 	 * @return verdadeiro se for de pessoa jurídica.
+	 * @since 0.2
 	 */
 	public boolean isJuridica() {
 

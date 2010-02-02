@@ -68,6 +68,7 @@ class CNPJValidator extends AbstractCPRFValidator {
 
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator#isValido()
+	 * @since 0.2
 	 */
 	@Override
 	public boolean isValido() {
@@ -88,6 +89,7 @@ class CNPJValidator extends AbstractCPRFValidator {
 
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator#removeFormatacao()
+	 * @since 0.2
 	 */
 	@Override
 	protected void removeFormatacao() {

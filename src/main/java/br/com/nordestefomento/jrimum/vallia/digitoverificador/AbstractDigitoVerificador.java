@@ -27,47 +27,60 @@
  * 
  */
 
-
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
-
 
 /**
  *<p>
- * FactoryCampoLivre padrão utilizada por qualquer classe que implemente uma lógica de cálculo de um 
- * dígito verificador qualquer.
+ * FactoryCampoLivre padrão utilizada por qualquer classe que implemente uma
+ * lógica de cálculo de um dígito verificador qualquer.
  * </p>
  * 
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author Misael Barreto 
+ * @author Misael Barreto
  * @author Rômulo Augusto
- * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento Mercantil</a>
+ * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento
+ *         Mercantil</a>
  * 
  * @since 0.2
  * 
  * @version 0.2
  */
 public abstract class AbstractDigitoVerificador {
-	
+
 	/**
-	 * Calcula o dígito verificador de um número de acordo com uma lógica específica.
-	 * @param numero - número que será calculado o dígito verificador.
+	 * <p>
+	 * Calcula o dígito verificador de um número de acordo com uma lógica
+	 * específica.
+	 * </p>
+	 * 
+	 * @param numero
+	 *            - número que será calculado o dígito verificador.
 	 * @return dígito verificador.
-	 * @throws IllegalArgumentException caso a String não esteja em um formatador aceitável.
-	 * (O formatador é definido nas subclasses implementadoras).
+	 * @throws IllegalArgumentException
+	 *             caso a String não esteja em um formatador aceitável. (O
+	 *             formatador é definido nas subclasses implementadoras).
+	 * @since 0.2
 	 */
 	public abstract int calcule(String numero) throws IllegalArgumentException;
-	
+
 	/**
-	 * Calcula o dígito verificador de um número de acordo com uma lógica específica.
-	 * @param numero - número que será calculado o dígito verificador.
-	 * @return dígito verificador.
-	 * <br />
-	 * O valor padrão de retorno é igual a 0 (zero).
+	 * <p>
+	 * Calcula o dígito verificador de um número de acordo com uma lógica
+	 * específica.
+	 * </p>
+	 * <p>
+	 * Se não sobrescrito o retorno é sempre igual a 0 (zero).
+	 * </p>
+	 * 
+	 * @param numero
+	 *            - número que será calculado o dígito verificador.
+	 * @return dígito verificador
+	 * @since 0.2
 	 */
 	public int calcule(long numero) {
-		
+
 		return 0;
 	}
-	
+
 }
