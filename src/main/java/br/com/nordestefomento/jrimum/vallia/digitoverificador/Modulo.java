@@ -61,22 +61,59 @@ public class Modulo {
 	private static final long serialVersionUID = -3612368544258125201L;
 
 	/**
+	 * <p>
 	 * Mensagem da exceção lançada no método calcular.
+	 * </p>
 	 */
 	private static final String O_ARGUMENTO_DEVE_CONTER_APENAS_NUMEROS = "O argumento deve conter apenas números !";
 
+	/**
+	 *<p>
+	 * Valor inteiro do módulo 10
+	 * </p>
+	 */
 	public static final int MOD10 = TipoDeModulo.MODULO10.valor();
 
+	/**
+	 *<p>
+	 * Valor inteiro do módulo 11
+	 * </p>
+	 */
 	public static final int MOD11 = TipoDeModulo.MODULO11.valor();
 
+	/**
+	 *<p>
+	 * Tipo do módulo
+	 * </p>
+	 */
 	private TipoDeModulo mod;
 
+	/**
+	 *<p>
+	 * Valor inteiro do "peso" mínimo mutiplicador utilizado no cálculo do
+	 * módulo.
+	 * </p>
+	 */
 	private int limiteMaximo;
 
+	/**
+	 *<p>
+	 * Valor inteiro do "peso" máximo mutiplicador utilizado no cálculo do
+	 * módulo.
+	 * </p>
+	 */
 	private int limiteMinimo;
 
 	/**
+	 * <p>
+	 * Inicializa um módulo com valores default.
+	 * </p>
+	 * 
 	 * @param mod
+	 *            tipo do módulo
+	 * @see #initDefault
+	 * @see #calcule(String)
+	 * @since 0.2
 	 */
 	public Modulo(TipoDeModulo mod) {
 		super();
@@ -89,9 +126,18 @@ public class Modulo {
 	}
 
 	/**
+	 * <p>
+	 * Inicializa um módulo com o tipo definido com valores default.
+	 * </p>
+	 * 
 	 * @param limiteMaximo
+	 *            peso máximo
 	 * @param limiteMinimo
+	 *            peso mínimo
 	 * @param mod
+	 *            tipo do módulo
+	 * @see #calcule(String)
+	 * @since 0.2
 	 */
 	public Modulo(TipoDeModulo mod, int limiteMaximo, int limiteMinimo) {
 		super();
@@ -140,24 +186,71 @@ public class Modulo {
 
 	}
 
+	/**
+	 * <p>
+	 * Executa o cáculo do módulo 11 com os limites definidos.
+	 * </p>
+	 * 
+	 * <p>
+	 * Executa o método <code>calculeSomaSequencialMod11</code> e aplica o
+	 * resultado em % 11
+	 * </p>
+	 * 
+	 * @param numero
+	 * @param limiteMin
+	 * @param limiteMax
+	 * @return resultado de calculeSomaSequencialMod11 % 11
+	 * 
+	 * @since 0.2
+	 * @see #calculeSomaSequencialMod11(String, int, int)
+	 */
+	public static int calculeMod11(String numero, int limiteMin, int limiteMax)
+			throws IllegalArgumentException {
+
+		return (calculeSomaSequencialMod11(numero, limiteMin, limiteMax) % 11);
+	}
+
+	/**
+	 * <p>
+	 * Executa o cáculo do módulo 11 com os limites definidos.
+	 * </p>
+	 * 
+	 * <p>
+	 * Transforma o <code>numero</code> em string e executa o método
+	 * calculeMod11
+	 * </p>
+	 * 
+	 * @param numero
+	 * @param limiteMin
+	 * @param limiteMax
+	 * @return resultado do cálculo
+	 * 
+	 * @since 0.2
+	 * @see #calculeMod11(String, int, int)
+	 */
 	public static int calculeMod11(long numero, int limiteMin, int limiteMax) {
 
 		return calculeMod11(String.valueOf(numero), limiteMin, limiteMax);
 	}
 
 	/**
-	 * *
 	 * <p>
-	 * Rotina do módulo 11.<br />
+	 * Realiza o cálculo da soma na forma do módulo 11.
+	 * </p>
+	 * <p>
 	 * O módulo 11 funciona da seguinte maneira:
 	 * </p>
 	 * <p>
 	 * Cada dígito do número, começando da direita para a esquerda (menos
-	 * significativo para o mais significativo), é multiplicado pelo números 2,
-	 * 3, 4 e assim sucessivamente até o limite máxmio definido, então inicia-se
-	 * novamente a contagem. <br />
-	 * O limite máximo padrão assumido pela classe é 9. <br />
-	 * Exemplo para o número 654321: <code>
+	 * significativo para o mais significativo), é multiplicado pelo números
+	 * limite mínimo, limite mínimo + 1, limite mínimo + 2 e assim
+	 * sucessivamente até o limite máxmio definido, então inicia-se novamente a
+	 * contagem.
+	 * </p>
+	 * <p>
+	 * Exemplo para o número <tt>654321</tt>:
+	 * 
+	 * <pre>
 	 * +---+---+---+---+---+---+
 	 * | 6 | 5 | 4 | 3 | 2 | 1 |
 	 * +---+---+---+---+---+---+
@@ -165,23 +258,19 @@ public class Modulo {
 	 *  x7  x6  x5  x4  x3  x2
 	 *   |   |   |   |   |   |
 	 *  =42 =30 =20 =12 =6  =2
-	 *   +---+---+---+---+---+-> = (112 / 11) = 10, resto 2; Então o módulo é igual a 2.
-	 * </code>
+	 *   +---+---+---+---+---+-&gt;
+	 * </pre
+	 * 
 	 * </p>
 	 * 
 	 * @param numero
 	 * @param limiteMin
 	 * @param limiteMax
-	 * @return valor do módulo
+	 * @return
 	 * @throws IllegalArgumentException
 	 * 
 	 * @since 0.2
 	 */
-	public static int calculeMod11(String numero, int limiteMin, int limiteMax)
-			throws IllegalArgumentException {
-
-		return (calculeSomaSequencialMod11(numero, limiteMin, limiteMax) % 11);
-	}
 
 	public static int calculeSomaSequencialMod11(String numero, int limiteMin,
 			int limiteMax) throws IllegalArgumentException {
@@ -211,11 +300,47 @@ public class Modulo {
 		return soma;
 	}
 
+	/**
+	 * <p>
+	 * Executa o cáculo do módulo 10 com os limites definidos.
+	 * </p>
+	 * 
+	 * <p>
+	 * Transforma o <code>numero</code> em string e executa o método
+	 * calculeMod10
+	 * </p>
+	 * 
+	 * @param numero
+	 * @param limiteMin
+	 * @param limiteMax
+	 * @return resultado do cálculo
+	 * 
+	 * @since 0.2
+	 * @see #calculeMod10(String, int, int)
+	 */
 	public static int calculeMod10(long numero, int limiteMin, int limiteMax) {
 
 		return calculeMod10(String.valueOf(numero), limiteMin, limiteMax);
 	}
 
+	/**
+	 * <p>
+	 * Executa o cáculo do módulo 10 com os limites definidos.
+	 * </p>
+	 * 
+	 * <p>
+	 * Executa o método <code>calculeSomaSequencialMod10</code> e aplica o
+	 * resultado em % 10
+	 * </p>
+	 * 
+	 * @param numero
+	 * @param limiteMin
+	 * @param limiteMax
+	 * @return resultado de calculeSomaSequencialMod10 % 10
+	 * 
+	 * @since 0.2
+	 * @see #calculeSomaSequencialMod10(String, int, int)
+	 */
 	public static int calculeMod10(String numero, int limiteMin, int limiteMax)
 			throws IllegalArgumentException {
 
@@ -223,25 +348,37 @@ public class Modulo {
 	}
 
 	/**
-	 * *
 	 * <p>
-	 * Rotina do módulo 10.<br />
+	 * Realiza o cálculo da soma na forma do módulo 10.
+	 * </p>
+	 * <p>
 	 * O módulo 10 funciona da seguinte maneira:
 	 * </p>
 	 * <p>
 	 * Cada dígito do número, começando da direita para a esquerda (menos
-	 * significativo para o mais significativo), é multiplicado pelo números 2 e
-	 * 1, alternadamente, iniciando pelo 2. <br />
-	 * Exemplo para o número 123456: <code>
+	 * significativo para o mais significativo), é multiplicado pelo números
+	 * limite mínimo, limite mínimo + 1, limite mínimo + 2 e assim
+	 * sucessivamente até o limite máxmio definido, então inicia-se novamente a
+	 * contagem.
+	 * </p>
+	 * <p>
+	 * Exemplo para o número <tt>123456</tt>:
+	 * 
+	 * <pre>
 	 * +---+---+---+---+---+---+
 	 * | 1 | 2 | 3 | 4 | 5 | 6 |
 	 * +---+---+---+---+---+---+
 	 *   |   |   |   |   |   |
 	 *  x1  x2  x1  x2  x1  x2
 	 *   |   |   |   |   |   |
-	 *  =1  =4  =3  =8  =5  =[ 3 <= ( 1 + 2 <==12 ) ] = 24
-	 *   +---+---+---+---+---+-> = (24 / 10) = 3, resto 3; Então o módulo é igual a 3.
-	 * </code>
+	 *  =1  =4  =3  =8  =5  =[ 3 &lt;= ( 1 + 2 &lt;==12 ) ] = 24
+	 *   +---+---+---+---+---+-&gt; = (24 / 10) = 3, resto 3; Então o módulo é igual a 3.
+	 * </pre>
+	 * 
+	 * </p>
+	 * 
+	 * <p>
+	 * Geralmente os limites para o módulo 10 são mínimo 1 e máximo 2 apenas.
 	 * </p>
 	 * 
 	 * @param numero
@@ -287,6 +424,18 @@ public class Modulo {
 		return soma;
 	}
 
+	/**
+	 * <p>
+	 * Executa o cáculo do módulo da instância.
+	 * </p>
+	 * 
+	 * @param numero
+	 * @return
+	 * @throws IllegalArgumentException
+	 * 
+	 * @since 0.2
+	 */
+
 	public int calcule(String numero) throws IllegalArgumentException {
 
 		int modulo = 0;
@@ -308,6 +457,17 @@ public class Modulo {
 
 		return modulo;
 	}
+
+	/**
+	 * <p>
+	 * Executa o cáculo do módulo da instância.
+	 * </p>
+	 * 
+	 * @param numero
+	 * @return
+	 * 
+	 * @since 0.2
+	 */
 
 	public int calcule(long numero) {
 

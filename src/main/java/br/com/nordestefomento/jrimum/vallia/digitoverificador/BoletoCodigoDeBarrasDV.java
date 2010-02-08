@@ -73,7 +73,7 @@ public class BoletoCodigoDeBarrasDV extends AbstractDigitoVerificador {
 
 	/**
 	 * <p>
-	 * Construtor vazio
+	 * Construtor vaizo, o mesmo que <tt>super()</tt>.
 	 * </p>
 	 * 
 	 * @since 0.2

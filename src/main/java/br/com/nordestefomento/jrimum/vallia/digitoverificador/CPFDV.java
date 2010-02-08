@@ -84,24 +84,31 @@ public class CPFDV extends AbstractDigitoVerificador {
 	private static final long serialVersionUID = 2059692008894172695L;
 
 	/**
-	 *Liminte mínimo do para cálculo no módulo 11.
+	 * <p>
+	 * Liminte mínimo do para cálculo no módulo 11.
+	 *</p>
 	 */
 	private static final int LIMITE_MINIMO = 2;
 
 	/**
+	 * <p>
 	 * Expressão regular para validação dos nove primeiros números do CPF sem
-	 * formatação: "#########".
+	 * formatação: <tt>"#########"</tt>.
+	 * </p>
 	 */
 	private static final String REGEX_CPF_DV = "\\d{9}";
 
 	/**
+	 * <p>
 	 * Expressão regular para validação dos nove primeiros números do CPF
-	 * formatado: "###.###.###".
+	 * formatado: <tt>"###.###.###"</tt>.
+	 * </p>
 	 */
 	private static final String REGEX_CPF_DV_FORMATTED = "\\d{3}\\.\\d{3}\\.\\d{3}";
 
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
+	 * @since 0.2
 	 */
 	@Override
 	public int calcule(long numero) {
@@ -111,6 +118,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
+	 * @since 0.2
 	 */
 	@Override
 	public int calcule(String numero) throws IllegalArgumentException {
@@ -149,8 +157,12 @@ public class CPFDV extends AbstractDigitoVerificador {
 	}
 
 	/**
-	 * Método auxiliar para o cálculo do dígito verificador. <br />
+	 * <p>
+	 * Método auxiliar para o cálculo do dígito verificador.
+	 * </p>
+	 * <p>
 	 * Calcula os dígitos separadamente.
+	 * </p>
 	 * 
 	 * @param numero
 	 *            - número a partir do qual será extraído o dígito verificador.
@@ -159,6 +171,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 	 * @return um número que faz parte de um dígito verificador.
 	 * @throws IllegalArgumentException
 	 *             caso o número não esteja no formatador desejável.
+	 * @since 0.2
 	 */
 	private int calcule(String numero, int limiteMaximoDoModulo)
 			throws IllegalArgumentException {

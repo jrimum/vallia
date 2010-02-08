@@ -77,22 +77,38 @@ public class BoletoLinhaDigitavelDV extends AbstractDigitoVerificador {
 
 	private static final long serialVersionUID = -9177413216786384292L;
 
+	/**
+	 *<p>
+	 * Módulo 10 utilizado no cálculo.
+	 * </p>
+	 */
 	private static final Modulo modulo10 = new Modulo(TipoDeModulo.MODULO10);
 
 	/**
-	 * Expressão regular para validação do campo da linha digitável.<br />
+	 * <p>
+	 * Expressão regular para validação do campo da linha digitável, aceita os
+	 * seguintes formatos:
+	 * </p>
+	 * <ul type="circle"> <li><tt>#########</tt></li> <li><tt>#####.####</tt></li>
+	 * <li><tt>##########</tt></li> <li><tt>#####.#####</tt></li> </ul>
 	 * 
-	 * Pode estar nos seguintes formatos: #########, #####.####, ##########,
-	 * #####.#####.
 	 */
 	private static final String REGEX_CAMPO = "(\\d{9})|(\\d{10})|(\\d{5})\\.(\\d{4})|(\\d{5})\\.(\\d{5})";
 
+	/**
+	 *<p>
+	 * Construtor vaizo, o mesmo que <tt>super()</tt>.
+	 * </p>
+	 * 
+	 * @since 0.2
+	 */
 	public BoletoLinhaDigitavelDV() {
 		super();
 	}
 
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
+	 * @since 0.2
 	 */
 	@Override
 	public int calcule(long numero) {
@@ -102,6 +118,7 @@ public class BoletoLinhaDigitavelDV extends AbstractDigitoVerificador {
 
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
+	 * @since 0.2
 	 */
 	@Override
 	public int calcule(String numero) throws IllegalArgumentException {

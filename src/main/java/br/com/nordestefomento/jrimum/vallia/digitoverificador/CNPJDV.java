@@ -82,29 +82,38 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	private static final long serialVersionUID = -4702398145481452503L;
 
 	/**
-	 *Liminte mínimo do para cálculo no módulo 11.
+	 * <p>
+	 * Liminte mínimo do para cálculo no módulo 11.
+	 *</p>
 	 */
 	private static final int LIMITE_MINIMO = 2;
 
 	/**
-	 *Liminte máximo do para cálculo no módulo 11.
+	 * <p>
+	 * Liminte máximo do para cálculo no módulo 11.
+	 *</p>
 	 */
 	private static final int LIMITE_MAXIMO = 9;
 
 	/**
+	 * <p>
 	 * Expressão regular para validação dos doze primeiros números do CNPJ sem
-	 * formatação: "############".
+	 * formatação: <tt>"############"</tt>.
+	 * </p>
 	 */
 	private static final String REGEX_CNPJ_DV = "\\d{12}";
 
 	/**
+	 * <p>
 	 * Expressão regular para validação dos doze primeiros números do CNPJ
-	 * formatado: "##.###.###/####".
+	 * formatado: <tt>"##.###.###/####"</tt>.
+	 * </p>
 	 */
 	private static final String REGEX_CNPJ_DV_FORMATTED = "\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}";
 
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
+	 * @since 0.2
 	 */
 	@Override
 	public int calcule(long numero) {
@@ -114,6 +123,7 @@ public class CNPJDV extends AbstractDigitoVerificador {
 
 	/**
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
+	 * @since 0.2
 	 */
 	@Override
 	public int calcule(String numero) throws IllegalArgumentException {
@@ -157,7 +167,6 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	 * <p>
 	 * Método auxiliar para o cálculo do dígito verificador.
 	 * </p>
-	 * 
 	 * <p>
 	 * Calcula os dígitos separadamente.
 	 * </p>
@@ -168,7 +177,7 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	 * @throws IllegalArgumentException
 	 *             caso o número não esteja no formatador desejável.
 	 * 
-	 * @since Vallia 1.0
+	 * @since 0.2
 	 */
 	private int calculeDigito(String numero) throws IllegalArgumentException {
 

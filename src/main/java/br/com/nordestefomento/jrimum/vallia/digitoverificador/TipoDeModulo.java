@@ -44,17 +44,52 @@ import java.io.Serializable;
  */
 public enum TipoDeModulo implements Serializable {
 
+	/**
+	 * <p>
+	 * Módulo do tipo 11.
+	 * </p>
+	 * 
+	 * @author <a href=http://gilmatryx.googlepages.com/>Gilmar P.S.L.</a>
+	 * 
+	 * @since 0.2
+	 */
 	MODULO10 {
+		/**
+		 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.TipoDeModulo#valor()
+		 * @since 0.2
+		 */
 		public int valor() {
 			return 10;
 		}
 	},
 
+	/**
+	 * <p>
+	 * Módulo do tipo 11.
+	 * </p>
+	 * 
+	 * @author <a href=http://gilmatryx.googlepages.com/>Gilmar P.S.L.</a>
+	 * 
+	 * @since 0.2
+	 */
 	MODULO11 {
+		/**
+		 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.TipoDeModulo#valor()
+		 * @since 0.2
+		 */
 		public int valor() {
 			return 11;
 		}
 	};
 
+	/**
+	 * <p>
+	 * Retorna o valor do módulo.
+	 * </p>
+	 * 
+	 * @return 10 ou 11
+	 * 
+	 * @since 0.2
+	 */
 	public abstract int valor();
 }

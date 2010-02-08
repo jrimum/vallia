@@ -47,17 +47,18 @@ import org.apache.commons.lang.StringUtils;
  * 
  * @version 0.2
  */
-	
+
 public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador {
 
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5250684561237486022L;
-	
+
 	/**
-	 * Mesagem padrão para erro. 
+	 * <p>
+	 * Mesagem padrão para erro.
+	 * </p>
 	 */
 	private static final String MSG = "O código de compensação do banco deve ser um número entre 1 e 999.";
 
@@ -68,24 +69,22 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	 * 
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
 	 * 
-	 * @param numero 
+	 * @param numero
 	 * @return int digito
 	 * @since 0.2
-	 * 
 	 */
 	@Override
 	public int calcule(String numero) throws IllegalArgumentException {
 
 		if (StringUtils.isNotBlank(numero) && StringUtils.isNumeric(numero)) {
-			
-			return calcule(Integer.valueOf(numero.trim()));		
-			
+
+			return calcule(Integer.valueOf(numero.trim()));
+
 		} else {
 			throw new IllegalArgumentException(MSG);
 		}
 	}
 
-	
 	/**
 	 * <p>
 	 * Calcula o dígito verificador para código de compensação passado.
@@ -97,12 +96,12 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	 * 
 	 * @since 0.2
 	 */
-		
+
 	public int calcule(int numero) {
-		
-		return calcule((long)numero);
+
+		return calcule((long) numero);
 	}
-	
+
 	/**
 	 * <p>
 	 * Calcula o dígito verificador para código de compensação passado.
@@ -111,34 +110,34 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	 * @param numero
 	 * 
 	 * @return int digito
-	 
+	 * 
 	 * @since 0.2
 	 * 
 	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
 	 */
 	@Override
 	public int calcule(long numero) {
-		
+
 		int dv = -1;
-		
+
 		if ((numero > 0) && (numero <= 999)) {
-			
-			int soma = Modulo.calculeSomaSequencialMod11(String.valueOf(numero), 2, 9);
-			
+
+			int soma = Modulo.calculeSomaSequencialMod11(
+					String.valueOf(numero), 2, 9);
+
 			soma *= 10;
-			
+
 			dv = soma % 11;
-			
+
 			if (dv == 10)
 				dv = 0;
-			
-		}else
+
+		} else
 			throw new IllegalArgumentException(MSG);
-		
+
 		return dv;
 	}
-	
-	
+
 	/**
 	 * <p>
 	 * Retorna se um código de compensação passado é válido.
@@ -149,19 +148,19 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	 * 
 	 * @since 0.2
 	 */
-		
-	public boolean isCodigoValido(String codigo)throws IllegalArgumentException{
-		
+
+	public boolean isCodigoValido(String codigo)
+			throws IllegalArgumentException {
+
 		if (StringUtils.isNotBlank(codigo) && StringUtils.isNumeric(codigo)) {
-			
+
 			return isCodigoValido(Integer.valueOf(codigo.trim()));
-			
+
 		} else {
 			throw new IllegalArgumentException(MSG);
 		}
 	}
-	
-	
+
 	/**
 	 * <p>
 	 * Retorna se um código de compensação passado é válido.
@@ -172,12 +171,14 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	 * 
 	 * @since 0.2
 	 */
-		
-	public boolean isCodigoValido(Integer codigo)throws IllegalArgumentException{
-		
-		if (isNotNull(codigo,"Código De Compensação") && (codigo > 0) && (codigo <= 999)) {
+
+	public boolean isCodigoValido(Integer codigo)
+			throws IllegalArgumentException {
+
+		if (isNotNull(codigo, "Código De Compensação") && (codigo > 0)
+				&& (codigo <= 999)) {
 			return true;
-		}else
+		} else
 			throw new IllegalArgumentException(MSG);
 	}
 }
