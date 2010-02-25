@@ -30,11 +30,14 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
+import org.apache.commons.lang.StringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import br.com.nordestefomento.jrimum.utilix.StringUtil;
 
 
 /**
@@ -53,9 +56,6 @@ import org.junit.Test;
 	
 public class TestCodigoDeCompensacaoBancosBACENDV {
 
-	private final int CODIGO_COMPENSACAO_LIMITE_MINIMO = 1; 
-	private final int CODIGO_COMPENSACAO_LIMITE_MAXIMO = 999; 
-	
 	private CodigoDeCompensacaoBancosBACENDV dv4CodigoCompensacaoBanco = null;
 	
 	@Before
@@ -69,7 +69,7 @@ public class TestCodigoDeCompensacaoBancosBACENDV {
 	}	
 		
 	@Test
-	public final void testCalculeString() {
+	public void testCalculeString() {
 		
 		assertEquals(9, dv4CodigoCompensacaoBanco.calcule("001"));//BancoDoBrasil
 		assertEquals(0, dv4CodigoCompensacaoBanco.calcule("104"));//CaixaEconomicaFederal
@@ -81,9 +81,44 @@ public class TestCodigoDeCompensacaoBancosBACENDV {
 		assertEquals(0, dv4CodigoCompensacaoBanco.calcule("748"));//Sicredi
 		
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCalculeStringNull() {
+		
+		String codigo = null;
+		dv4CodigoCompensacaoBanco.calcule(codigo);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCalculeStringEmpty() {
+		dv4CodigoCompensacaoBanco.calcule(StringUtils.EMPTY);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCalculeStringBlank() {
+		dv4CodigoCompensacaoBanco.calcule(StringUtil.WHITE_SPACE);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testCalculeStringNaoNumerico() {
+		dv4CodigoCompensacaoBanco.calcule("abc");
+	}
 
 	@Test
-	public final void testCalculeLong() {
+	public void testCalculeLong() {
+		
+		assertEquals(9, dv4CodigoCompensacaoBanco.calcule(1L));//BancoDoBrasil
+		assertEquals(0, dv4CodigoCompensacaoBanco.calcule(104L));//CaixaEconomicaFederal
+		assertEquals(2, dv4CodigoCompensacaoBanco.calcule(237L));//Bradesco
+		assertEquals(7, dv4CodigoCompensacaoBanco.calcule(341L));//Itau
+		assertEquals(5, dv4CodigoCompensacaoBanco.calcule(356L));//BancoReal
+		assertEquals(0, dv4CodigoCompensacaoBanco.calcule(409L));//Unibanco
+		assertEquals(7, dv4CodigoCompensacaoBanco.calcule(422L));//BancoSafra
+		assertEquals(0, dv4CodigoCompensacaoBanco.calcule(748L));//Sicredi
+	}
+
+	@Test
+	public void testCalculeInt() {
 		
 		assertEquals(9, dv4CodigoCompensacaoBanco.calcule(1));//BancoDoBrasil
 		assertEquals(0, dv4CodigoCompensacaoBanco.calcule(104));//CaixaEconomicaFederal
@@ -96,12 +131,79 @@ public class TestCodigoDeCompensacaoBancosBACENDV {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public final void testCalculeCodigoDeCompensacaoMenorQueLimiteMinimo() {
-		dv4CodigoCompensacaoBanco.calcule(CODIGO_COMPENSACAO_LIMITE_MINIMO - 1);
+	public void testCalculeCodigoDeCompensacaoMenorQueLimiteMinimo() {
+		dv4CodigoCompensacaoBanco.calcule(CodigoDeCompensacaoBancosBACENDV.LIMITE_MINIMO - 1);
 	}	
 
 	@Test(expected=IllegalArgumentException.class)
-	public final void testCalculeCodigoDeCompensacaoMaiorQueLimiteMaximo() {
-		dv4CodigoCompensacaoBanco.calcule(CODIGO_COMPENSACAO_LIMITE_MAXIMO + 1);
-	}	
+	public void testCalculeCodigoDeCompensacaoMaiorQueLimiteMaximo() {
+		dv4CodigoCompensacaoBanco.calcule(CodigoDeCompensacaoBancosBACENDV.LIMITE_MAXIMO + 1);
+	}
+	
+	@Test
+	public void testIsCodigoValidoString() {
+		assertTrue(dv4CodigoCompensacaoBanco.isCodigoValido("001"));
+	}
+
+	@Test
+	public void testIsCodigoValidoStringNull() {
+		
+		String codigo = null;
+		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido(codigo));
+	}
+	
+	@Test
+	public void testIsCodigoValidoStringEmpty() {
+		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido(StringUtils.EMPTY));
+	}
+	
+	@Test
+	public void testIsCodigoValidoStringBlank() {
+		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido(StringUtil.WHITE_SPACE));
+	}
+	
+	@Test
+	public void testIsCodigoValidoStringNaoNumerico() {
+		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido("abc"));
+	}
+	
+	@Test
+	public void testIsCodigoValidoStringMenorQueLimiteMinimo() {
+		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido("000"));
+	}
+	
+	@Test
+	public void testIsCodigoValidoStringMaiorQueLimiteMaximo() {
+		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido("1000"));
+	}
+	
+	@Test
+	public void testIsCodigoValidoInt() {
+		assertTrue(dv4CodigoCompensacaoBanco.isCodigoValido(1));
+	}
+
+	@Test
+	public void testIsCodigoValidoIntMenorQueLimiteMinimo() {
+		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido(0));
+	}
+	
+	@Test
+	public void testIsCodigoValidoIntMaiorQueLimiteMaximo() {
+		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido(1000));
+	}
+	
+	@Test
+	public void testIsCodigoValidoLong() {
+		assertTrue(dv4CodigoCompensacaoBanco.isCodigoValido(1L));
+	}
+
+	@Test
+	public void testIsCodigoValidoLongMenorQueLimiteMinimo() {
+		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido(0L));
+	}
+	
+	@Test
+	public void testIsCodigoValidoLongMaiorQueLimiteMaximo() {
+		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido(1000L));
+	}
 }

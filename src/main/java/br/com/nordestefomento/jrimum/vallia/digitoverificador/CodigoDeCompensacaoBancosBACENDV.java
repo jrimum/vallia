@@ -30,8 +30,6 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
-
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -42,18 +40,28 @@ import org.apache.commons.lang.StringUtils;
  * 
  * @author <a href="http://gilmatryx.googlepages.com">Gilmar P.S.L.</a>
  * @author Misael
+ * @author Rômulo Augusto
  * 
  * @since 0.2
  * 
  * @version 0.2
  */
-
 public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5250684561237486022L;
+	
+	/**
+	 * Valor mínimo do código de compensação
+	 */
+	public static final int LIMITE_MINIMO = 1;
+	
+	/**
+	 * Valor máximo do código de compensação
+	 */
+	public static final int LIMITE_MAXIMO = 999; 
 
 	/**
 	 * <p>
@@ -71,18 +79,19 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	 * 
 	 * @param numero
 	 * @return int digito
+	 * 
+	 * @throws IllegalArgumentException Caso não seja um código válido
+	 * 
 	 * @since 0.2
 	 */
 	@Override
-	public int calcule(String numero) throws IllegalArgumentException {
-
-		if (StringUtils.isNotBlank(numero) && StringUtils.isNumeric(numero)) {
-
-			return calcule(Integer.valueOf(numero.trim()));
-
-		} else {
+	public int calcule(String numero) {
+		
+		if (!isCodigoValido(numero)) {
 			throw new IllegalArgumentException(MSG);
 		}
+		
+		return calcule(Integer.valueOf(numero.trim()));
 	}
 
 	/**
@@ -96,7 +105,6 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	 * 
 	 * @since 0.2
 	 */
-
 	public int calcule(int numero) {
 
 		return calcule((long) numero);
@@ -120,45 +128,42 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 
 		int dv = -1;
 
-		if ((numero > 0) && (numero <= 999)) {
-
-			int soma = Modulo.calculeSomaSequencialMod11(
-					String.valueOf(numero), 2, 9);
-
-			soma *= 10;
-
-			dv = soma % 11;
-
-			if (dv == 10)
-				dv = 0;
-
-		} else
+		if (!isCodigoValido(numero)) {
 			throw new IllegalArgumentException(MSG);
+		}
+
+		int soma = Modulo.calculeSomaSequencialMod11(
+				String.valueOf(numero), 2, 9);
+
+		soma *= 10;
+
+		dv = soma % 11;
+
+		dv = (dv == 10) ? 0 : dv;
 
 		return dv;
 	}
 
 	/**
 	 * <p>
-	 * Retorna se um código de compensação passado é válido.
+	 * Retorna se um código de compensação passado é válido, ou seja, se está entre os 
+	 * valores inteiros de 1 a 999.
 	 * </p>
 	 * 
-	 * @param codigo
-	 * @return true se for númerio entre 0 e 999
+	 * @param codigo - Código de compensação
+	 * @return true se for númerio entre 1 e 999; false caso contrário
 	 * 
 	 * @since 0.2
 	 */
+	public boolean isCodigoValido(String codigo) {
 
-	public boolean isCodigoValido(String codigo)
-			throws IllegalArgumentException {
-
+		boolean codigoValido = false;
+		
 		if (StringUtils.isNotBlank(codigo) && StringUtils.isNumeric(codigo)) {
-
-			return isCodigoValido(Integer.valueOf(codigo.trim()));
-
-		} else {
-			throw new IllegalArgumentException(MSG);
+			codigoValido = isCodigoValido(Integer.valueOf(codigo.trim()));
 		}
+		
+		return codigoValido;
 	}
 
 	/**
@@ -166,19 +171,28 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	 * Retorna se um código de compensação passado é válido.
 	 * </p>
 	 * 
-	 * @param codigo
-	 * @return true se entre 0 e 999
+	 * @param codigo - Código de compensação
+	 * @return true se entre 0 (não incluso) e 999; false caso contrário
 	 * 
 	 * @since 0.2
 	 */
-
-	public boolean isCodigoValido(Integer codigo)
-			throws IllegalArgumentException {
-
-		if (isNotNull(codigo, "Código De Compensação") && (codigo > 0)
-				&& (codigo <= 999)) {
-			return true;
-		} else
-			throw new IllegalArgumentException(MSG);
+	public boolean isCodigoValido(int codigo) {
+		
+		return isCodigoValido((long) codigo);
+	}
+	
+	/**
+	 * <p>
+	 * Retorna se um código de compensação passado é válido.
+	 * </p>
+	 * 
+	 * @param codigo - Código de compensação
+	 * @return true se entre 0 (não incluso) e 999; false caso contrário
+	 * 
+	 * @since 0.2
+	 */
+	public boolean isCodigoValido(long codigo) {
+		
+		return (codigo >= LIMITE_MINIMO) && (codigo <= LIMITE_MAXIMO);
 	}
 }
