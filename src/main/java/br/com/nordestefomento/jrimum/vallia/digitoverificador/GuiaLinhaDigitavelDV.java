@@ -48,17 +48,6 @@ public class GuiaLinhaDigitavelDV extends AbstractDigitoVerificador {
 	private static Modulo modulo;
 
 	/**
-	 * <p>
-	 * Expressão regular para validação do campo da linha digitável, aceita os
-	 * seguintes formatos:
-	 * </p>
-	 * <ul type="circle"> <li><tt>#########</tt></li> <li><tt>#####.####</tt></li>
-	 * <li><tt>##########</tt></li> <li><tt>#####.#####</tt></li> </ul>
-	 * 
-	 */
-	private static final String REGEX_CAMPO = "(\\d{9})|(\\d{10})|(\\d{5})\\.(\\d{4})|(\\d{5})\\.(\\d{5})";
-
-	/**
 	 *<p>
 	 * Construtor vaizo, o mesmo que <tt>super()</tt>.
 	 * </p>
@@ -85,25 +74,43 @@ public class GuiaLinhaDigitavelDV extends AbstractDigitoVerificador {
 	 * @since 0.3
 	 */
 	@Override
-	public int calcule(String numero) throws IllegalArgumentException {
+	public int calcule(String numeroStr) throws IllegalArgumentException {
 
 		int dv = 0;
 		int resto = 0;
 
-		if (StringUtils.isNotBlank(numero)
-				&& Pattern.matches(REGEX_CAMPO, numero)) {
+		if (
+			 StringUtils.isNotBlank(numeroStr)
+			 && StringUtils.isNumeric(numeroStr)
+			 && (numeroStr.length() == 11)
+		   ) {
 
-			numero = StringUtils.replaceChars(numero, ".", "");
-
-			resto = modulo.calcule(numero);
-
-			if (resto != 0)
-				dv = modulo.valor() - resto;
+			resto = modulo.calcule(numeroStr);
+			
+			
+			if (modulo.getMod() == TipoDeModulo.MODULO11) {
+				// Seguindo as especificações da FEBRABAN, caso o resto seja
+				// (0), (1) ou (10), será atribuído (1) ao digito verificador.			
+				if ((resto == 0) || (resto == 1) || (resto == 10))
+					dv = 1;
+				// Caso contrário, dv = 11 - resto.
+				else
+					dv = modulo.valor() - resto;
+			}
+			
+			else if (modulo.getMod() == TipoDeModulo.MODULO10) {
+				// Seguindo as especificações da FEBRABAN, caso o resto seja
+				// (0) ou (10), será atribuido o valor zero.
+				if (  (resto == 0) || (resto == 10)  )
+					dv = 0;
+				// Caso contrário, dv = 10 - resto.
+				else
+					dv = modulo.valor() - resto;
+			}			
 		} else
 			throw new IllegalArgumentException(
-					"O campo [ "
-							+ numero
-							+ " ] da linha digitável deve conter apenas números com 9 ou 10 dígitos !");
+					"O campo [ " + numeroStr + " ] da linha digitável deve " +
+					"conter apenas números, com exatamento 11 dígitos !");
 
 		return dv;
 	}

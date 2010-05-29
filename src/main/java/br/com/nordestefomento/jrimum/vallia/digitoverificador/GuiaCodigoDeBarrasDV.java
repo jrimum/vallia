@@ -65,18 +65,29 @@ public class GuiaCodigoDeBarrasDV extends AbstractDigitoVerificador {
 		if (StringUtils.isNotBlank(numero) && StringUtils.isNumeric(numero)
 				&& (numero.length() == TAMANHO_SEM_DV)) {
 
-			// Realizando o cálculo do dígito verificador utilizando módulo 11.
-			// Obtendo o resto da divisão por 11.
+			// Realizando o cálculo do dígito verificador.
 			resto = modulo.calcule(numero);
-
-			// Seguindo as especificações da FEBRABAN, caso o resto seja
-			// (0), (1) ou (10), será atribuído (1) ao digito verificador.
-			if ((resto == 0) || (resto == 1) || (resto == 10))
-				dv = 1;
-			// Caso contrário, dv = 11 - resto.
-			else
-				dv = modulo.valor() - resto;
-
+			
+			if (modulo.getMod() == TipoDeModulo.MODULO11) {
+				// Seguindo as especificações da FEBRABAN, caso o resto seja
+				// (0), (1) ou (10), será atribuído (1) ao digito verificador.			
+				if ((resto == 0) || (resto == 1) || (resto == 10))
+					dv = 1;
+				// Caso contrário, dv = 11 - resto.
+				else
+					dv = modulo.valor() - resto;
+			}
+			
+			else if (modulo.getMod() == TipoDeModulo.MODULO10) {
+				// Seguindo as especificações da FEBRABAN, caso o resto seja
+				// (0) ou (10), será atribuido o valor zero.
+				if (  (resto == 0) || (resto == 10)  )
+					dv = 0;
+				// Caso contrário, dv = 10 - resto.
+				else
+					dv = modulo.valor() - resto;
+			}
+			
 		} else {
 			throw new IllegalArgumentException("O código de barras " + "[ "
 					+ numero + " ] deve conter apenas números e "
