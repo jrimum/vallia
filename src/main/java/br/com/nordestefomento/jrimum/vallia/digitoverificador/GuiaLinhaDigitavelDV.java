@@ -96,7 +96,8 @@ public class GuiaLinhaDigitavelDV extends AbstractDigitoVerificador {
 		} else
 			throw new IllegalArgumentException(
 					"O campo [ " + numeroStr + " ] da linha digitável deve " +
-					"conter apenas números, com exatamento 11 dígitos !");
+					"conter apenas números, com exatamento 11 dígitos, para que " +
+					"o cálculo do dígito verificador possa ser executado !");
 
 		return dv;
 	}
