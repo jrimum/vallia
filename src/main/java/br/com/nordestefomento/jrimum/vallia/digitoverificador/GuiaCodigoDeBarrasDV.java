@@ -34,7 +34,7 @@ import org.apache.commons.lang.StringUtils;
 
 public class GuiaCodigoDeBarrasDV extends AbstractDigitoVerificador {
 
-	private static final long serialVersionUID = 7977220668336110040L;
+	private static final long serialVersionUID = 7977220669126110040L;
 
 	private static final int TAMANHO_SEM_DV = 43;
 

@@ -29,11 +29,7 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import java.util.regex.Pattern;
-
 import org.apache.commons.lang.StringUtils;
-
-import br.com.nordestefomento.jrimum.utilix.Filler;
 
 
 public class GuiaLinhaDigitavelDV extends AbstractDigitoVerificador {
@@ -57,16 +53,6 @@ public class GuiaLinhaDigitavelDV extends AbstractDigitoVerificador {
 	public GuiaLinhaDigitavelDV(Modulo modulo) {
 		super();
 		this.modulo = modulo;
-	}
-
-	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
-	 * @since 0.3
-	 */
-	@Override
-	public int calcule(long numero) {
-
-		return calcule(Filler.ZERO_LEFT.fill(String.valueOf(numero), 10));
 	}
 
 	/**
