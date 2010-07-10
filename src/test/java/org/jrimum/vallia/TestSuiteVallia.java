@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:51:20
+ * Created at: 30/03/2008 - 18:52:20
  * 
  * ================================================================================
  * 
@@ -23,73 +23,40 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:51:20
+ * Criado em: 30/03/2008 - 18:52:20
  * 
  */
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
-import java.io.Serializable;
+package org.jrimum.vallia;
 
-/**
- * <p>
- * Enumeração das implementações dos módulos.
- * </p>
- * 
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
- * @since 0.2
- * 
- * @version 0.2
- */
-public enum TipoDeModulo implements Serializable {
+import org.jrimum.vallia.digitoverificador.TestBoletoCodigoDeBarrasDV;
+import org.jrimum.vallia.digitoverificador.TestBoletoLinhaDigitavelDV;
+import org.jrimum.vallia.digitoverificador.TestCNPJDV;
+import org.jrimum.vallia.digitoverificador.TestCPFDV;
+import org.jrimum.vallia.digitoverificador.TestModulo;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
-	/**
-	 * <p>
-	 * Módulo do tipo 11.
-	 * </p>
-	 * 
-	 * @author <a href=http://gilmatryx.googlepages.com/>Gilmar P.S.L.</a>
-	 * 
-	 * @since 0.2
-	 */
-	MODULO10 {
-		/**
-		 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.TipoDeModulo#valor()
-		 * @since 0.2
-		 */
-		public int valor() {
-			return 10;
+
+@RunWith(Suite.class)
+@Suite.SuiteClasses
+( 
+		{
+			TestAbstractCPRFValidator.class,
+			TestCNPJValidator.class,
+			TestCPFValidator.class,
+			TestBoletoCodigoDeBarrasDV.class,
+			TestBoletoLinhaDigitavelDV.class,
+			TestCNPJDV.class,
+			TestCPFDV.class,
+			TestModulo.class
 		}
-	},
+)
+public class TestSuiteVallia {
 
-	/**
-	 * <p>
-	 * Módulo do tipo 11.
-	 * </p>
-	 * 
-	 * @author <a href=http://gilmatryx.googlepages.com/>Gilmar P.S.L.</a>
-	 * 
-	 * @since 0.2
+	/*
+	 * The class remains completely empty, being used only as a holder for the
+	 * above annotations
 	 */
-	MODULO11 {
-		/**
-		 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.TipoDeModulo#valor()
-		 * @since 0.2
-		 */
-		public int valor() {
-			return 11;
-		}
-	};
-
-	/**
-	 * <p>
-	 * Retorna o valor do módulo.
-	 * </p>
-	 * 
-	 * @return 10 ou 11
-	 * 
-	 * @since 0.2
-	 */
-	public abstract int valor();
 }

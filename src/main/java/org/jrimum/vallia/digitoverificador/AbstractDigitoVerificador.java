@@ -27,7 +27,7 @@
  * 
  */
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package org.jrimum.vallia.digitoverificador;
 
 /**
  *<p>

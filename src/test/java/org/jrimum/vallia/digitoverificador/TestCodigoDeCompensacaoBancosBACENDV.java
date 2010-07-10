@@ -28,16 +28,17 @@
  * 
  */
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package org.jrimum.vallia.digitoverificador;
 
 import static org.junit.Assert.*;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.StringUtil;
+import org.jrimum.vallia.digitoverificador.CodigoDeCompensacaoBancosBACENDV;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.nordestefomento.jrimum.utilix.StringUtil;
 
 
 /**

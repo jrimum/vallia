@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:53:28
+ * Created at: 30/03/2008 - 18:52:12
  * 
  * ================================================================================
  * 
@@ -23,23 +23,27 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:53:28
+ * Criado em: 30/03/2008 - 18:52:12
  * 
  */
 
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package org.jrimum.vallia;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import org.junit.Before;
+import org.jrimum.vallia.AbstractCPRFValidator;
+import org.jrimum.vallia.CNPJValidator;
+import org.jrimum.vallia.CPFValidator;
+import org.jrimum.vallia.AbstractCPRFValidator.TipoDeCPRF;
 import org.junit.Test;
+
 
 /**
  * 
- * Teste da classe <code>DV_Boleto_LinhaDigitável</code>
+ * Teste da classe <code>AbstractCPRFValidator</code>.
  * 
  * 
  * @author Gabriel Guimarães
@@ -51,70 +55,90 @@ import org.junit.Test;
  * 
  * @version 1.0
  */
-public class TestBoletoLinhaDigitavelDV{
-	
-	private AbstractDigitoVerificador dv_Validator_LinhaDigitavel;
+public class TestAbstractCPRFValidator{
 
-	@Before
-	public void setUp() throws Exception {
+	private AbstractCPRFValidator validator;
+
+	@Test
+	public void testGetInstance() {
+
+		try {
+			
+			TipoDeCPRF nulo = null;
+
+			AbstractCPRFValidator.create(nulo);
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
+
+		try {
+
+			AbstractCPRFValidator.create("abc123");
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
+
+		try {
+
+			AbstractCPRFValidator.create("222333666");
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
+
+		try {
+
+			AbstractCPRFValidator.create("112223330001");
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
 		
-		dv_Validator_LinhaDigitavel = new BoletoLinhaDigitavelDV();
+		assertNotNull(AbstractCPRFValidator.create("22233366638"));
+		assertNotNull(AbstractCPRFValidator.create("222.333.666-38"));
+
+		assertNotNull(AbstractCPRFValidator.create("11222333000181"));
+		assertNotNull(AbstractCPRFValidator.create("11.222.333/0001-81"));
+
 	}
 
 	@Test
-	public void testCalculeString() {
-		
-		try {
-					
-			dv_Validator_LinhaDigitavel.calcule(null);
-			
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-			
-		}catch(IllegalArgumentException iaex) {
-			
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-		
-		try {
-			
-			dv_Validator_LinhaDigitavel.calcule("abc123");
-			
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-	
-		}catch(IllegalArgumentException iaex) {
-			
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-		
-		try {
-			
-			dv_Validator_LinhaDigitavel.calcule("12345678910");
-	
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-			
-		}catch(IllegalArgumentException iaex) {
-			
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-		
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcule("999977721"));
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcule("99997.7721"));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcule("3053015008"));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcule("30530.15008"));
+	public void testIsFisica() {
+
+		validator = AbstractCPRFValidator.create("22233366638");
+
+		assertTrue(validator instanceof CPFValidator);
 	}
 
 	@Test
-	public void testCalculeLong() {
-		
-		assertEquals(0, dv_Validator_LinhaDigitavel.calcule(0));		
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcule(999977721L));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcule(3053015008L));
+	public void testIsJuridica() {
+
+		validator = AbstractCPRFValidator.create("11222333000181");
+
+		assertTrue(validator instanceof CNPJValidator);
+
 	}
 
 }

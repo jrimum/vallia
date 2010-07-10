@@ -28,15 +28,15 @@
  * 
  */
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package org.jrimum.vallia.digitoverificador;
 
-import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
-import static br.com.nordestefomento.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO10;
-import static br.com.nordestefomento.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO11;
+import static org.jrimum.utilix.ObjectUtil.isNotNull;
+import static org.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO10;
+import static org.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO11;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.ObjectUtil;
 
-import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
 
 /**
  * <p>

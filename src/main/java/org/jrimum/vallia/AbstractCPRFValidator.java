@@ -27,19 +27,19 @@
  * 
  */
 
-package br.com.nordestefomento.jrimum.vallia;
+package org.jrimum.vallia;
 
-import static br.com.nordestefomento.jrimum.utilix.ObjectUtil.isNotNull;
+import static org.jrimum.utilix.ObjectUtil.isNotNull;
 
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.ObjectUtil;
+import org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador;
+import org.jrimum.vallia.digitoverificador.CNPJDV;
+import org.jrimum.vallia.digitoverificador.CPFDV;
 
-import br.com.nordestefomento.jrimum.utilix.ObjectUtil;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.CNPJDV;
-import br.com.nordestefomento.jrimum.vallia.digitoverificador.CPFDV;
 
 /**
  * <p>
@@ -149,7 +149,7 @@ public abstract class AbstractCPRFValidator {
 		}
 
 		/**
-		 * @see br.com.nordestefomento.jrimum.utilix.ObjectUtil#toString()
+		 * @see org.jrimum.utilix.ObjectUtil#toString()
 		 * @see java.lang.Enum#toString()
 		 */
 		public String toString() {
@@ -158,7 +158,7 @@ public abstract class AbstractCPRFValidator {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.AbstractCPRFValidator.TipoDeCPRF
+	 * @see org.jrimum.vallia.AbstractCPRFValidator.TipoDeCPRF
 	 */
 	@SuppressWarnings("unused")
 	private TipoDeCPRF tipoDeCadastro;

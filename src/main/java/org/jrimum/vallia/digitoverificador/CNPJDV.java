@@ -27,13 +27,13 @@
  * 
  */
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package org.jrimum.vallia.digitoverificador;
 
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.Filler;
 
-import br.com.nordestefomento.jrimum.utilix.Filler;
 
 /**
  * <p>
@@ -112,7 +112,7 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	private static final String REGEX_CNPJ_DV_FORMATTED = "\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}";
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
+	 * @see org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
 	 * @since 0.2
 	 */
 	@Override
@@ -122,7 +122,7 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
+	 * @see org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
 	 * @since 0.2
 	 */
 	@Override

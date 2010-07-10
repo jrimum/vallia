@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:52:49
+ * Created at: 30/03/2008 - 18:53:39
  * 
  * ================================================================================
  * 
@@ -23,22 +23,24 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:52:49
+ * Criado em: 30/03/2008 - 18:53:39
  * 
  */
 
 
-package br.com.nordestefomento.jrimum.vallia;
+package org.jrimum.vallia.digitoverificador;
 
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
+import org.jrimum.vallia.digitoverificador.CNPJDV;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
  * 
- * Teste da classe <code>Validator_CadastroDePessoaFísica</code>.
- * 
+ * Teste da classe DV_CadastroDePessoaJurídica.
  * 
  * @author Gabriel Guimarães
  * @author Gilmar P.S.L
@@ -48,21 +50,57 @@ import org.junit.Test;
  * @since JRimum 1.0
  * 
  * @version 1.0
+ * 
  */
-public class TestCPFValidator{
+public class TestCNPJDV{
 
-	private AbstractCPRFValidator validadorCPF;
-	
+	private CNPJDV dv_Validator_CNPJ;
+
+	@Before
+	public void setUp() throws Exception {
+
+		dv_Validator_CNPJ = new CNPJDV();
+	}
+
 	@Test
-	public void testIsValido() {
-		
-		validadorCPF = AbstractCPRFValidator.create("22233366638");
-		
-		assertTrue(validadorCPF.isValido());
-		
-		validadorCPF = AbstractCPRFValidator.create("22233366639");
-		
-		assertFalse(validadorCPF.isValido());
+	public void testCalculeString() {
+
+		try {
+
+			dv_Validator_CNPJ.calcule(null);
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
+
+		try {
+
+			dv_Validator_CNPJ.calcule("abc123");
+
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
+
+		} catch (IllegalArgumentException iaex) {
+
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
+
+		assertEquals(81, dv_Validator_CNPJ.calcule("112223330001"));
+		assertEquals(81, dv_Validator_CNPJ.calcule("11.222.333/0001"));
+
+	}
+
+	@Test
+	public void testCalculeLong() {
+
+		assertEquals(81, dv_Validator_CNPJ.calcule(112223330001L));
+		assertEquals(65, dv_Validator_CNPJ.calcule(2223330001L));
 	}
 
 }

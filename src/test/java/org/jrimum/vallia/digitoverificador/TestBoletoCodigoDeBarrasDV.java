@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:53:39
+ * Created at: 30/03/2008 - 18:53:16
  * 
  * ================================================================================
  * 
@@ -23,42 +23,39 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:53:39
+ * Criado em: 30/03/2008 - 18:53:16
  * 
  */
 
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package org.jrimum.vallia.digitoverificador;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador;
+import org.jrimum.vallia.digitoverificador.BoletoCodigoDeBarrasDV;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * 
- * Teste da classe DV_CadastroDePessoaJurídica.
+ * Teste da classe <code>DV_Boleto_CódigoDeBarra</code>.
  * 
  * @author Gabriel Guimarães
  * @author Gilmar P.S.L
  * @author Misael Barreto
  * @author Rômulo Augusto
- * 
- * @since JRimum 1.0
- * 
- * @version 1.0
- * 
+ * @since 16/03/2007
  */
-public class TestCNPJDV{
+public class TestBoletoCodigoDeBarrasDV{
 
-	private CNPJDV dv_Validator_CNPJ;
+	private AbstractDigitoVerificador dv_Validator_CodigoDeBarra;
 
 	@Before
 	public void setUp() throws Exception {
 
-		dv_Validator_CNPJ = new CNPJDV();
+		dv_Validator_CodigoDeBarra = new BoletoCodigoDeBarrasDV();
 	}
 
 	@Test
@@ -66,8 +63,8 @@ public class TestCNPJDV{
 
 		try {
 
-			dv_Validator_CNPJ.calcule(null);
-
+			dv_Validator_CodigoDeBarra.calcule(null);
+			
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
 
@@ -78,9 +75,9 @@ public class TestCNPJDV{
 		}
 
 		try {
-
-			dv_Validator_CNPJ.calcule("abc123");
-
+			
+			dv_Validator_CodigoDeBarra.calcule("123456789");
+			
 			fail("IllegalArgumentException esperado não ocorreu.");
 			assertTrue(false);
 
@@ -90,16 +87,21 @@ public class TestCNPJDV{
 			System.out.println(iaex.getMessage());
 		}
 
-		assertEquals(81, dv_Validator_CNPJ.calcule("112223330001"));
-		assertEquals(81, dv_Validator_CNPJ.calcule("11.222.333/0001"));
+		try {
+			
+			dv_Validator_CodigoDeBarra.calcule("ABC123456789");
+			
+			fail("IllegalArgumentException esperado não ocorreu.");
+			assertTrue(false);
 
-	}
+		} catch (IllegalArgumentException iaex) {
 
-	@Test
-	public void testCalculeLong() {
+			assertTrue(true);
+			System.out.println(iaex.getMessage());
+		}
 
-		assertEquals(81, dv_Validator_CNPJ.calcule(112223330001L));
-		assertEquals(65, dv_Validator_CNPJ.calcule(2223330001L));
+		assertEquals(6, dv_Validator_CodigoDeBarra
+				.calcule("1049300600000022061014044910000000020061732"));
 	}
 
 }

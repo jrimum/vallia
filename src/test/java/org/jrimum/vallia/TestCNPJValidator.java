@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  * 
- * Created at: 30/03/2008 - 18:53:16
+ * Created at: 30/03/2008 - 18:52:37
  * 
  * ================================================================================
  * 
@@ -23,83 +23,47 @@
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
  * 
- * Criado em: 30/03/2008 - 18:53:16
+ * Criado em: 30/03/2008 - 18:52:37
  * 
  */
 
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package org.jrimum.vallia;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import org.junit.Before;
+import org.jrimum.vallia.AbstractCPRFValidator;
 import org.junit.Test;
 
 /**
- * Teste da classe <code>DV_Boleto_CódigoDeBarra</code>.
+ * 
+ * Teste da classe <code>Validator_CadastroDePessoaJurídica</code>.
+ * 
  * 
  * @author Gabriel Guimarães
  * @author Gilmar P.S.L
  * @author Misael Barreto
  * @author Rômulo Augusto
- * @since 16/03/2007
+ * 
+ * @since JRimum 1.0
+ * 
+ * @version 1.0
  */
-public class TestBoletoCodigoDeBarrasDV{
-
-	private AbstractDigitoVerificador dv_Validator_CodigoDeBarra;
-
-	@Before
-	public void setUp() throws Exception {
-
-		dv_Validator_CodigoDeBarra = new BoletoCodigoDeBarrasDV();
-	}
+public class TestCNPJValidator{
+	
+	private AbstractCPRFValidator validadorCNPJ;
 
 	@Test
-	public void testCalculeString() {
-
-		try {
-
-			dv_Validator_CodigoDeBarra.calcule(null);
-			
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-			
-			dv_Validator_CodigoDeBarra.calcule("123456789");
-			
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-			
-			dv_Validator_CodigoDeBarra.calcule("ABC123456789");
-			
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		assertEquals(6, dv_Validator_CodigoDeBarra
-				.calcule("1049300600000022061014044910000000020061732"));
+	public void testIsValido() {
+		
+		validadorCNPJ = AbstractCPRFValidator.create("11222333000181");
+		
+		assertTrue(validadorCNPJ.isValido());
+		
+		validadorCNPJ = AbstractCPRFValidator.create("11222333000182");
+		
+		assertFalse(validadorCNPJ.isValido());
 	}
 
 }

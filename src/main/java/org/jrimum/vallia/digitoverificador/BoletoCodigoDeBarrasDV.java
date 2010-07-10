@@ -27,7 +27,7 @@
  * 
  */
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package org.jrimum.vallia.digitoverificador;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -84,7 +84,7 @@ public class BoletoCodigoDeBarrasDV extends AbstractDigitoVerificador {
 	}
 
 	/**
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(String)
+	 * @see org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(String)
 	 * @since 0.2
 	 */
 	@Override

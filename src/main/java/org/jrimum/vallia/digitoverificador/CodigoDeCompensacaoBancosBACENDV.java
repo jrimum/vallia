@@ -28,7 +28,7 @@
  * 
  */
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package org.jrimum.vallia.digitoverificador;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -75,7 +75,7 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	 * Calcula o dígito verificador para código de compensação passado.
 	 * </p>
 	 * 
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
+	 * @see org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
 	 * 
 	 * @param numero
 	 * @return int digito
@@ -121,7 +121,7 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	 * 
 	 * @since 0.2
 	 * 
-	 * @see br.com.nordestefomento.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
+	 * @see org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)
 	 */
 	@Override
 	public int calcule(long numero) {

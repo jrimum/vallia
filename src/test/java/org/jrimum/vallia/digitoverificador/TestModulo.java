@@ -26,12 +26,14 @@
  * Criado em: 30/03/2008 - 18:53:54
  */
 
-package br.com.nordestefomento.jrimum.vallia.digitoverificador;
+package org.jrimum.vallia.digitoverificador;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.jrimum.vallia.digitoverificador.Modulo;
+import org.jrimum.vallia.digitoverificador.TipoDeModulo;
 import org.junit.Test;
 
 public class TestModulo {
