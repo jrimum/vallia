@@ -30,7 +30,6 @@
 package org.jrimum.vallia;
 
 /**
- * 
  * <p>
  * Validador especialista para CNPJ.
  * </p>

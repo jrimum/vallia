@@ -34,7 +34,6 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 import org.jrimum.utilix.Filler;
 
-
 /**
  * <p>
  * O cálculo do dígito verificador do CPF é realizado em duas etapas e é

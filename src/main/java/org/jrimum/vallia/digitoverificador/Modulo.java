@@ -37,7 +37,6 @@ import static org.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO11;
 import org.apache.commons.lang.StringUtils;
 import org.jrimum.utilix.ObjectUtil;
 
-
 /**
  * <p>
  * Representa o módulo no contexto de autenticação, ou seja, uma rotina que
@@ -167,7 +166,6 @@ public class Modulo {
 	 * 
 	 * @since 0.2
 	 */
-
 	public int valor() {
 
 		switch (mod) {
@@ -183,7 +181,6 @@ public class Modulo {
 		default:
 			return -1;
 		}
-
 	}
 
 	/**
@@ -199,7 +196,7 @@ public class Modulo {
 	 * @param numero
 	 * @param limiteMin
 	 * @param limiteMax
-	 * @return resultado de calculeSomaSequencialMod11 % 11
+	 * @return Resultado de calculeSomaSequencialMod11 % 11
 	 * 
 	 * @since 0.2
 	 * @see #calculeSomaSequencialMod11(String, int, int)
@@ -207,7 +204,7 @@ public class Modulo {
 	public static int calculeMod11(String numero, int limiteMin, int limiteMax)
 			throws IllegalArgumentException {
 
-		return (calculeSomaSequencialMod11(numero, limiteMin, limiteMax) % 11);
+		return (calculeSomaSequencialMod11(numero, limiteMin, limiteMax) % MOD11);
 	}
 
 	/**
@@ -271,7 +268,6 @@ public class Modulo {
 	 * 
 	 * @since 0.2
 	 */
-
 	public static int calculeSomaSequencialMod11(String numero, int limiteMin,
 			int limiteMax) throws IllegalArgumentException {
 
@@ -344,7 +340,7 @@ public class Modulo {
 	public static int calculeMod10(String numero, int limiteMin, int limiteMax)
 			throws IllegalArgumentException {
 
-		return (calculeSomaSequencialMod10(numero, limiteMin, limiteMax) % 10);
+		return (calculeSomaSequencialMod10(numero, limiteMin, limiteMax) % MOD10);
 	}
 
 	/**
@@ -435,7 +431,6 @@ public class Modulo {
 	 * 
 	 * @since 0.2
 	 */
-
 	public int calcule(String numero) throws IllegalArgumentException {
 
 		int modulo = 0;
@@ -468,7 +463,6 @@ public class Modulo {
 	 * 
 	 * @since 0.2
 	 */
-
 	public int calcule(long numero) {
 
 		return calcule(String.valueOf(numero));
@@ -491,7 +485,6 @@ public class Modulo {
 	 * 
 	 * @since 0.2
 	 */
-
 	private void initDefault() {
 
 		switch (mod) {

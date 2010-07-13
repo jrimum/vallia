@@ -47,8 +47,6 @@ import org.jrimum.vallia.digitoverificador.CPFDV;
  * federal (CPRF).
  * </p>
  * 
- * 
- * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
  * @author Misael Barreto
  * @author Rômulo Augusto
@@ -107,8 +105,6 @@ public abstract class AbstractCPRFValidator {
 	 * Representa o tipo de cadastro e fornece o autenticador correto de a cordo
 	 * com este tipo.
 	 * </p>
-	 * 
-	 * 
 	 * 
 	 * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
 	 * @author Misael Barreto
@@ -226,7 +222,6 @@ public abstract class AbstractCPRFValidator {
 	 * 
 	 * @since 0.2
 	 */
-
 	public static AbstractCPRFValidator create(TipoDeCPRF tipoDeCadastro) {
 
 		AbstractCPRFValidator validatorCPRF = null;
@@ -305,7 +300,6 @@ public abstract class AbstractCPRFValidator {
 	 * 
 	 * @since 0.2
 	 */
-
 	public static boolean isParametrosValidos(String codigoDoCadastro,
 			TipoDeCPRF tipoDeCadastro) throws IllegalArgumentException {
 
@@ -373,5 +367,4 @@ public abstract class AbstractCPRFValidator {
 
 		return this instanceof CNPJValidator;
 	}
-
 }

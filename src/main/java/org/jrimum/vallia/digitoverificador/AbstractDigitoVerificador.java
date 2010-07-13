@@ -30,9 +30,9 @@
 package org.jrimum.vallia.digitoverificador;
 
 /**
- *<p>
- * FactoryCampoLivre padrão utilizada por qualquer classe que implemente uma
- * lógica de cálculo de um dígito verificador qualquer.
+ * <p>
+ * Define o comportamento de classes que implementam uma lógica de cálculo de 
+ * um dígito verificador.
  * </p>
  * 
  * 
