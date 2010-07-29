@@ -40,7 +40,7 @@ import org.apache.commons.lang.StringUtils;
  * 
  * @author <a href="http://gilmatryx.googlepages.com">Gilmar P.S.L.</a>
  * @author Misael
- * @author Rômulo Augusto
+ * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
  * 
  * @since 0.2
  * 
