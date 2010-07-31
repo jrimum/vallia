@@ -30,7 +30,6 @@
 
 package org.jrimum.vallia.digitoverificador;
 
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
 import static org.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO10;
 import static org.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO11;
 
@@ -116,12 +115,11 @@ public class Modulo {
 	 */
 	public Modulo(TipoDeModulo mod) {
 		super();
-
-		if (isNotNull(mod, "modulo")) {
-
-			this.mod = mod;
-			initDefault();
-		}
+		
+		ObjectUtil.checkNotNull(mod, "Módulo nulo!");
+		
+		this.mod = mod;
+		initDefault();
 	}
 
 	/**
@@ -141,12 +139,11 @@ public class Modulo {
 	public Modulo(TipoDeModulo mod, int limiteMaximo, int limiteMinimo) {
 		super();
 
-		if (isNotNull(mod, "modulo")) {
+		ObjectUtil.checkNotNull(mod, "Módulo nulo!");
 
-			this.limiteMaximo = limiteMaximo;
-			this.limiteMinimo = limiteMinimo;
-			this.mod = mod;
-		}
+		this.limiteMaximo = limiteMaximo;
+		this.limiteMinimo = limiteMinimo;
+		this.mod = mod;
 	}
 
 	/**
