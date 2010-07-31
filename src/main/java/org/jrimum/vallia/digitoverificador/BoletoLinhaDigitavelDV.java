@@ -32,7 +32,7 @@ package org.jrimum.vallia.digitoverificador;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
-import org.jrimum.utilix.Filler;
+import org.jrimum.utilix.text.Filler;
 
 
 /**

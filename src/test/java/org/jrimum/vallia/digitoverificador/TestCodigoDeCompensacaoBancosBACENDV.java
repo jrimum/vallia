@@ -33,7 +33,7 @@ package org.jrimum.vallia.digitoverificador;
 import static org.junit.Assert.*;
 
 import org.apache.commons.lang.StringUtils;
-import org.jrimum.utilix.StringUtil;
+import org.jrimum.utilix.text.StringUtil;
 import org.jrimum.vallia.digitoverificador.CodigoDeCompensacaoBancosBACENDV;
 import org.junit.After;
 import org.junit.Before;
