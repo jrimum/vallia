@@ -34,9 +34,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import org.jrimum.vallia.AbstractCPRFValidator;
-import org.jrimum.vallia.CNPJValidator;
-import org.jrimum.vallia.CPFValidator;
 import org.jrimum.vallia.AbstractCPRFValidator.TipoDeCPRF;
 import org.junit.Test;
 

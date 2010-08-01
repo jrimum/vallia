@@ -33,7 +33,6 @@ package org.jrimum.vallia;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.jrimum.vallia.AbstractCPRFValidator;
 import org.junit.Test;
 
 /**

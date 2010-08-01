@@ -30,11 +30,12 @@
 
 package org.jrimum.vallia.digitoverificador;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang.StringUtils;
 import org.jrimum.utilix.text.StringUtil;
-import org.jrimum.vallia.digitoverificador.CodigoDeCompensacaoBancosBACENDV;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
