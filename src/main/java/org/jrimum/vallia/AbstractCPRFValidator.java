@@ -29,13 +29,13 @@
 
 package org.jrimum.vallia;
 
-import static org.jrimum.utilix.ObjectUtil.isNotNull;
+import static org.jrimum.utilix.Objects.isNotNull;
 
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
-import org.jrimum.utilix.ObjectUtil;
+import org.jrimum.utilix.Objects;
 import org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador;
 import org.jrimum.vallia.digitoverificador.CNPJDV;
 import org.jrimum.vallia.digitoverificador.CPFDV;
@@ -145,11 +145,11 @@ public abstract class AbstractCPRFValidator {
 		}
 
 		/**
-		 * @see org.jrimum.utilix.ObjectUtil#toString()
+		 * @see org.jrimum.utilix.Objects#toString()
 		 * @see java.lang.Enum#toString()
 		 */
 		public String toString() {
-			return ObjectUtil.toString(this);
+			return Objects.toString(this);
 		}
 	}
 

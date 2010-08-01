@@ -34,7 +34,7 @@ import static org.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO10;
 import static org.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO11;
 
 import org.apache.commons.lang.StringUtils;
-import org.jrimum.utilix.ObjectUtil;
+import org.jrimum.utilix.Objects;
 
 /**
  * <p>
@@ -116,7 +116,7 @@ public class Modulo {
 	public Modulo(TipoDeModulo mod) {
 		super();
 		
-		ObjectUtil.checkNotNull(mod, "Módulo nulo!");
+		Objects.checkNotNull(mod, "Módulo nulo!");
 		
 		this.mod = mod;
 		initDefault();
@@ -139,7 +139,7 @@ public class Modulo {
 	public Modulo(TipoDeModulo mod, int limiteMaximo, int limiteMinimo) {
 		super();
 
-		ObjectUtil.checkNotNull(mod, "Módulo nulo!");
+		Objects.checkNotNull(mod, "Módulo nulo!");
 
 		this.limiteMaximo = limiteMaximo;
 		this.limiteMinimo = limiteMinimo;
@@ -549,6 +549,6 @@ public class Modulo {
 
 	@Override
 	public String toString() {
-		return ObjectUtil.toString(this);
+		return Objects.toString(this);
 	}
 }
