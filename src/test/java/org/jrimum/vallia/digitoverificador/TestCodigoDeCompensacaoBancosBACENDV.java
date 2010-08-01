@@ -35,7 +35,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang.StringUtils;
-import org.jrimum.utilix.text.StringUtil;
+import org.jrimum.utilix.text.Strings;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,7 +98,7 @@ public class TestCodigoDeCompensacaoBancosBACENDV {
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCalculeStringBlank() {
-		dv4CodigoCompensacaoBanco.calcule(StringUtil.WHITE_SPACE);
+		dv4CodigoCompensacaoBanco.calcule(Strings.WHITE_SPACE);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -161,7 +161,7 @@ public class TestCodigoDeCompensacaoBancosBACENDV {
 	
 	@Test
 	public void testIsCodigoValidoStringBlank() {
-		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido(StringUtil.WHITE_SPACE));
+		assertFalse(dv4CodigoCompensacaoBanco.isCodigoValido(Strings.WHITE_SPACE));
 	}
 	
 	@Test
