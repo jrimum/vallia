@@ -27,20 +27,15 @@
  * 
  */
 
-
 package org.jrimum.vallia.digitoverificador;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * 
- * Teste da classe <code>DV_Boleto_LinhaDigitável</code>
- * 
+ * Teste da classe <code>BoletoLinhaDigitavelDV</code>
  * 
  * @author Gabriel Guimarães
  * @author Gilmar P.S.L
@@ -53,68 +48,58 @@ import org.junit.Test;
  */
 public class TestBoletoLinhaDigitavelDV{
 	
-	private AbstractDigitoVerificador dv_Validator_LinhaDigitavel;
+	private AbstractDigitoVerificador dvLinhaDigitavel;
 
 	@Before
 	public void setUp() throws Exception {
 		
-		dv_Validator_LinhaDigitavel = new BoletoLinhaDigitavelDV();
+		dvLinhaDigitavel = new BoletoLinhaDigitavelDV();
 	}
-
-	@Test
-	public void testCalculeString() {
-		
-		try {
-					
-			dv_Validator_LinhaDigitavel.calcule(null);
-			
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-			
-		}catch(IllegalArgumentException iaex) {
-			
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-		
-		try {
-			
-			dv_Validator_LinhaDigitavel.calcule("abc123");
-			
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
 	
-		}catch(IllegalArgumentException iaex) {
-			
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-		
-		try {
-			
-			dv_Validator_LinhaDigitavel.calcule("12345678910");
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroNullDisparaExcecao() {
+		dvLinhaDigitavel.calcule(null);
+	}
 	
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-			
-		}catch(IllegalArgumentException iaex) {
-			
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-		
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcule("999977721"));
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcule("99997.7721"));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcule("3053015008"));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcule("30530.15008"));
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoStringComLetrasDisparaExcecao() {
+		dvLinhaDigitavel.calcule("1A2B3C");
 	}
-
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void seNumeroSemPontoMenorQue9DigitosDisparaExcecao() {
+		dvLinhaDigitavel.calcule("12345678");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void seNumeroComPontoMenorQue9DigitosDisparaExcecao() {
+		dvLinhaDigitavel.calcule("12345.678");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void seNumeroSemPontoMaiorQue10DigitosDisparaExcecao() {
+		dvLinhaDigitavel.calcule("12345678901");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void seNumeroComPontoMaiorQue10DigitosDisparaExcecao() {
+		dvLinhaDigitavel.calcule("12345.678901");
+	}
+	
 	@Test
-	public void testCalculeLong() {
+	public void quandoNumeroNoFormatoCorretoCalculaDigitoCorretamente_String() {
 		
-		assertEquals(0, dv_Validator_LinhaDigitavel.calcule(0));		
-		assertEquals(3, dv_Validator_LinhaDigitavel.calcule(999977721L));
-		assertEquals(2, dv_Validator_LinhaDigitavel.calcule(3053015008L));
+		assertEquals(3, dvLinhaDigitavel.calcule("999977721"));
+		assertEquals(3, dvLinhaDigitavel.calcule("99997.7721"));
+		assertEquals(2, dvLinhaDigitavel.calcule("3053015008"));
+		assertEquals(2, dvLinhaDigitavel.calcule("30530.15008"));
 	}
-
+	
+	@Test
+	public void quandoNumeroNoFormatoCorretoCalculaDigitoCorretamente_Long() {
+		
+		assertEquals(0, dvLinhaDigitavel.calcule(0));		
+		assertEquals(3, dvLinhaDigitavel.calcule(999977721L));
+		assertEquals(2, dvLinhaDigitavel.calcule(3053015008L));
+	}
 }

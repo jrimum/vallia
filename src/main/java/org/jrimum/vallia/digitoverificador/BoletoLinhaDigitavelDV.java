@@ -34,7 +34,6 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 import org.jrimum.utilix.text.Filler;
 
-
 /**
  * <p>
  * Segundo o padrão FEBRABAN a linha digitável possui cinco campos, dos quais
@@ -62,7 +61,6 @@ import org.jrimum.utilix.text.Filler;
  * Obs2.: A rotina de módulo utilizada é a módulo 10.
  * </p>
  * 
- * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
  * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
  * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
@@ -89,22 +87,14 @@ public class BoletoLinhaDigitavelDV extends AbstractDigitoVerificador {
 	 * Expressão regular para validação do campo da linha digitável, aceita os
 	 * seguintes formatos:
 	 * </p>
-	 * <ul type="circle"> <li><tt>#########</tt></li> <li><tt>#####.####</tt></li>
-	 * <li><tt>##########</tt></li> <li><tt>#####.#####</tt></li> </ul>
-	 * 
+	 * <ul>
+	 * 	<li>#########</li>
+	 * 	<li>#####.####</li>
+	 * 	<li>##########</li>
+	 * 	<li>#####.#####</li>
+	 * </ul>
 	 */
 	private static final String REGEX_CAMPO = "(\\d{9})|(\\d{10})|(\\d{5})\\.(\\d{4})|(\\d{5})\\.(\\d{5})";
-
-	/**
-	 *<p>
-	 * Construtor vaizo, o mesmo que <tt>super()</tt>.
-	 * </p>
-	 * 
-	 * @since 0.2
-	 */
-	public BoletoLinhaDigitavelDV() {
-		super();
-	}
 
 	/**
 	 * @see org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
@@ -133,15 +123,15 @@ public class BoletoLinhaDigitavelDV extends AbstractDigitoVerificador {
 
 			resto = modulo10.calcule(numero);
 
-			if (resto != 0)
+			if (resto != 0) {
 				dv = modulo10.valor() - resto;
-		} else
-			throw new IllegalArgumentException(
-					"O campo [ "
-							+ numero
-							+ " ] da linha digitável deve conter apenas números com 9 ou 10 dígitos !");
+			}
+		} else {
+			throw new IllegalArgumentException("O campo [" + numero 
+					+ "] da linha digitável deve conter apenas números com 9 ou 10 dígitos " +
+							"ou nos formatos [#####.####, #####.#####]");
+		}
 
 		return dv;
 	}
-
 }

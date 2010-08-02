@@ -34,7 +34,6 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 import org.jrimum.utilix.text.Filler;
 
-
 /**
  * <p>
  * O cálculo do dígito verificador do CNPJ é realizado em duas etapas e é
@@ -122,6 +121,8 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	}
 
 	/**
+	 * <p>
+	 * </p>
 	 * @see org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
 	 * @since 0.2
 	 */
@@ -130,37 +131,71 @@ public class CNPJDV extends AbstractDigitoVerificador {
 
 		int dv1 = 0;
 		int dv2 = 0;
+		
+		numero = removaFormatacao(numero);
 
-		boolean isFormatoValido = false;
+		if (isFormatoValido(numero)) {
 
-		validacao: {
-
-			if (StringUtils.isNotBlank(numero)) {
-
-				isFormatoValido = (Pattern.matches(REGEX_CNPJ_DV, numero) || Pattern
-						.matches(REGEX_CNPJ_DV_FORMATTED, numero));
-
-				if (isFormatoValido) {
-
-					numero = StringUtils.replaceChars(numero, ".", "");
-					numero = StringUtils.replaceChars(numero, "/", "");
-
-					dv1 = calculeDigito(numero);
-					dv2 = calculeDigito(numero + dv1);
-
-					break validacao;
-				}
-			}
-
+			dv1 = calculeDigito(numero);
+			dv2 = calculeDigito(numero + dv1);
+			
+		} else {
+			
 			throw new IllegalArgumentException(
-					"O CNPJ [ "
-							+ numero
-							+ " ] deve conter apenas números, sendo eles no formato ##.###.###/#### ou ############ !");
-
+				"O CNPJ [ " + numero
+				+ " ] deve conter apenas números, sendo eles no formato ##.###.###/#### ou ############ !");
 		}
 
 		return Integer.parseInt(dv1 + "" + dv2);
+	}
 
+	/**
+	 * Método null-safe que remove a formatação da String, com a intenção de deixar
+	 * apenas números.
+	 * 
+	 * @param numero - CNPJ que pode estar formatado.
+	 * @return Número CNPJ sem formatação.
+	 */
+	private String removaFormatacao(String numero) {
+		
+		numero = StringUtils.replaceChars(numero, ".", "");
+		numero = StringUtils.replaceChars(numero, "/", "");
+		
+		return numero;
+	}
+	
+	/**
+	 * <p>
+	 * Verifica se o número passado está em um formato aceitável para a realização do cálculo,
+	 * ou seja:
+	 * </p>
+	 * <ul>
+	 * 	<li>Não é null</li>
+	 * 	<li>Não é vazio</li>
+	 *  <li>Apenas números</li>
+	 *  <li>Não é somente zeros</li>
+	 *  <li>Está no formato ##.###.###/#### ou ############</li>
+	 * </ul>
+	 * 
+	 * @param numero - CNPJ para ser validado
+	 * @return <code>true</code> caso o número esteja em um formato válido; <code>false</code>, 
+	 * caso contrário.
+	 */
+	private boolean isFormatoValido(String numero) {
+		
+		boolean isValido = false;
+		
+		if (StringUtils.isNotBlank(numero)) {
+			
+			boolean formatoValido = (Pattern.matches(REGEX_CNPJ_DV, numero) || Pattern.matches(REGEX_CNPJ_DV_FORMATTED, numero));
+
+			if (formatoValido) {
+				
+				isValido = Long.parseLong(numero) > 0;
+			}
+		}
+		
+		return isValido;
 	}
 
 	/**

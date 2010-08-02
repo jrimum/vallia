@@ -27,18 +27,15 @@
  * 
  */
 
-
 package org.jrimum.vallia.digitoverificador;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Teste da classe <code>DV_Boleto_CódigoDeBarra</code>.
+ * Teste da classe <code>BoletoCodigoDeBarrasDV</code>.
  * 
  * @author Gabriel Guimarães
  * @author Gilmar P.S.L
@@ -48,58 +45,39 @@ import org.junit.Test;
  */
 public class TestBoletoCodigoDeBarrasDV{
 
-	private AbstractDigitoVerificador dv_Validator_CodigoDeBarra;
+	private static final String CODIGO_DE_BARRAS_VALIDO = "1049300600000022061014044910000000020061732";
+	
+	private AbstractDigitoVerificador codigoDeBarrasDV;
 
 	@Before
 	public void setUp() throws Exception {
 
-		dv_Validator_CodigoDeBarra = new BoletoCodigoDeBarrasDV();
+		codigoDeBarrasDV = new BoletoCodigoDeBarrasDV();
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroNullDisparaExcecao() {
+		codigoDeBarrasDV.calcule(null);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroEmBrancoDisparaExcecao() {
+		codigoDeBarrasDV.calcule("   ");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroComMenosDe43DigitosDisparaExececao() {
+		codigoDeBarrasDV.calcule("123456789");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoStringComLetrasDisparaExececao() {
+		codigoDeBarrasDV.calcule("123A45B678C9");
+	}
+	
 	@Test
-	public void testCalculeString() {
-
-		try {
-
-			dv_Validator_CodigoDeBarra.calcule(null);
-			
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-			
-			dv_Validator_CodigoDeBarra.calcule("123456789");
-			
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-			
-			dv_Validator_CodigoDeBarra.calcule("ABC123456789");
-			
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		assertEquals(6, dv_Validator_CodigoDeBarra
-				.calcule("1049300600000022061014044910000000020061732"));
+	public void quandoCodigoDeBarrasValidoDigitoCalculadoCorreto() {
+		assertEquals(6, codigoDeBarrasDV.calcule(CODIGO_DE_BARRAS_VALIDO));
 	}
 
 }

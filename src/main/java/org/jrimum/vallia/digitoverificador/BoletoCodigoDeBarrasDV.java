@@ -72,18 +72,6 @@ public class BoletoCodigoDeBarrasDV extends AbstractDigitoVerificador {
 	private static final Modulo modulo11 = new Modulo(TipoDeModulo.MODULO11);
 
 	/**
-	 * <p>
-	 * Construtor vaizo, o mesmo que <tt>super()</tt>.
-	 * </p>
-	 * 
-	 * @since 0.2
-	 */
-	public BoletoCodigoDeBarrasDV() {
-
-		super();
-	}
-
-	/**
 	 * @see org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(String)
 	 * @since 0.2
 	 */
@@ -102,16 +90,17 @@ public class BoletoCodigoDeBarrasDV extends AbstractDigitoVerificador {
 
 			// Seguindo as especificações da FEBRABAN, caso o resto seja
 			// (0), (1) ou (10), será atribuído (1) ao digito verificador.
-			if ((resto == 0) || (resto == 1) || (resto == 10))
+			if ((resto == 0) || (resto == 1) || (resto == 10)) {
 				dv = 1;
 			// Caso contrário, dv = 11 - resto.
-			else
+			} else {
 				dv = modulo11.valor() - resto;
+			}
 
 		} else {
 			throw new IllegalArgumentException("O código de barras " + "[ "
 					+ numero + " ] deve conter apenas números e "
-					+ TAMANHO_SEM_DV + " caracteres.");
+					+ TAMANHO_SEM_DV + " dígitos.");
 		}
 
 		return dv;

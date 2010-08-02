@@ -39,7 +39,7 @@ import org.apache.commons.lang.StringUtils;
  * </p>
  * 
  * @author <a href="http://gilmatryx.googlepages.com">Gilmar P.S.L.</a>
- * @author Misael
+ * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
  * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
  * 
  * @since 0.2
@@ -77,8 +77,8 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	 * 
 	 * @see org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(java.lang.String)
 	 * 
-	 * @param numero
-	 * @return int digito
+	 * @param numero - Código de compensação
+	 * @return Dígito verificador que foi calculado
 	 * 
 	 * @throws IllegalArgumentException Caso não seja um código válido
 	 * 
@@ -96,12 +96,12 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 
 	/**
 	 * <p>
-	 * Calcula o dígito verificador para código de compensação passado.
+	 * Calcula o dígito verificador para o código de compensação passado.
 	 * </p>
 	 * 
-	 * @param numero
+	 * @param numero - Código de compensação
 	 * 
-	 * @return int digito
+	 * @return Dígito verificador que foi calculado
 	 * 
 	 * @since 0.2
 	 */
@@ -112,12 +112,12 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 
 	/**
 	 * <p>
-	 * Calcula o dígito verificador para código de compensação passado.
+	 * Calcula o dígito verificador para o código de compensação passado.
 	 * </p>
 	 * 
-	 * @param numero
+	 * @param numero - Código de compensação
 	 * 
-	 * @return int digito
+	 * @return Dígito verificador que foi calculado
 	 * 
 	 * @since 0.2
 	 * 

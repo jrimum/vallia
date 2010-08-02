@@ -27,18 +27,14 @@
  * 
  */
 
-
 package org.jrimum.vallia.digitoverificador;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * 
  * Teste da classe CPFDV.
  * 
  * @author Gabriel Guimarães
@@ -49,109 +45,56 @@ import org.junit.Test;
  * @since JRimum 1.0
  * 
  * @version 1.0
- * 
  */
 public class TestCPFDV{
 
-	private CPFDV dv_Validator_CPF;
+	private CPFDV dvCPF;
 
 	@Before
 	public void setUp() throws Exception {
 
-		dv_Validator_CPF = new CPFDV();
+		dvCPF = new CPFDV();
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroNullDisparaExcecao() {
+		dvCPF.calcule(null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroEmBrancoDisparaExcecao() {
+		dvCPF.calcule("  ");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoStringComLetrasDisparaExcecao() {
+		dvCPF.calcule("1A2B3C");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroApenasZerosDisparaExcecao() {
+		dvCPF.calcule("000000000");
+	}
+	
+	@Test
+	public void quandoNumeroNoFormatoCorretoSemFormatacaoCalculaCorretamente() {
+		assertEquals(38, dvCPF.calcule("222333666"));
 	}
 
 	@Test
-	public void testCalculeString() {
-		
-		try {
-
-			dv_Validator_CPF.calcule(null);
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			dv_Validator_CPF.calcule("abc123");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			dv_Validator_CPF.calcule("00000000000");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			dv_Validator_CPF.calcule("2223336667");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			dv_Validator_CPF.calcule("000.000.000.000");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			dv_Validator_CPF.calcule("222.333.666.7");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		assertEquals(38, dv_Validator_CPF.calcule("222333666"));
-		assertEquals(38, dv_Validator_CPF.calcule("222.333.666"));
-
+	public void quandoNumeroNoFormatoCorretoComFormatacaoCalculaCorretamente() {
+		assertEquals(38, dvCPF.calcule("222.333.666"));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroLongMaiorQue9DigitosDisparaExcecao() {
+		dvCPF.calcule(2223336661L);
 	}
 
 	@Test
-	public void testCalculeLong() {
+	public void quandoNumeroLongMenorQue9DigitosCalculaCorretamente() {
 
-		assertEquals(38, dv_Validator_CPF.calcule(222333666));
-		assertEquals(87, dv_Validator_CPF.calcule(2333666));
+		assertEquals(38, dvCPF.calcule(222333666L));
+		assertEquals(87, dvCPF.calcule(2333666L));
 	}
-
 }

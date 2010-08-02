@@ -58,8 +58,8 @@ public abstract class AbstractDigitoVerificador {
 	 *            - número que será calculado o dígito verificador.
 	 * @return dígito verificador.
 	 * @throws IllegalArgumentException
-	 *             caso a String não esteja em um formatador aceitável. (O
-	 *             formatador é definido nas subclasses implementadoras).
+	 *             caso a String não esteja em um formato aceitável. (O
+	 *             formato é definido nas subclasses implementadoras).
 	 * @since 0.2
 	 */
 	public abstract int calcule(String numero) throws IllegalArgumentException;

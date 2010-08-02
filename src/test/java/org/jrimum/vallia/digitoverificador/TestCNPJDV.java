@@ -27,19 +27,15 @@
  * 
  */
 
-
 package org.jrimum.vallia.digitoverificador;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * 
- * Teste da classe DV_CadastroDePessoaJurídica.
+ * Teste da classe CNPJDV.
  * 
  * @author Gabriel Guimarães
  * @author Gilmar P.S.L
@@ -53,53 +49,53 @@ import org.junit.Test;
  */
 public class TestCNPJDV{
 
-	private CNPJDV dv_Validator_CNPJ;
+	private CNPJDV dvCNPJ;
 
 	@Before
 	public void setUp() throws Exception {
 
-		dv_Validator_CNPJ = new CNPJDV();
+		dvCNPJ = new CNPJDV();
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroNullDisparaExcecao() {
+		dvCNPJ.calcule(null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroEmBrancoDisparaExcecao() {
+		dvCNPJ.calcule("  ");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoStringComLetrasDisparaExcecao() {
+		dvCNPJ.calcule("1A2B3C");
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroApenasZerosDisparaExcecao() {
+		dvCNPJ.calcule("000000000000");
+	}
+	
+	@Test
+	public void quandoNumeroNoFormatoCorretoSemFormatacaoCalculaCorretamente() {
+		assertEquals(81, dvCNPJ.calcule("112223330001"));
 	}
 
 	@Test
-	public void testCalculeString() {
-
-		try {
-
-			dv_Validator_CNPJ.calcule(null);
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		try {
-
-			dv_Validator_CNPJ.calcule("abc123");
-
-			fail("IllegalArgumentException esperado não ocorreu.");
-			assertTrue(false);
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-		assertEquals(81, dv_Validator_CNPJ.calcule("112223330001"));
-		assertEquals(81, dv_Validator_CNPJ.calcule("11.222.333/0001"));
-
+	public void quandoNumeroNoFormatoCorretoComFormatacaoCalculaCorretamente() {
+		assertEquals(81, dvCNPJ.calcule("11.222.333/0001"));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void quandoNumeroLongMaiorQue12DigitosDisparaExcecao() {
+		dvCNPJ.calcule(1112223330001L);
 	}
 
 	@Test
-	public void testCalculeLong() {
+	public void quandoNumeroLongMenorQue12DigitosCalculaCorretamente() {
 
-		assertEquals(81, dv_Validator_CNPJ.calcule(112223330001L));
-		assertEquals(65, dv_Validator_CNPJ.calcule(2223330001L));
+		assertEquals(81, dvCNPJ.calcule(112223330001L));
+		assertEquals(65, dvCNPJ.calcule(2223330001L));
 	}
-
 }

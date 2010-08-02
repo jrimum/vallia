@@ -40,7 +40,6 @@ import org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador;
 import org.jrimum.vallia.digitoverificador.CNPJDV;
 import org.jrimum.vallia.digitoverificador.CPFDV;
 
-
 /**
  * <p>
  * Representa a família de validadores para o cadastro de pessoa na receita
@@ -126,19 +125,19 @@ public abstract class AbstractCPRFValidator {
 
 			switch (this) {
 
-			case CPF:
-
-				validador = new CPFValidator();
-				validador.digitoVerificador = new CPFDV();
-
-				break;
-
-			case CNPJ:
-
-				validador = new CNPJValidator();
-				validador.digitoVerificador = new CNPJDV();
-
-				break;
+				case CPF:
+	
+					validador = new CPFValidator();
+					validador.digitoVerificador = new CPFDV();
+	
+					break;
+	
+				case CNPJ:
+	
+					validador = new CNPJValidator();
+					validador.digitoVerificador = new CNPJDV();
+	
+					break;
 			}
 
 			return validador;
