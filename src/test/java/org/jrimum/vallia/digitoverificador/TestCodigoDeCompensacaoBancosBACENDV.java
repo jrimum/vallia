@@ -49,7 +49,7 @@ import org.junit.Test;
  * </p>
  * 
  * @author <a href="http://gilmatryx.googlepages.com">Gilmar P.S.L.</a>
- * @author Misael
+ * <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
  * 
  * @since 0.2
  * 
