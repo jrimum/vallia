@@ -40,39 +40,10 @@ public class TestModulo {
 
 	private static Modulo modulo11 = new Modulo(TipoDeModulo.MODULO11);
 
-	@Test
-	public final void testModuloEnumModulo() {
-
-		try {
-
-			new Modulo(null);
-
-			assertTrue(false);
-			fail("IllegalArgumentException esperado não ocorreu.");
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
-
-	}
-
-	@Test
-	public final void testModuloEnumModuloIntInt() {
-
-		try {
-
-			new Modulo(null, 0, 0);
-
-			assertTrue(false);
-			fail("IllegalArgumentException esperado não ocorreu.");
-
-		} catch (IllegalArgumentException iaex) {
-
-			assertTrue(true);
-			System.out.println(iaex.getMessage());
-		}
+	@Test(expected = NullPointerException.class)
+	public void quandoTipoDeModuloNullDisparaExcecao() {
+		new Modulo(null);
+		new Modulo(null, 0, 0);
 	}
 
 	@Test
