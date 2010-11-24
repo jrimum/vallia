@@ -40,7 +40,7 @@ public class TestModulo {
 
 	private static Modulo modulo11 = new Modulo(TipoDeModulo.MODULO11);
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void quandoTipoDeModuloNullDisparaExcecao() {
 		new Modulo(null);
 		new Modulo(null, 0, 0);
