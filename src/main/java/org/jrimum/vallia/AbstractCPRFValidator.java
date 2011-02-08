@@ -232,8 +232,8 @@ public abstract class AbstractCPRFValidator {
 			validatorCPRF.tipoDeCadastro = tipoDeCadastro;
 
 		} else {
-			throw new IllegalArgumentException("Tipo de Cadastro [ "
-					+ tipoDeCadastro + " ] nulo !");
+			throw new IllegalArgumentException("Tipo de Cadastro [ \""
+					+ tipoDeCadastro + "\" ] nulo !");
 		}
 
 		return validatorCPRF;
@@ -279,9 +279,9 @@ public abstract class AbstractCPRFValidator {
 
 			}
 
-			throw new IllegalArgumentException("O código de cadastro [ "
+			throw new IllegalArgumentException("O código de cadastro [ \""
 					+ codigoDoCadastro
-					+ " ] não está em um formatador válido !");
+					+ "\" ] não está em um formato válido !");
 		}
 
 		return tipo;
@@ -313,15 +313,15 @@ public abstract class AbstractCPRFValidator {
 			} else {
 
 				throw new IllegalArgumentException(
-						"O cadastro está em um tamanho incorreto ou não exsite: [ "
-								+ codigoDoCadastro + " ]");
+						"O cadastro está em um tamanho incorreto ou não exsite: [ \""
+								+ codigoDoCadastro + "\" ]");
 			}
 		} else {
 
 			throw new IllegalArgumentException(
-					"O tipo de cadastro está incorreto: [ " + tipoDeCadastro
-							+ " ] ou o cadastro não exsite: [ "
-							+ codigoDoCadastro + " ]");
+					"O tipo de cadastro está incorreto: [ \"" + tipoDeCadastro
+							+ "\" ] ou o cadastro não exsite: [ \""
+							+ codigoDoCadastro + "\" ]");
 		}
 
 		return isValido;
