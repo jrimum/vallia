@@ -34,11 +34,11 @@ import org.apache.commons.lang.StringUtils;
 
 public class GuiaCodigoDeBarrasDV extends AbstractDigitoVerificador {
 
-	private static final long serialVersionUID = 7977220669126110040L;
+	private static final long serialVersionUID = -560089440368821000L;
 
 	private static final int TAMANHO_SEM_DV = 43;
 
-	private static Modulo modulo;
+	private Modulo modulo;
 
 	/**
 	 * <p>

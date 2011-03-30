@@ -29,19 +29,21 @@
 
 package br.com.nordestefomento.jrimum.vallia.digitoverificador;
 
+import java.io.Serializable;
+
 import org.apache.commons.lang.StringUtils;
 
 
-public class GuiaLinhaDigitavelDV extends AbstractDigitoVerificador {
+public class GuiaLinhaDigitavelDV extends AbstractDigitoVerificador implements Serializable {
 
-	private static final long serialVersionUID = -9177413216786384292L;
+	private static final long serialVersionUID = -1093744246886652909L;
 
 	/**
 	 *<p>
-	 * Módulo 10 utilizado no cálculo.
+	 * Módulo utilizado no cálculo.
 	 * </p>
 	 */
-	private static Modulo modulo;
+	private Modulo modulo;
 
 	/**
 	 *<p>
