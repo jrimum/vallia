@@ -30,6 +30,7 @@
 package org.jrimum.vallia.digitoverificador;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.Exceptions;
 
 /**
  * <p>
@@ -98,7 +99,7 @@ public class BoletoCodigoDeBarrasDV extends AbstractDigitoVerificador {
 			}
 
 		} else {
-			throw new IllegalArgumentException("O código de barras " + "[ "
+			Exceptions.throwIllegalArgumentException("O código de barras " + "[ "
 					+ numero + " ] deve conter apenas números e "
 					+ TAMANHO_SEM_DV + " dígitos.");
 		}

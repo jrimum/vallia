@@ -32,6 +32,7 @@ package org.jrimum.vallia.digitoverificador;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.Exceptions;
 import org.jrimum.utilix.text.Filler;
 
 /**
@@ -141,7 +142,7 @@ public class CNPJDV extends AbstractDigitoVerificador {
 			
 		} else {
 			
-			throw new IllegalArgumentException(
+			Exceptions.throwIllegalArgumentException(
 				"O CNPJ [ " + numero
 				+ " ] deve conter apenas números, sendo eles no formato ##.###.###/#### ou ############ !");
 		}

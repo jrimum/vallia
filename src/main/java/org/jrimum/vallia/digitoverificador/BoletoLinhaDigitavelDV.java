@@ -32,6 +32,7 @@ package org.jrimum.vallia.digitoverificador;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.Exceptions;
 import org.jrimum.utilix.text.Filler;
 
 /**
@@ -127,7 +128,7 @@ public class BoletoLinhaDigitavelDV extends AbstractDigitoVerificador {
 				dv = modulo10.valor() - resto;
 			}
 		} else {
-			throw new IllegalArgumentException("O campo [" + numero 
+			Exceptions.throwIllegalArgumentException("O campo [" + numero 
 					+ "] da linha digitável deve conter apenas números com 9 ou 10 dígitos " +
 							"ou nos formatos [#####.####, #####.#####]");
 		}

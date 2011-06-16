@@ -34,6 +34,7 @@ import static org.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO10;
 import static org.jrimum.vallia.digitoverificador.TipoDeModulo.MODULO11;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.Exceptions;
 import org.jrimum.utilix.Objects;
 
 /**
@@ -287,7 +288,7 @@ public class Modulo {
 			}
 
 		} else
-			throw new IllegalArgumentException(
+			Exceptions.throwIllegalArgumentException(
 					O_ARGUMENTO_DEVE_CONTER_APENAS_NUMEROS);
 
 		return soma;
@@ -411,7 +412,7 @@ public class Modulo {
 			}
 
 		} else
-			throw new IllegalArgumentException(
+			Exceptions.throwIllegalArgumentException(
 					O_ARGUMENTO_DEVE_CONTER_APENAS_NUMEROS);
 
 		return soma;

@@ -31,6 +31,7 @@
 package org.jrimum.vallia.digitoverificador;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.Exceptions;
 
 /**
  * <p>
@@ -88,7 +89,7 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 	public int calcule(String numero) {
 		
 		if (!isCodigoValido(numero)) {
-			throw new IllegalArgumentException(MSG);
+			Exceptions.throwIllegalArgumentException(MSG);
 		}
 		
 		return calcule(Integer.valueOf(numero.trim()));
@@ -129,7 +130,7 @@ public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador 
 		int dv = -1;
 
 		if (!isCodigoValido(numero)) {
-			throw new IllegalArgumentException(MSG);
+			Exceptions.throwIllegalArgumentException(MSG);
 		}
 
 		int soma = Modulo.calculeSomaSequencialMod11(

@@ -35,6 +35,7 @@ import java.io.Serializable;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.Exceptions;
 import org.jrimum.utilix.Objects;
 import org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador;
 import org.jrimum.vallia.digitoverificador.CNPJDV;
@@ -232,7 +233,7 @@ public abstract class AbstractCPRFValidator {
 			validatorCPRF.tipoDeCadastro = tipoDeCadastro;
 
 		} else {
-			throw new IllegalArgumentException("Tipo de Cadastro [ \""
+			Exceptions.throwIllegalArgumentException("Tipo de Cadastro [ \""
 					+ tipoDeCadastro + "\" ] nulo !");
 		}
 
@@ -279,7 +280,7 @@ public abstract class AbstractCPRFValidator {
 
 			}
 
-			throw new IllegalArgumentException("O código de cadastro [ \""
+			Exceptions.throwIllegalArgumentException("O código de cadastro [ \""
 					+ codigoDoCadastro
 					+ "\" ] não está em um formato válido !");
 		}
@@ -312,13 +313,13 @@ public abstract class AbstractCPRFValidator {
 
 			} else {
 
-				throw new IllegalArgumentException(
+				Exceptions.throwIllegalArgumentException(
 						"O cadastro está em um tamanho incorreto ou não exsite: [ \""
 								+ codigoDoCadastro + "\" ]");
 			}
 		} else {
 
-			throw new IllegalArgumentException(
+			Exceptions.throwIllegalArgumentException(
 					"O tipo de cadastro está incorreto: [ \"" + tipoDeCadastro
 							+ "\" ] ou o cadastro não exsite: [ \""
 							+ codigoDoCadastro + "\" ]");

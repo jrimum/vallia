@@ -32,6 +32,7 @@ package org.jrimum.vallia.digitoverificador;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
+import org.jrimum.utilix.Exceptions;
 import org.jrimum.utilix.text.Filler;
 
 /**
@@ -133,7 +134,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 			
 		} else {
 
-			throw new IllegalArgumentException("O CPF [ " + numero
+			Exceptions.throwIllegalArgumentException("O CPF [ " + numero
 						+ " ] deve conter apenas números, sendo eles no formato ###.###.### ou ######### !");
 		}
 
