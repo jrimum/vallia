@@ -156,7 +156,6 @@ public abstract class AbstractCPRFValidator {
 	/**
 	 * @see org.jrimum.vallia.AbstractCPRFValidator.TipoDeCPRF
 	 */
-	@SuppressWarnings("unused")
 	private TipoDeCPRF tipoDeCadastro;
 
 	/**
@@ -199,7 +198,7 @@ public abstract class AbstractCPRFValidator {
 	 *                cadastro de pessoa.
 	 * @since 0.2
 	 */
-	public static AbstractCPRFValidator create(String codigoDoCadastro)
+	public static final AbstractCPRFValidator create(String codigoDoCadastro)
 			throws IllegalArgumentException {
 
 		AbstractCPRFValidator validatorCPRF = null;
@@ -222,7 +221,7 @@ public abstract class AbstractCPRFValidator {
 	 * 
 	 * @since 0.2
 	 */
-	public static AbstractCPRFValidator create(TipoDeCPRF tipoDeCadastro) {
+	public static final AbstractCPRFValidator create(TipoDeCPRF tipoDeCadastro) {
 
 		AbstractCPRFValidator validatorCPRF = null;
 
@@ -300,7 +299,7 @@ public abstract class AbstractCPRFValidator {
 	 * 
 	 * @since 0.2
 	 */
-	public static boolean isParametrosValidos(String codigoDoCadastro,
+	public static final boolean isParametrosValidos(String codigoDoCadastro,
 			TipoDeCPRF tipoDeCadastro) throws IllegalArgumentException {
 
 		boolean isValido = false;
@@ -339,7 +338,7 @@ public abstract class AbstractCPRFValidator {
 	 * 
 	 * @since 0.2
 	 */
-	public String getCodigoDoCadastro() {
+	public final String getCodigoDoCadastro() {
 
 		return codigoDoCadastro.toString();
 	}
@@ -352,7 +351,7 @@ public abstract class AbstractCPRFValidator {
 	 * @return verdadeiro se for de pessoa física.
 	 * @since 0.2
 	 */
-	public boolean isFisica() {
+	public final boolean isFisica() {
 
 		return this instanceof CPFValidator;
 	}
@@ -363,8 +362,15 @@ public abstract class AbstractCPRFValidator {
 	 * @return verdadeiro se for de pessoa jurídica.
 	 * @since 0.2
 	 */
-	public boolean isJuridica() {
+	public final boolean isJuridica() {
 
 		return this instanceof CNPJValidator;
+	}
+	
+	/**
+	 * @return the tipoDeCadastro
+	 */
+	public final TipoDeCPRF getTipoDeCadastro() {
+		return tipoDeCadastro;
 	}
 }
