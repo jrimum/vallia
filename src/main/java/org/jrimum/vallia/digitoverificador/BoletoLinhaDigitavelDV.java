@@ -74,8 +74,6 @@ import org.jrimum.utilix.text.Filler;
  */
 public class BoletoLinhaDigitavelDV extends AbstractDigitoVerificador {
 
-	private static final long serialVersionUID = -9177413216786384292L;
-
 	/**
 	 *<p>
 	 * Módulo 10 utilizado no cálculo.

@@ -61,11 +61,6 @@ package org.jrimum.vallia;
 class CNPJValidator extends AbstractCPRFValidator {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7818892654534965062L;
-
-	/**
 	 * @see org.jrimum.vallia.AbstractCPRFValidator#isValido()
 	 * @since 0.2
 	 */

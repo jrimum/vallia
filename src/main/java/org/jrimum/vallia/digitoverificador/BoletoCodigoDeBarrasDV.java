@@ -66,8 +66,6 @@ import org.jrimum.utilix.Exceptions;
  */
 public class BoletoCodigoDeBarrasDV extends AbstractDigitoVerificador {
 
-	private static final long serialVersionUID = 7977220668336110040L;
-
 	private static final int TAMANHO_SEM_DV = 43;
 
 	private static final Modulo modulo11 = new Modulo(TipoDeModulo.MODULO11);

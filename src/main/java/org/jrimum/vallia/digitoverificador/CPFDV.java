@@ -78,11 +78,6 @@ import org.jrimum.utilix.text.Filler;
 public class CPFDV extends AbstractDigitoVerificador {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2059692008894172695L;
-
-	/**
 	 * <p>
 	 * Liminte mínimo do para cálculo no módulo 11.
 	 *</p>

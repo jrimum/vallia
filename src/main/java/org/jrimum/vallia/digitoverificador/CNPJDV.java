@@ -77,11 +77,6 @@ import org.jrimum.utilix.text.Filler;
 public class CNPJDV extends AbstractDigitoVerificador {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -4702398145481452503L;
-
-	/**
 	 * <p>
 	 * Liminte mínimo do para cálculo no módulo 11.
 	 *</p>

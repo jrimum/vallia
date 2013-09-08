@@ -55,11 +55,6 @@ import org.jrimum.utilix.Objects;
 public class Modulo {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3612368544258125201L;
-
-	/**
 	 * <p>
 	 * Mensagem da exceção lançada no método calcular.
 	 * </p>

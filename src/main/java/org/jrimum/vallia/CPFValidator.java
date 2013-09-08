@@ -60,11 +60,6 @@ package org.jrimum.vallia;
 class CPFValidator extends AbstractCPRFValidator {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7284156043760247784L;
-
-	/**
 	 * @see org.jrimum.vallia.AbstractCPRFValidator#isValido()
 	 * @since 0.2
 	 */

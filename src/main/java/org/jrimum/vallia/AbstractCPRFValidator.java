@@ -60,8 +60,6 @@ import org.jrimum.vallia.digitoverificador.CPFDV;
  */
 public abstract class AbstractCPRFValidator {
 
-	private static final long serialVersionUID = -3107505512223559948L;
-
 	/**
 	 * <p>
 	 * Cadastro de pessoa para validação.
