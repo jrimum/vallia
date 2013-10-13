@@ -29,11 +29,14 @@
 
 package org.jrimum.vallia.digitoverificador;
 
+
+import static org.apache.commons.lang.StringUtils.isNotBlank;
+import static org.apache.commons.lang.StringUtils.replaceChars;
+import static org.jrimum.utilix.text.Strings.fillWithZeroLeft;
+
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang.StringUtils;
 import org.jrimum.utilix.Exceptions;
-import org.jrimum.utilix.text.Filler;
 
 /**
  * <p>
@@ -113,7 +116,7 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	@Override
 	public int calcule(long numero) {
 
-		return calcule(Filler.ZERO_LEFT.fill(String.valueOf(numero), 12));
+		return calcule(fillWithZeroLeft(numero, 12));
 	}
 
 	/**
@@ -154,8 +157,8 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	 */
 	private String removaFormatacao(String numero) {
 		
-		numero = StringUtils.replaceChars(numero, ".", "");
-		numero = StringUtils.replaceChars(numero, "/", "");
+		numero = replaceChars(numero, ".", "");
+		numero = replaceChars(numero, "/", "");
 		
 		return numero;
 	}
@@ -181,7 +184,7 @@ public class CNPJDV extends AbstractDigitoVerificador {
 		
 		boolean isValido = false;
 		
-		if (StringUtils.isNotBlank(numero)) {
+		if (isNotBlank(numero)) {
 			
 			boolean formatoValido = (Pattern.matches(REGEX_CNPJ_DV, numero) || Pattern.matches(REGEX_CNPJ_DV_FORMATTED, numero));
 

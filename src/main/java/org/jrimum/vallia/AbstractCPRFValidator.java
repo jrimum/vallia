@@ -42,10 +42,8 @@ import org.jrimum.vallia.digitoverificador.CNPJDV;
 import org.jrimum.vallia.digitoverificador.CPFDV;
 
 /**
- * <p>
  * Representa a família de validadores para o cadastro de pessoa na receita
  * federal (CPRF).
- * </p>
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
  * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>

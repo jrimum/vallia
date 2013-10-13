@@ -30,9 +30,8 @@
 package org.jrimum.vallia;
 
 /**
- * <p>
  * Validador especialista para CPF.
- * </p>
+ * 
  * <p>
  * O cadastro de pessoa física tem as seguintes características:
  * <ul>

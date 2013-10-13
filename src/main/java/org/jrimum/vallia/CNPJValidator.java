@@ -30,9 +30,7 @@
 package org.jrimum.vallia;
 
 /**
- * <p>
  * Validador especialista para CNPJ.
- * </p>
  * 
  * <p>
  * O cadastro de pessoa jurídica tem as seguintes características:
