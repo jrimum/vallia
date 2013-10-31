@@ -93,7 +93,7 @@
 					</includes>
 					<excludes>
 						<exclude>org/jrimum/vallia/excludes/**/*</exclude>
-						<exclude>org/jrimum/vallia/**/*$*</exclude> <!-- Exclui classes internas anônimas para evitar erros -->
+						<exclude>org/jrimum/vallia/**/*$*</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
