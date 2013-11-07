@@ -59,48 +59,36 @@ import org.jrimum.vallia.digitoverificador.CPFDV;
 public abstract class AbstractCPRFValidator {
 
 	/**
-	 * <p>
 	 * Cadastro de pessoa para validação.
-	 * </p>
 	 */
 	protected StringBuilder codigoDoCadastro;
 
 	/**
-	 * <p>
 	 * Validador de dígito verificador do cadastro de Pessoa.
-	 * </p>
 	 */
 	protected AbstractDigitoVerificador digitoVerificador;
 
 	/**
-	 * <p>
 	 * Expressão regular para validação de CPF: "###.###.###-##" ou
 	 * "###########".
-	 * </p>
 	 */
 	private static final String REGEX_CPF = "(\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2})|(\\d{11})";
 
 	/**
-	 * <p>
 	 * Expressão regular para validação de CNPJ: "##.###.###/####-##" ou
 	 * "##############".
-	 * </p>
 	 */
 	private static final String REGEX_CNPJ = "(\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2})|(\\d{14})";
 
 	/**
-	 * <p>
 	 * Expressão regular para validação de um cadastro: "###" ou
 	 * "##############".
-	 * </p>
 	 */
 	private static final String REGEX_CADASTRO = "\\d{3,14}";
 
 	/**
-	 * <p>
 	 * Representa o tipo de cadastro e fornece o autenticador correto de a cordo
 	 * com este tipo.
-	 * </p>
 	 * 
 	 * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
 	 * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
@@ -155,27 +143,21 @@ public abstract class AbstractCPRFValidator {
 	private TipoDeCPRF tipoDeCadastro;
 
 	/**
-	 * <p>
 	 * Valida o dígito verificador do cadastro de pessoa passado durante a
 	 * instanciação do validador.
-	 * </p>
 	 * 
 	 * @return verdadeiro se o dígito verificador for válido.
 	 */
 	public abstract boolean isValido();
 
 	/**
-	 * <p>
 	 * Revome a formatação existente em <code>códigoDoCadastro</code>.
-	 * </p>
 	 */
 	protected abstract void removeFormatacao();
 
 	/**
-	 * <p>
 	 * Recupera uma instância de um validador para o cadastro de pessoa a partir
 	 * de um identificador.
-	 * </p>
 	 * <p>
 	 * Primeiro é feita uma pré-validação que consiste em:
 	 * <ul>
@@ -208,9 +190,7 @@ public abstract class AbstractCPRFValidator {
 	}
 
 	/**
-	 * <p>
 	 * Cria um validador a partir do tipo de CPRF.
-	 * </p>
 	 * 
 	 * @param tipoDeCadastro
 	 * @return um validador
@@ -236,12 +216,10 @@ public abstract class AbstractCPRFValidator {
 	}
 
 	/**
-	 * <p>
 	 * Faz a pré-validação e se correto identifica o tipo de cadastro.
-	 * </p>
 	 * 
 	 * @param codigoDoCadastro
-	 * @return
+	 * @return Tipo de CPRF
 	 * @throws IllegalArgumentException
 	 * 
 	 * @since 0.2
@@ -284,9 +262,7 @@ public abstract class AbstractCPRFValidator {
 	}
 
 	/**
-	 * <p>
 	 * Define se os parâmetros válidos em relação a nulidade e formato de CPRF.
-	 * </p>
 	 * 
 	 * @param codigoDoCadastro
 	 * @param tipoDeCadastro
@@ -324,11 +300,9 @@ public abstract class AbstractCPRFValidator {
 	}
 
 	/**
-	 * <p>
 	 * Recupera o cadastro de pessoa a ser validado. <br />
 	 * Obs.: A String retornada não possui formatação, ou seja, possui apenas os
 	 * dígitos.
-	 * </p>
 	 * 
 	 * @return cadastro de pessoa a ser validado.
 	 * 
@@ -340,9 +314,7 @@ public abstract class AbstractCPRFValidator {
 	}
 
 	/**
-	 * <p>
 	 * Indica se o validador é de pessoa física.
-	 * </p>
 	 * 
 	 * @return verdadeiro se for de pessoa física.
 	 * @since 0.2
@@ -353,7 +325,7 @@ public abstract class AbstractCPRFValidator {
 	}
 
 	/**
-	 * </p> Indica se o validador é de pessoa jurídica. </p>
+	 * Indica se o validador é de pessoa jurídica.
 	 * 
 	 * @return verdadeiro se for de pessoa jurídica.
 	 * @since 0.2
