@@ -142,7 +142,7 @@
 		<dependency>
 			<groupId>org.jrimum</groupId>
 			<artifactId>jrimum-utilix</artifactId>
-			<version>0.2.3-DEV-SNAPSHOT</version>
+			<version>0.2.3</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
