@@ -64,6 +64,27 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>animal-sniffer-maven-plugin</artifactId>
+				<version>1.6</version>
+				<configuration>
+					<signature>
+						<groupId>org.codehaus.mojo.signature</groupId>
+						<artifactId>java15</artifactId>
+						<version>1.0</version>
+					</signature>
+				</configuration>
+				<executions>
+					<execution>
+						<id>animal-sniffer</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.4</version>
 				<configuration>
@@ -142,7 +163,7 @@
 		<dependency>
 			<groupId>org.jrimum</groupId>
 			<artifactId>jrimum-utilix</artifactId>
-			<version>0.2.3</version>
+			<version>0.2.3-DEV-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
