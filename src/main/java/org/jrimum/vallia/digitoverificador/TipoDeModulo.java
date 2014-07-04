@@ -32,9 +32,7 @@ package org.jrimum.vallia.digitoverificador;
 import java.io.Serializable;
 
 /**
- * <p>
  * Enumeração das implementações dos módulos.
- * </p>
  * 
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  * 
@@ -45,11 +43,7 @@ import java.io.Serializable;
 public enum TipoDeModulo implements Serializable {
 
 	/**
-	 * <p>
 	 * Módulo do tipo 11.
-	 * </p>
-	 * 
-	 * @author <a href=http://gilmatryx.googlepages.com/>Gilmar P.S.L.</a>
 	 * 
 	 * @since 0.2
 	 */
@@ -64,11 +58,7 @@ public enum TipoDeModulo implements Serializable {
 	},
 
 	/**
-	 * <p>
 	 * Módulo do tipo 11.
-	 * </p>
-	 * 
-	 * @author <a href=http://gilmatryx.googlepages.com/>Gilmar P.S.L.</a>
 	 * 
 	 * @since 0.2
 	 */
@@ -83,9 +73,7 @@ public enum TipoDeModulo implements Serializable {
 	};
 
 	/**
-	 * <p>
 	 * Retorna o valor do módulo.
-	 * </p>
 	 * 
 	 * @return 10 ou 11
 	 * 

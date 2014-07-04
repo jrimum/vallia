@@ -36,7 +36,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * 
  * Teste da classe <code>Validator_CadastroDePessoaFísica</code>.
  * 
  * 
@@ -45,9 +44,9 @@ import org.junit.Test;
  * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
  * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
  * 
- * @since JRimum 1.0
+ * @since 0.2
  * 
- * @version 1.0
+ * @version 0.2
  */
 public class TestCPFValidator{
 

@@ -38,10 +38,9 @@ import org.jrimum.utilix.Exceptions;
 import org.jrimum.utilix.Objects;
 
 /**
- * <p>
  * Representa o módulo no contexto de autenticação, ou seja, uma rotina que
  * auxilia no cálculo do dígito verificador.
- * </p>
+
  * <p>
  * As rotinas tradicionais são Módulo 10 e Módulo 11.
  * </p>
@@ -55,58 +54,39 @@ import org.jrimum.utilix.Objects;
 public class Modulo {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -3612368544258125201L;
-
-	/**
-	 * <p>
 	 * Mensagem da exceção lançada no método calcular.
-	 * </p>
 	 */
 	private static final String O_ARGUMENTO_DEVE_CONTER_APENAS_NUMEROS = "O argumento deve conter apenas números !";
 
 	/**
-	 *<p>
 	 * Valor inteiro do módulo 10
-	 * </p>
 	 */
 	public static final int MOD10 = TipoDeModulo.MODULO10.valor();
 
 	/**
-	 *<p>
 	 * Valor inteiro do módulo 11
-	 * </p>
 	 */
 	public static final int MOD11 = TipoDeModulo.MODULO11.valor();
 
 	/**
-	 *<p>
 	 * Tipo do módulo
-	 * </p>
 	 */
 	private TipoDeModulo mod;
 
 	/**
-	 *<p>
 	 * Valor inteiro do "peso" mínimo mutiplicador utilizado no cálculo do
 	 * módulo.
-	 * </p>
 	 */
 	private int limiteMaximo;
 
 	/**
-	 *<p>
 	 * Valor inteiro do "peso" máximo mutiplicador utilizado no cálculo do
 	 * módulo.
-	 * </p>
 	 */
 	private int limiteMinimo;
 
 	/**
-	 * <p>
 	 * Inicializa um módulo com valores default.
-	 * </p>
 	 * 
 	 * @param mod
 	 *            tipo do módulo
@@ -124,9 +104,7 @@ public class Modulo {
 	}
 
 	/**
-	 * <p>
 	 * Inicializa um módulo com o tipo definido com valores default.
-	 * </p>
 	 * 
 	 * @param limiteMaximo
 	 *            peso máximo
@@ -148,10 +126,8 @@ public class Modulo {
 	}
 
 	/**
-	 * <p>
 	 * Retorna o valor da instância do módulo de acordo com a <code>enum</code>
 	 * da instância.
-	 * </p>
 	 * 
 	 * <p>
 	 * Se por um acaso a instância <code>enum</code> for nula uma
@@ -182,9 +158,7 @@ public class Modulo {
 	}
 
 	/**
-	 * <p>
 	 * Executa o cáculo do módulo 11 com os limites definidos.
-	 * </p>
 	 * 
 	 * <p>
 	 * Executa o método <code>calculeSomaSequencialMod11</code> e aplica o
@@ -229,9 +203,7 @@ public class Modulo {
 	}
 
 	/**
-	 * <p>
 	 * Realiza o cálculo da soma na forma do módulo 11.
-	 * </p>
 	 * <p>
 	 * O módulo 11 funciona da seguinte maneira:
 	 * </p>
@@ -261,7 +233,7 @@ public class Modulo {
 	 * @param numero
 	 * @param limiteMin
 	 * @param limiteMax
-	 * @return
+	 * @return Soma da sequencia sem executar Mod 11
 	 * @throws IllegalArgumentException
 	 * 
 	 * @since 0.2
@@ -295,9 +267,7 @@ public class Modulo {
 	}
 
 	/**
-	 * <p>
 	 * Executa o cáculo do módulo 10 com os limites definidos.
-	 * </p>
 	 * 
 	 * <p>
 	 * Transforma o <code>numero</code> em string e executa o método
@@ -318,9 +288,7 @@ public class Modulo {
 	}
 
 	/**
-	 * <p>
 	 * Executa o cáculo do módulo 10 com os limites definidos.
-	 * </p>
 	 * 
 	 * <p>
 	 * Executa o método <code>calculeSomaSequencialMod10</code> e aplica o
@@ -342,9 +310,7 @@ public class Modulo {
 	}
 
 	/**
-	 * <p>
 	 * Realiza o cálculo da soma na forma do módulo 10.
-	 * </p>
 	 * <p>
 	 * O módulo 10 funciona da seguinte maneira:
 	 * </p>
@@ -419,12 +385,10 @@ public class Modulo {
 	}
 
 	/**
-	 * <p>
 	 * Executa o cáculo do módulo da instância.
-	 * </p>
 	 * 
 	 * @param numero
-	 * @return
+	 * @return Módulo
 	 * @throws IllegalArgumentException
 	 * 
 	 * @since 0.2
@@ -452,12 +416,10 @@ public class Modulo {
 	}
 
 	/**
-	 * <p>
 	 * Executa o cáculo do módulo da instância.
-	 * </p>
 	 * 
 	 * @param numero
-	 * @return
+	 * @return módulo
 	 * 
 	 * @since 0.2
 	 */
@@ -467,11 +429,9 @@ public class Modulo {
 	}
 
 	/**
-	 * <p>
 	 * Inicializa as variáveis <code>limiteMaximo</code> e
 	 * <code>limiteMinimo</code> com os valores padrões de acordo com a
 	 * instância do módulo da classe.
-	 * </p>
 	 * 
 	 * <p>
 	 * Valores padrões: <br />
@@ -534,7 +494,7 @@ public class Modulo {
 	}
 
 	/**
-	 * @return the mod
+	 * @return Tipo do módulo
 	 */
 	public TipoDeModulo getMod() {
 		return mod;
@@ -542,12 +502,15 @@ public class Modulo {
 
 	/**
 	 * @param mod
-	 *            the mod to set
+	 *            Tipo do módulo
 	 */
 	public void setMod(TipoDeModulo mod) {
 		this.mod = mod;
 	}
 
+	/**
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		return Objects.toString(this);

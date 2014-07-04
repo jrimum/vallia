@@ -29,11 +29,13 @@
 
 package org.jrimum.vallia.digitoverificador;
 
+import static org.apache.commons.lang.StringUtils.isNotBlank;
+import static org.apache.commons.lang.StringUtils.replaceChars;
+import static org.jrimum.utilix.text.Strings.fillWithZeroLeft;
+
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang.StringUtils;
 import org.jrimum.utilix.Exceptions;
-import org.jrimum.utilix.text.Filler;
 
 /**
  * <p>
@@ -78,11 +80,6 @@ import org.jrimum.utilix.text.Filler;
 public class CPFDV extends AbstractDigitoVerificador {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2059692008894172695L;
-
-	/**
 	 * <p>
 	 * Liminte mínimo do para cálculo no módulo 11.
 	 *</p>
@@ -112,7 +109,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 	@Override
 	public int calcule(long numero) {
 
-		return calcule(Filler.ZERO_LEFT.fill(String.valueOf(numero), 9));
+		return calcule(fillWithZeroLeft(numero, 9));
 	}
 
 	/**
@@ -151,7 +148,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 	 */
 	private String removaFormatacao(String numero) {
 		
-		numero = StringUtils.replaceChars(numero, ".", "");
+		numero = replaceChars(numero, ".", "");
 		
 		return numero;
 	}
@@ -177,7 +174,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 		
 		boolean isValido = false;
 		
-		if (StringUtils.isNotBlank(numero)) {
+		if (isNotBlank(numero)) {
 			
 			boolean formatoValido = (Pattern.matches(REGEX_CPF_DV, numero) || Pattern.matches(REGEX_CPF_DV_FORMATTED, numero));
 

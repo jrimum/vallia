@@ -50,11 +50,6 @@ import org.jrimum.utilix.Exceptions;
 public class CodigoDeCompensacaoBancosBACENDV extends AbstractDigitoVerificador {
 
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5250684561237486022L;
-	
-	/**
 	 * Valor mínimo do código de compensação
 	 */
 	public static final int LIMITE_MINIMO = 1;

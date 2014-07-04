@@ -30,9 +30,7 @@
 package org.jrimum.vallia;
 
 /**
- * <p>
  * Validador especialista para CNPJ.
- * </p>
  * 
  * <p>
  * O cadastro de pessoa jurídica tem as seguintes características:
@@ -59,11 +57,6 @@ package org.jrimum.vallia;
  * @version 0.2
  */
 class CNPJValidator extends AbstractCPRFValidator {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7818892654534965062L;
 
 	/**
 	 * @see org.jrimum.vallia.AbstractCPRFValidator#isValido()
