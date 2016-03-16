@@ -88,8 +88,8 @@ public class TestCNPJDV{
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void quandoNumeroLongMaiorQue12DigitosDisparaExcecao() {
-		dvCNPJ.calcule(1112223330001L);
+	public void quandoNumeroLongMaiorQue13DigitosDisparaExcecao() {
+		dvCNPJ.calcule(11122233300012L);
 	}
 
 	@Test

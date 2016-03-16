@@ -27,7 +27,6 @@
  * 
  */
 
-
 package org.jrimum.vallia;
 
 import static org.junit.Assert.assertFalse;
@@ -40,28 +39,40 @@ import org.junit.Test;
  * 
  * 
  * @author Gabriel Guimarães
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a> 
+ * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
  * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * 
+ * 		
  * @since 0.2
- * 
+ * 		
  * @version 0.2
  */
-public class TestCNPJValidator{
+public class TestCNPJValidator {
 	
 	private AbstractCPRFValidator validadorCNPJ;
-
+	
 	@Test
-	public void testIsValido() {
-		
+	public void test14DigitosValidos() {
 		validadorCNPJ = AbstractCPRFValidator.create("11222333000181");
-		
 		assertTrue(validadorCNPJ.isValido());
-		
+	}
+	
+	@Test
+	public void test14DigitosInvalidos() {
 		validadorCNPJ = AbstractCPRFValidator.create("11222333000182");
-		
 		assertFalse(validadorCNPJ.isValido());
 	}
-
+	
+	@Test
+	public void test15DigitosValidos() {
+		validadorCNPJ = AbstractCPRFValidator.create("123456789000130");
+		assertTrue(validadorCNPJ.isValido());
+	}
+	
+	@Test
+	public void test15DigitosInvalidos() {
+		validadorCNPJ = AbstractCPRFValidator.create("123456789000131");
+		assertFalse(validadorCNPJ.isValido());
+	}
+	
 }
