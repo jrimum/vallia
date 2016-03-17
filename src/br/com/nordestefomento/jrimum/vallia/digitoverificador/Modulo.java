@@ -183,8 +183,12 @@ public class Modulo {
 	 */
 	public static int calculeMod11(String numero, int limiteMin, int limiteMax)
 			throws IllegalArgumentException {
-
-		return (calculeSomaSequencialMod11(numero, limiteMin, limiteMax) % 11);
+		
+		int dv = 11 - (calculeSomaSequencialMod11(numero, limiteMin, limiteMax) % MOD11); 
+		if(dv > 9) {
+			dv = 0;
+		}
+		return dv;		
 	}
 
 	public static int calculeSomaSequencialMod11(String numero, int limiteMin,
