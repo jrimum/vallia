@@ -36,8 +36,8 @@ package org.jrimum.vallia;
  * O cadastro de pessoa jurídica tem as seguintes características:
  * <ul>
  * <li>Contém apenas números.</li>
- * <li>Possui tamanho 14 sem formatação e 18 com formatação.</li>
- * <li>Pode estar no formato ##.###.###/####-XX, onde XX é o dígito verificador.
+ * <li>Possui tamanho 14 ou 15 sem formatação e 18 ou 19 com formatação.</li>
+ * <li>Pode estar no formato [#]##.###.###/####-XX, onde XX é o dígito verificador.
  * </li>
  * </ul>
  * </p>
@@ -68,11 +68,11 @@ class CNPJValidator extends AbstractCPRFValidator {
 		boolean isValido = false;
 		int dv = 0;
 		int dvCalculado = -1;
+		int dvPosicao = this.getCodigoDoCadastro().length() - 2;
 
-		dv = Integer.parseInt(getCodigoDoCadastro().substring(12, 14));
-
-		dvCalculado = digitoVerificador.calcule(getCodigoDoCadastro()
-				.substring(0, 12));
+		dv = Integer.parseInt(this.getCodigoDoCadastro().substring(dvPosicao));
+		
+		dvCalculado = this.digitoVerificador.calcule(this.getCodigoDoCadastro().substring(0, dvPosicao));
 
 		isValido = (dv == dvCalculado);
 

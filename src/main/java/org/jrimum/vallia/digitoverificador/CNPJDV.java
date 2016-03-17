@@ -96,18 +96,18 @@ public class CNPJDV extends AbstractDigitoVerificador {
 	/**
 	 * <p>
 	 * Expressão regular para validação dos doze primeiros números do CNPJ sem
-	 * formatação: <tt>"############"</tt>.
+	 * formatação: <tt>"[#]############"</tt>.
 	 * </p>
 	 */
-	private static final String REGEX_CNPJ_DV = "\\d{12}";
+	private static final String REGEX_CNPJ_DV = "\\d{12,13}";
 
 	/**
 	 * <p>
 	 * Expressão regular para validação dos doze primeiros números do CNPJ
-	 * formatado: <tt>"##.###.###/####"</tt>.
+	 * formatado: <tt>"[#]##.###.###/####"</tt>.
 	 * </p>
 	 */
-	private static final String REGEX_CNPJ_DV_FORMATTED = "\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}";
+	private static final String REGEX_CNPJ_DV_FORMATTED = "\\d{2,3}\\.\\d{3}\\.\\d{3}\\/\\d{4}";
 
 	/**
 	 * @see org.jrimum.vallia.digitoverificador.AbstractDigitoVerificador#calcule(long)

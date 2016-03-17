@@ -75,16 +75,16 @@ public abstract class AbstractCPRFValidator {
 	private static final String REGEX_CPF = "(\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2})|(\\d{11})";
 
 	/**
-	 * Expressão regular para validação de CNPJ: "##.###.###/####-##" ou
-	 * "##############".
+	 * Expressão regular para validação de CNPJ: "[#]##.###.###/####-##" ou
+	 * "[#]##############".
 	 */
-	private static final String REGEX_CNPJ = "(\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2})|(\\d{14})";
+	private static final String REGEX_CNPJ = "(\\d{2,3}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2})|(\\d{14,15})";
 
 	/**
 	 * Expressão regular para validação de um cadastro: "###" ou
-	 * "##############".
+	 * "[#]##############".
 	 */
-	private static final String REGEX_CADASTRO = "\\d{3,14}";
+	private static final String REGEX_CADASTRO = "\\d{3,15}";
 
 	/**
 	 * Representa o tipo de cadastro e fornece o autenticador correto de a cordo
